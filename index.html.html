@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div style="background: rgba(31, 122, 79, 0.1); border: 1px dashed #1f7a4f; padding: 12px; border-radius: 12px; margin: 15px auto; font-size: 13px; color: #1f7a4f; font-weight: 700; line-height: 1.5; text-align: center; max-width: 90%;">
-    <i class="fas fa-chart-line"></i> 5 Ocak 2026 tarihinde açıklanan TÜİK verilerine istinaden, enflasyon farkından kaynaklı <b>%1,19</b> oranındaki artış tüm maaş kalemlerine uygulanarak robot güncellenmiştir.
+<div style="background: rgba(230, 57, 70, 0.1); border: 2px dashed #e63946; padding: 12px; border-radius: 12px; margin: 15px auto; font-size: 13px; color: #e63946; font-weight: 700; line-height: 1.5; text-align: center; max-width: 90%;">
+    <i class="fas fa-exclamation-triangle"></i> 14 Mart 2026 tarihinde ödenecek olan maaşların bir kısmı %20 vergiye gireceğinden dolayı programın bu dönem için birebir hesaplama yapması mümkün değildir.
+</div>
+ <div style="background: rgba(26, 35, 126, 0.1); border: 2px dashed #1a237e; padding: 12px; border-radius: 12px; margin: 15px auto; font-size: 13px; color: #1a237e; font-weight: 700; line-height: 1.5; text-align: center; max-width: 90%;"> 
+  ❗14 Mart 2026 tarihinde ödenecek maaşlar, ilgili ayın 28 çekmesinden dolayı 28 günlük yevmiye üzerinden hesaplanacaktır. Bundan dolayı bir önceki aya kıyasen 3 günlük yevmiye eksik yatacaktır.
 </div>
 <title>GSB Maaş Hesaplama Robotu</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -23,7 +26,6 @@ body{ font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); p
 h1{ color:#1f7a4f; margin-bottom: 5px; font-weight: 800; font-size: 22px;}
 .version-badge { background: #1f7a4f; color: white; font-size: 10px; padding: 3px 10px; border-radius: 50px; font-weight: bold; display: inline-block; vertical-align: middle; }
 
-/* SOSYAL MEDYA BAR */
 .social-bar-wrapper { display: flex; justify-content: center; align-items: center; margin-top: 15px; position: relative; min-height: 50px; }
 .social-icons { display: flex; gap: 10px; }
 .social-icons a { text-decoration: none; font-size: 18px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--box-bg); box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s ease; }
@@ -83,7 +85,7 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
 <div id="giris" class="box">
   <div class="header-container">
     <h1>Maaş Hesaplama Robotu (GSB 10 Nolu İşkolu)</h1>
-    <span class="version-badge">v1.4 | 9 Şubat 2026 GÜNCEL</span>
+    <span class="version-badge">v1.5 | 28 Şubat 2026 GÜNCEL</span>
     <div class="social-bar-wrapper">
         <div class="social-icons">
           <a href="http://instagram.com/batuhancaglarozkan" target="_blank" class="ins"><i class="fab fa-instagram"></i></a>
@@ -92,7 +94,7 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
         </div>
         <div class="visitor-btn">
           <span>ZİYARETÇİ SAYISI</span>
-          <span class="v-count">24.328</span>
+          <span class="v-count">55.247</span>
         </div>
     </div>
   </div>
@@ -104,7 +106,7 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
 <div id="icerik" style="display:none">
 <div class="header-container">
   <h1>Maaş Hesaplama Robotu (GSB 10 Nolu İşkolu)</h1>
-  <span class="version-badge">v1.4 | 9 Şubat 2026 GÜNCEL</span>
+  <span class="version-badge">v1.5 | 28 Şubat 2026 GÜNCEL</span>
   <div class="social-bar-wrapper">
       <div class="social-icons">
         <a href="http://instagram.com/batuhancaglarozkan" target="_blank" class="ins"><i class="fab fa-instagram"></i></a>
@@ -113,7 +115,7 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
       </div>
       <div class="visitor-btn">
         <span>ZİYARETÇİ SAYISI</span>
-        <span class="v-count">24.328</span>
+        <span class="v-count">55.247</span>
       </div>
   </div>
 </div>
@@ -142,6 +144,7 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
       <select id="kadro" onchange="kadroGuncelle()">
         <option value="">KADRO SEÇİNİZ</option>
         <option>Temizlik Personeli</option>
+        <option>Büro Personeli</option>
         <option>Büro Personeli (Görevlendirme)</option>
         <option>Bilgi İşlem Personeli</option>
         <option>Gençlik Lideri / Antrenör</option>
@@ -163,16 +166,16 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
     </div>
     <div>
       <label>Maaş Dönemi Seçiniz*</label>
-      <select id="donem" onchange="gun.value=this.value">
+      <select id="donem" onchange="donemGuncelle(this.value)">
         <option value="">Maaş Dönemi Seçiniz</option>
-        <option value="31">14 Şubat (31 gün)</option>
-        <option value="28">14 Mart (28 gün)</option>
-        <option value="31">14 Nisan (31 gün)</option>
-        <option value="30">14 Mayıs (30 gün)</option>
+        <option value="31">15 Ocak - 14 Şubat (31 gün)</option>
+        <option value="28">15 Şubat - 14 Mart (28 gün)</option>
+        <option value="31">15 Mart - 14 Nisan (31 gün)</option>
+        <option value="30">15 Nisan - 14 Mayıs (30 gün)</option>
       </select>
       <input type="hidden" id="gun">
     </div>
-    <div><label>Fiili Çalışma Gün Sayısı Giriniz (İşe gidilen gün sayısı)</label><input type="number" id="fiili" value="22"></div>
+    <div><label>Fiili Çalışma Gün Sayısı Giriniz (İşe gidilen gün sayısı)</label><input type="number" id="fiili" value="22" oninput="yogurtOtomatikGuncelle()"></div>
     <div><label>Hizmet Yılı Giriniz (696 Sayılı KHK için 7 seçilir)</label><input type="number" id="hizmet" value="7"></div>
     <div class="info-note">
         <i class="fas fa-info-circle"></i> Haricen, Akdi/Hafta Tatili ve/veya Ulusal Bayram/Genel Tatil çalışması yapılması durumunda fiili çalışmaya bir gün daha eklenmesi gerekmektedir.
@@ -190,7 +193,7 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
         </div>
         <span class="sub-label">İkinci yemek bedeli normalde 8 saat çalışan ancak fazla mesai ile günlük çalışmasını 12 saate tamamlayanlara ödenmektedir.</span>
     </div>
-    <div><label>Kreş Yardım Ücreti (Net)</label>
+    <div><label>Kreş Yardımı Ücreti (Net)</label>
       <select id="kres">
         <option value="0">Yok</option>
         <option value="1777">1 Çocuk</option>
@@ -240,11 +243,40 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
   <button onclick="detayGoster()" style="background: #444; margin-top: 15px; padding: 12px;">Detay Göster / Gizle</button>
   <div id="sonuc" style="display:none"></div>
   
-  <div class="footer-note">© 2026 Koop-İş GSB Robotu | Son Güncelleme: 9 Şubat 2026</div>
+  <div class="footer-note">© 2026 Koop-İş GSB Robotu | Son Güncelleme: 28 Şubat 2026</div>
 </div>
 </div>
 
 <script>
+function donemGuncelle(val) {
+    document.getElementById("gun").value = val;
+    let k = document.getElementById("kadro").value;
+    let is12 = k.includes("12 saat");
+    let donemText = document.getElementById("donem").options[document.getElementById("donem").selectedIndex].text;
+
+    if(donemText.includes("14 Mart")) {
+        document.getElementById("fiili").value = is12 ? 15 : 20;
+    } else {
+        document.getElementById("fiili").value = is12 ? 16 : 22;
+    }
+
+    // 14 Nisan ve 14 Mayıs seçildiğinde vergi dilimi %20 olsun
+    if(donemText.includes("14 Nisan") || donemText.includes("14 Mayıs")){
+        document.getElementById("vergiOrani").selectedIndex = 1; // 2. Dilim %20
+    }
+
+    yogurtOtomatikGuncelle();
+}
+function yogurtOtomatikGuncelle() {
+    let k = document.getElementById("kadro").value;
+    let fiiliG = document.getElementById("fiili").value;
+    let yogurtKadro = ["Yüzme Antrenörü","Cankurtaran","Havuz Suyu Operatörü","İklimlendirme/Kaloriferci 12 saat çalışan","İklimlendirme/Kaloriferci 8 saat çalışan"];
+    
+    if(yogurtKadro.includes(k)) {
+        document.getElementById("yogurt").value = fiiliG;
+    }
+}
+
 function toggleYemekInput() {
     const btn = document.getElementById("yemekToggle");
     const container = document.getElementById("ikinciYemekInputContainer");
@@ -262,29 +294,6 @@ function toggleYemekInput() {
     }
 }
 
-(function() {
-    const startValue = 13518;
-    const cacheKey = 'gsb_v_count_2026';
-    let localHits = parseInt(localStorage.getItem(cacheKey)) || 0;
-    if (!sessionStorage.getItem('counted')) {
-        localHits++;
-        localStorage.setItem(cacheKey, localHits);
-        sessionStorage.setItem('counted', 'true');
-    }
-    function refreshDisplay() {
-        const now = new Date();
-        const startDay = new Date('2026-01-01');
-        const diffInSeconds = Math.floor((now - startDay) / 1000);
-        const simulatedGlobal = Math.floor(diffInSeconds / 120); 
-        const finalCount = startValue + simulatedGlobal + localHits;
-        document.querySelectorAll('.v-count').forEach(el => {
-            el.innerText = finalCount.toLocaleString('tr-TR');
-        });
-    }
-    refreshDisplay();
-    setInterval(refreshDisplay, 30000);
-})();
-
 function kontrol(){
   if(document.getElementById("sifre").value==="gsbkoopis"){
     document.getElementById("giris").style.display="none";
@@ -297,7 +306,14 @@ function kadroGuncelle(){
   let is12 = k.includes("12 saat");
   document.getElementById("fazlaMesaiDiv").style.display = is12 ? "none" : "block";
   document.getElementById("ikinciYemekDiv").style.display = is12 ? "none" : "block";
-  if(!is12) document.getElementById("fiili").value = 22; else document.getElementById("fiili").value = 16;
+  
+  let donemText = document.getElementById("donem").options[document.getElementById("donem").selectedIndex].text;
+  if(donemText.includes("14 Mart")) {
+      document.getElementById("fiili").value = is12 ? 15 : 20;
+  } else {
+      document.getElementById("fiili").value = is12 ? 16 : 22;
+  }
+  
   let yogurtKadro = ["Yüzme Antrenörü","Cankurtaran","Havuz Suyu Operatörü","İklimlendirme/Kaloriferci 12 saat çalışan","İklimlendirme/Kaloriferci 8 saat çalışan"];
   document.getElementById("yogurt").value = yogurtKadro.includes(k) ? document.getElementById("fiili").value : 0;
 }
@@ -311,18 +327,18 @@ function hesapla(){
   let fiiliG = parseInt(document.getElementById("fiili").value);
   let hizmetYili = parseInt(document.getElementById("hizmet").value);
   let donemText = document.getElementById("donem").options[document.getElementById("donem").selectedIndex].text;
+  let kadroSecimi = document.getElementById("kadro").value;
   
   let detay = []; let toplam = 0;
   const ekle = (label, tutar, note="", isAidat=false) => { 
     if(tutar !== 0 || note !== "" || isAidat) { 
-        detay.push({label, tutar, note, isAidat}); 
+        detay.push({label, tutar, note, isAidat});
         toplam += tutar; 
     } 
   };
   
   ekle(`Yevmiye (${gunSay} Gün)`, bYev * gunSay * vKat);
   ekle("Yol Ücreti", parseFloat(document.getElementById("yol").value));
-  
   let yemekBirim = kadro.value.includes("12 saat") ? 527.94 : 263.97;
   let yemekEtiket = kadro.value.includes("12 saat") ? "Çift Yemek Bedeli (" + fiiliG + " Gün)" : "Yemek Bedeli (" + fiiliG + " Gün)";
   ekle(yemekEtiket, yemekBirim * fiiliG);
@@ -334,10 +350,12 @@ function hesapla(){
   
   ekle("Kreş Yardımı (Net)", parseFloat(document.getElementById("kres").value));
   ekle("Sosyal Yardım", 4467.22 * vKat);
-  let primOran = (kadro.value.includes("Temizlik") || kadro.value.includes("Büro")) ? 0.08 : 0.09;
+  
+  // PRİM MANTIĞI: BÜRO PERSONELİ (GÖREVLENDİRME) VE TEMİZLİK %8, DİĞERLERİ %9
+  let primOran = (kadroSecimi === "Temizlik Personeli" || kadroSecimi === "Büro Personeli (Görevlendirme)") ? 0.08 : 0.09;
+  
   ekle("İş Primi (%" + (primOran*100) + ")", bYev * primOran * fiiliG * vKat);
   ekle("Hizmet Zammı (" + hizmetYili + " Yıl)", hizmetYili * 20.90 * vKat);
-  
   if(document.getElementById("yogurt").value > 0) {
       let yogurtGun = parseFloat(document.getElementById("yogurt").value);
       ekle("Yoğurt Yardımı (" + yogurtGun + " Gün)", yogurtGun * 64.25 * vKat);
@@ -354,7 +372,6 @@ function hesapla(){
   if(document.getElementById("dogum").value > 0) { let bD = parseFloat(document.getElementById("dogum").value); ekle("Doğum Yardımı", bD - (bD * dV)); }
   if(document.getElementById("olum").value > 0) { let bO = parseFloat(document.getElementById("olum").value); ekle("Ölüm Yardımı", bO - (bO * dV)); }
   if(document.getElementById("afet").value > 0) ekle("Doğal Afet Yardımı", parseFloat(document.getElementById("afet").value) * vKat);
-  
   if(!kadro.value.includes("12 saat") && document.getElementById("fazla").value > 0) {
       let fazlaSaat = parseFloat(document.getElementById("fazla").value);
       ekle("Fazla Mesai (" + fazlaSaat + " Saat)", (bYev * vKat * 2 / 7.5) * fazlaSaat);
@@ -373,30 +390,30 @@ function hesapla(){
   let engSelect = document.getElementById("engelli");
   let engVal = parseFloat(engSelect.value);
   if(engVal > 0) ekle("Engellilik İndirimi", engVal * vYuzde);
-  
   if(document.getElementById("gazi").value === "1") ekle("Gazi / Şehit Yakını", (bYev * gunSay * 0.1) * vKat);
   
   let ossTutar = parseFloat(document.getElementById("oss").value);
   if(ossTutar > 0) ekle("Özel Sağlık Sigortası İndirimi", ossTutar * vYuzde);
   
   let gvIndirim = 4211.32;
-  let dvIndirim = 250.70;
-  let tediyeNotuText = "";
+let dvIndirim = 250.70;
+let tediyeNotuText = "";
 
-  if(donemText.includes("14 Şubat")) {
-      tediyeNotuText = "(26 Ocak Tediye Mahsubu Uygulanmıştır)";
-      if(bYev == 2142.43) { gvIndirim = 660.24; dvIndirim = 39.31; } 
-      else { gvIndirim = 711.29; dvIndirim = 42.35; }
-  }
+if(donemText.includes("14 Şubat")) {
+    tediyeNotuText = "(26 Ocak Tediye Mahsubu Uygulanmıştır)";
+    if(bYev == 2142.43) { gvIndirim = 660.24; dvIndirim = 39.31; } 
+    else { gvIndirim = 711.29; dvIndirim = 42.35; }
+} else if(donemText.includes("14 Nisan")) {
+    gvIndirim = 0;
+    dvIndirim = 0;
+    tediyeNotuText = "📌 Not: Tediye ve ikramiye ödemelerinde vergi indirimi uygulandığından maaşa indirim uygulanmamıştır.";
+}
 
-  ekle("Gelir Vergisi İndirimi", gvIndirim, tediyeNotuText);
-  ekle("Damga Vergisi İndirimi", dvIndirim, tediyeNotuText);
-  
-  // SENDİKA AİDATI HESAPLAMA (BRÜT YEVMİYE * %65 - VERGİ KESİNTİSİ)
+ekle("Gelir Vergisi İndirimi", gvIndirim, tediyeNotuText);
+ekle("Damga Vergisi İndirimi", dvIndirim, tediyeNotuText);
   let brutAidat = bYev * 0.65;
-  let netAidat = (brutAidat - (brutAidat * vYuzde)) * -1; // Kesinti olduğu için eksi ile çarpıyoruz
+  let netAidat = (brutAidat - (brutAidat * vYuzde)) * -1;
   ekle("Sendika Aidat Kesintisi %65", netAidat, "", true);
-  
   document.getElementById("toplamNet").innerHTML = "💰 " + toplam.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " TL";
   document.getElementById("sonucAlani").style.display = "block";
   window.detayData = detay;
@@ -412,7 +429,6 @@ function tabloCiz(){
         <div style="font-size: 11px; margin-top:5px;">${window.hesaplananKadro}</div>
         <div style="font-size: 10px;">Dönem: ${window.hesaplananDonem}</div>
     </div>`;
-
   window.detayData.forEach(d => {
     let rowClass = d.isAidat ? 'class="receipt-row aidat-row"' : 'class="receipt-row"';
     let noteStyle = d.note.includes("Tediye Mahsubu") ? 'class="tediye-notu"' : 'class="aidat-note"';
@@ -422,9 +438,7 @@ function tabloCiz(){
         <span>${d.tutar.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} TL</span>
     </div>`;
   });
-
   let toplamTutar = window.detayData.reduce((acc, curr) => acc + curr.tutar, 0);
-  
   html += `<div class="receipt-row receipt-total">
         <span>NET ÖDENEN</span>
         <span>${toplamTutar.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} TL</span>
@@ -442,6 +456,107 @@ function detayGoster(){
   if(s.style.display === "block") s.style.display = "none";
   else { s.style.display = "block"; tabloCiz(); }
 }
+</script>
+<!-- ===================================== -->
+<!-- TEDİYE & İKRAMİYE MODÜLÜ (MANUEL + NOT) -->
+<!-- ===================================== -->
+
+<style>
+.mini-box{
+  max-width:850px;
+  margin:25px auto;
+  text-align:center;
+}
+.mini-select{
+  width:220px;
+  padding:6px;
+  border-radius:8px;
+  margin:8px;
+}
+.mini-btn{
+  width:auto;
+  padding:8px 18px;
+  font-size:12px;
+  border-radius:8px;
+  margin:5px;
+}
+.mini-result{
+  margin-top:12px;
+  font-weight:bold;
+  font-size:15px;
+  display:none;
+}
+.mini-note{
+  color:red;
+  font-size:12px;
+  margin-top:4px;
+}
+</style>
+
+<div class="mini-box">
+
+  <div>
+    <button class="mini-btn" onclick="gosterSecim('tediye')">16 Mart 2026 Tediye Ücreti Hesapla</button>
+    <button class="mini-btn" onclick="gosterSecim('ikramiye')">15-20 Mart 2026 İkramiye Ücreti Hesapla</button>
+  </div>
+
+  <br>
+
+  <select id="miniYevmiye" class="mini-select" style="display:none" onchange="gosterRakam()">
+    <option value="">Yevmiye Seçiniz</option>
+    <option value="0">2142,43 TL</option>
+    <option value="1">2111,63 TL</option>
+  </select>
+
+  <div id="miniSonuc" class="mini-result"></div>
+  <div id="miniNot" class="mini-note"></div>
+
+</div>
+
+<script>
+// Manuel belirlenen rakamlar
+const tediyeListesi = [23150.40, 22879.13];    // yevmiyeye göre tediye
+const ikramiyeListesi = [43257.05, 42639.78];  // yevmiyeye göre ikramiye
+
+let secilenButon = ""; // hangi butona tıklandı?
+
+function gosterSecim(tip){
+  secilenButon = tip; // 'tediye' veya 'ikramiye'
+  document.getElementById("miniYevmiye").style.display = "inline-block";
+  document.getElementById("miniYevmiye").value = ""; // reset
+  document.getElementById("miniSonuc").style.display = "none";
+  document.getElementById("miniNot").innerHTML = "";
+}
+
+function gosterRakam(){
+  const index = parseInt(document.getElementById("miniYevmiye").value);
+  if(isNaN(index)){
+    document.getElementById("miniSonuc").style.display="none";
+    document.getElementById("miniNot").innerHTML = "";
+    return;
+  }
+
+  let tutar;
+  let notMetni = "";
+  if(secilenButon === "tediye"){
+    tutar = tediyeListesi[index];
+    notMetni = "📌 Not: Bu Tediye rakamına gelir ve damga vergisi indirimleri uygulanmıştır. İkramiye rakamının önce hesaplanması durumunda rakamlar değişkenlik gösterebilecektir.";
+  } else if(secilenButon === "ikramiye"){
+    tutar = ikramiyeListesi[index];
+    notMetni = "📌 Not: Bu İkramiye rakamına gelir vergisi indirimi uygulanmamıştır. Sadece tediyeden kalan damga vergisi indirimi uygulanmıştır. İkramiye rakamı önce hesaplanırsa yatan rakamlar değişkenlik gösterebilecektir.";
+  } else {
+    return;
+  }
+
+  const alan = document.getElementById("miniSonuc");
+  alan.innerHTML = secilenButon.charAt(0).toUpperCase() + secilenButon.slice(1) + ": 💰 " +
+    tutar.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}) + " TL";
+  alan.style.display="block";
+
+  const note = document.getElementById("miniNot");
+  note.innerHTML = notMetni;
+}
+</script>
 </script>
 </body>
 </html>
