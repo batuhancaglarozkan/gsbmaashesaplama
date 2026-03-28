@@ -287,8 +287,13 @@ function donemGuncelle(val) {
         document.getElementById("fiili").value = is12 ? 16 : 22;
     }
 
-    if(donemText.includes("14 Nisan") || donemText.includes("14 Mayıs")){
+    // Nisan maaşı için %20 (Index 1)
+    if(donemText.includes("14 Nisan")){
         document.getElementById("vergiOrani").selectedIndex = 1; 
+    }
+    // 14 Mayıs ve sonrasındaki tüm aylar için %27 (Index 2)
+    else if(donemText.includes("14 Mayıs") || donemText.includes("14 Haziran") || donemText.includes("14 Temmuz")){
+        document.getElementById("vergiOrani").selectedIndex = 2; 
     }
 
     yogurtOtomatikGuncelle();
@@ -511,4 +516,3 @@ const x = setInterval(function() {
 </script>
 </body>
 </html>
-
