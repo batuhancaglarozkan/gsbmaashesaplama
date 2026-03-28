@@ -96,12 +96,15 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
         <div><span>⏰</span> <b>SAAT: 14:00</b></div>
         <div><span>📍</span> <b>TÜHİS GENEL MERKEZİ</b></div>
     </div>
-    <button class="git-btn" onclick="sayfayaGit()">Sisteme Giriş Yap</button>
+    <button class="git-btn" onclick="sayfayaGit()">Maaş Hesaplama Robotuna Giriş Yap</button>
 </div>
 
 <div id="giris" class="box" style="margin-top: 50px;">
   <div class="header-container">
-    <h1>Maaş Hesaplama Robotu (GSB 10 Nolu İşkolu)</h1>
+    <h1 style="line-height: 1.1; margin-bottom: 10px;">
+      GSB Maaş Hesaplama Robotu
+      <div style="font-size: 16px; font-weight: 600; margin-top: 2px;">(10 Nolu İşkolu)</div>
+    </h1>
     <span class="version-badge">v1.5 | 29 Mart 2026 GÜNCEL</span>
     <div class="social-bar-wrapper">
         <div class="social-icons">
@@ -110,29 +113,32 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
           <a href="https://x.com/BatuhanOzkann" target="_blank" class="twi"><i class="fab fa-x-twitter"></i></a>
         </div>
         <div class="visitor-btn">
-          <span>ZİYARETÇİ SAYISI</span>
-          <span class="v-count">55.247</span>
+          <span>TİS TOPLANTISINA KALAN SÜRE</span>
+          <span class="v-count" id="kalan-zaman-1">...</span>
         </div>
     </div>
   </div>
   <label>Şifre</label>
-  <input type="password" id="sifre" placeholder="Şifreyi giriniz">
-  <button onclick="kontrol()">GİRİŞ YAP</button>
+  <input type="password" id="sifre" placeholder="Robot Şifresini giriniz.">
+  <button onclick="kontrol()">GİRİŞ YAPINIZ.</button>
 </div>
 
 <div id="icerik" style="display:none">
 <div class="header-container">
-  <h1>Maaş Hesaplama Robotu (GSB 10 Nolu İşkolu)</h1>
-  <span class="version-badge">v1.5 | 29 Mart 2026 GÜNCEL</span>
+  <h1 style="line-height: 1.1; margin-bottom: 10px;">
+      GSB Maaş Hesaplama Robotu
+      <div style="font-size: 16px; font-weight: 600; margin-top: 2px;">(10 Nolu İşkolu)</div>
+    </h1>
+    <span class="version-badge">v1.5 | 29 Mart 2026 GÜNCEL</span>
   <div class="social-bar-wrapper">
       <div class="social-icons">
         <a href="http://instagram.com/batuhancaglarozkan" target="_blank" class="ins"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/batuhancaglarozkann" target="_blank" class="fac"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://facebook.com/batuwashere" target="_blank" class="fac"><i class="fab fa-facebook-f"></i></a>
         <a href="https://x.com/BatuhanOzkann" target="_blank" class="twi"><i class="fab fa-x-twitter"></i></a>
       </div>
       <div class="visitor-btn">
-        <span>ZİYARETÇİ SAYISI</span>
-        <span class="v-count">55.247</span>
+        <span>TİS TOPLANTISINA KALAN SÜRE</span>
+        <span class="v-count" id="kalan-zaman-2">...</span>
       </div>
   </div>
 </div>
@@ -260,12 +266,11 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
   <button onclick="detayGoster()" style="background: #444; margin-top: 15px; padding: 12px;">Detay Göster / Gizle</button>
   <div id="sonuc" style="display:none"></div>
   
-  <div class="footer-note">© 2026 Koop-İş GSB Robotu | Son Güncelleme: 28 Şubat 2026</div>
+  <div class="footer-note">© 2026 GSB Maaş Hesaplama Robotu | Son Güncelleme: 29 Mart 2026</div>
 </div>
 </div>
 
 <script>
-// --- EKLENEN DUYURU (SPLASH) EKRANI KODU ---
 function sayfayaGit() { document.getElementById('duyuru-ekrani').style.transform = 'translateY(-100%)'; }
 
 function donemGuncelle(val) {
@@ -280,9 +285,8 @@ function donemGuncelle(val) {
         document.getElementById("fiili").value = is12 ? 16 : 22;
     }
 
-    // 14 Nisan ve 14 Mayıs seçildiğinde vergi dilimi %20 olsun
     if(donemText.includes("14 Nisan") || donemText.includes("14 Mayıs")){
-        document.getElementById("vergiOrani").selectedIndex = 1; // 2. Dilim %20
+        document.getElementById("vergiOrani").selectedIndex = 1; 
     }
 
     yogurtOtomatikGuncelle();
@@ -371,7 +375,6 @@ function hesapla(){
   ekle("Kreş Yardımı (Net)", parseFloat(document.getElementById("kres").value));
   ekle("Sosyal Yardım", 4467.22 * vKat);
   
-  // PRİM MANTIĞI: BÜRO PERSONELİ (GÖREVLENDİRME) VE TEMİZLİK %8, DİĞERLERİ %9
   let primOran = (kadroSecimi === "Temizlik Personeli" || kadroSecimi === "Büro Personeli (Görevlendirme)") ? 0.08 : 0.09;
   
   ekle("İş Primi (%" + (primOran*100) + ")", bYev * primOran * fiiliG * vKat);
@@ -476,6 +479,34 @@ function detayGoster(){
   if(s.style.display === "block") s.style.display = "none";
   else { s.style.display = "block"; tabloCiz(); }
 }
+
+// --- EKLENEN GERİ SAYIM SAYACI KODU ---
+const hedefTarih = new Date("March 30, 2026 14:00:00").getTime();
+
+const x = setInterval(function() {
+  const simdi = new Date().getTime();
+  const mesafe = hedefTarih - simdi;
+
+  if (mesafe < 0) {
+    clearInterval(x);
+    document.getElementById("kalan-zaman-1").innerHTML = "TOPLANTI BAŞLADI!";
+    document.getElementById("kalan-zaman-2").innerHTML = "TOPLANTI BAŞLADI!";
+    return;
+  }
+
+  const gun = Math.floor(mesafe / (1000 * 60 * 60 * 24));
+  const saat = Math.floor((mesafe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const dakika = Math.floor((mesafe % (1000 * 60 * 60)) / (1000 * 60));
+  const saniye = Math.floor((mesafe % (1000 * 60)) / 1000);
+
+  let text = "";
+  if(gun > 0) text += gun + "g ";
+  text += saat + "s " + dakika + "d " + saniye + "sn";
+
+  document.getElementById("kalan-zaman-1").innerHTML = text;
+  document.getElementById("kalan-zaman-2").innerHTML = text;
+}, 1000);
 </script>
 </body>
 </html>
+
