@@ -438,7 +438,7 @@ function tabloCiz(){
         <span>${toplamTutar.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} TL</span>
     </div>
     <div class="receipt-footer">
-        KOOP-İŞ SENDİKASI<br>Bu fiş bilgilendirme amaçlıdır.
+        KOOP-İŞ SENDİKASI<br>Bu hesaplama bilgilendirme amaçlıdır.
     </div>
   </div>`;
   
@@ -450,108 +450,3 @@ function detayGoster(){
   if(s.style.display === "block") s.style.display = "none";
   else { s.style.display = "block"; tabloCiz(); }
 }
-</script>
-<!-- ===================================== -->
-<!-- TEDİYE & İKRAMİYE MODÜLÜ (MANUEL + NOT) -->
-<!-- ===================================== -->
-
-<style>
-.mini-box{
-  max-width:850px;
-  margin:25px auto;
-  text-align:center;
-}
-.mini-select{
-  width:220px;
-  padding:6px;
-  border-radius:8px;
-  margin:8px;
-}
-.mini-btn{
-  width:auto;
-  padding:8px 18px;
-  font-size:12px;
-  border-radius:8px;
-  margin:5px;
-}
-.mini-result{
-  margin-top:12px;
-  font-weight:bold;
-  font-size:15px;
-  display:none;
-}
-.mini-note{
-  color:red;
-  font-size:12px;
-  margin-top:4px;
-}
-</style>
-
-<div class="mini-box">
-
-  <div>
-    <button class="mini-btn" onclick="gosterSecim('tediye')">16 Mart 2026 Tediye Ücreti Hesapla</button>
-    <button class="mini-btn" onclick="gosterSecim('ikramiye')">15-20 Mart 2026 İkramiye Ücreti Hesapla</button>
-  </div>
-
-  <br>
-
-  <select id="miniYevmiye" class="mini-select" style="display:none" onchange="gosterRakam()">
-    <option value="">Yevmiye Seçiniz</option>
-    <option value="0">2142,43 TL</option>
-    <option value="1">2111,63 TL</option>
-  </select>
-
-  <div id="miniSonuc" class="mini-result"></div>
-  <div id="miniNot" class="mini-note"></div>
-
-</div>
-
-<script>
-// Manuel belirlenen rakamlar
-const tediyeListesi = [23150.40, 22878.13];    // yevmiyeye göre tediye
-const ikramiyeListesi = [43257.05, 42639.78];  // yevmiyeye göre ikramiye
-
-let secilenButon = ""; // hangi butona tıklandı?
-
-function gosterSecim(tip){
-  secilenButon = tip; // 'tediye' veya 'ikramiye'
-  document.getElementById("miniYevmiye").style.display = "inline-block";
-  document.getElementById("miniYevmiye").value = ""; // reset
-  document.getElementById("miniSonuc").style.display = "none";
-  document.getElementById("miniNot").innerHTML = "";
-}
-
-function gosterRakam(){
-  const index = parseInt(document.getElementById("miniYevmiye").value);
-  if(isNaN(index)){
-    document.getElementById("miniSonuc").style.display="none";
-    document.getElementById("miniNot").innerHTML = "";
-    return;
-  }
-
-  let tutar;
-  let notMetni = "";
-  if(secilenButon === "tediye"){
-    tutar = tediyeListesi[index];
-    notMetni = "📌 Not: Bu Tediye rakamına gelir ve damga vergisi indirimleri uygulanmıştır. İkramiye rakamının önce hesaplanması durumunda rakamlar değişkenlik gösterebilecektir.";
-  } else if(secilenButon === "ikramiye"){
-    tutar = ikramiyeListesi[index];
-    notMetni = "📌 Not: Bu İkramiye rakamına gelir vergisi indirimi uygulanmamıştır. Sadece tediyeden kalan damga vergisi indirimi uygulanmıştır. İkramiye rakamı önce hesaplanırsa yatan rakamlar değişkenlik gösterebilecektir.";
-  } else {
-    return;
-  }
-
-  const alan = document.getElementById("miniSonuc");
-  alan.innerHTML = secilenButon.charAt(0).toUpperCase() + secilenButon.slice(1) + ": 💰 " +
-    tutar.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}) + " TL";
-  alan.style.display="block";
-
-  const note = document.getElementById("miniNot");
-  note.innerHTML = notMetni;
-}
-</script>
-</script>
-</body>
-
-</html>
