@@ -51,9 +51,27 @@ h1{ color:#1f7a4f; margin-bottom: 5px; font-weight: 800; font-size: 22px;}
 .social-icons a.ins { color: #E1306C; }
 .social-icons a.fac { color: #1877F2; }
 .social-icons a.twi { color: #000000; }
-.visitor-btn { position: absolute; right: 0; background: #1f7a4f; color: white; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 8px rgba(31, 122, 79, 0.15); line-height: 1.1; min-width: 90px; }
-.visitor-btn span:first-child { font-size: 8px; opacity: 0.8; text-transform: uppercase; }
-.v-count { font-size: 13px; }
+
+/* --- TİS GERİ SAYIM BUTONU STİLLERİ (YENİ) --- */
+.tis-countdown-btn {
+  position: absolute;
+  right: 0;
+  background: #ffc107; /* Dikkat çekici sarı */
+  color: #333;
+  padding: 8px 15px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  line-height: 1.2;
+  min-width: 120px;
+  border: 2px solid #ff9800;
+}
+.tis-countdown-btn span:first-child { font-size: 9px; opacity: 0.9; text-transform: uppercase; color: #555; }
+.tis-timer { font-size: 14px; color: #000; letter-spacing: 0.5px; }
 
 .box{ background: var(--box-bg); padding:20px; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,0.08); max-width:850px; margin:auto; border: 1px solid var(--border-color); }
 .section-title { background: #1f7a4f; color: white; padding: 12px 18px; border-radius: 10px; margin-top: 25px; margin-bottom: 12px; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -80,7 +98,7 @@ button.ana-btn{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; c
   .grid-container { grid-template-columns: 1fr !important; }
   .net-tutar-rakam { font-size: 32px !important; }
   .social-bar-wrapper { flex-direction: column; gap: 15px; } 
-  .visitor-btn { position: static; margin-top: 10px; } 
+  .tis-countdown-btn { position: static; margin-top: 10px; width: 100%; } /* Mobilde tam genişlik */
 }
 </style>
 </head>
@@ -105,9 +123,9 @@ button.ana-btn{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; c
           <a href="https://facebook.com/batuhancaglarozkann" target="_blank" class="fac"><i class="fab fa-facebook-f"></i></a>
           <a href="https://x.com/BatuhanOzkann" target="_blank" class="twi"><i class="fab fa-x-twitter"></i></a>
         </div>
-        <div class="visitor-btn">
-          <span>ZİYARETÇİ SAYISI</span>
-          <span class="v-count">55.247</span>
+        <div class="tis-countdown-btn">
+          <span>TİS TOPLANTISINA</span>
+          <span class="tis-timer" id="tis-counter">Yükleniyor...</span>
         </div>
     </div>
   </div>
@@ -123,112 +141,111 @@ button.ana-btn{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; c
     </div>
 
     <div class="box">
-      <div class="section-title">1. BÖLÜM: Temel Bilgiler ve Vergi Dilimi</div>
-      <div class="grid-container">
-        <div>
-          <label>Gelir Vergisi Dilimi Seçiniz*</label>
-          <select id="vergiOrani">
-            <option value="0.71491" data-val="0.15">1. Dilim (%15)</option>
-            <option value="0.67241" data-val="0.20">2. Dilim (%20)</option>
-            <option value="0.61291" data-val="0.27">3. Dilim (%27)</option>
-            <option value="0.54491" data-val="0.35">4. Dilim (%35)</option>
-          </select>
+        <div class="section-title">1. BÖLÜM: Temel Bilgiler ve Vergi Dilimi</div>
+        <div class="grid-container">
+            <div>
+              <label>Gelir Vergisi Dilimi Seçiniz*</label>
+              <select id="vergiOrani">
+                <option value="0.71491" data-val="0.15">1. Dilim (%15)</option>
+                <option value="0.67241" data-val="0.20">2. Dilim (%20)</option>
+                <option value="0.61291" data-val="0.27">3. Dilim (%27)</option>
+                <option value="0.54491" data-val="0.35">4. Dilim (%35)</option>
+              </select>
+            </div>
+            <div>
+              <label>Brüt Yevmiye Ücreti Seçiniz*</label>
+              <select id="brutYevmiye">
+                <option value="2142.43">2142,43 TL</option>
+                <option value="2111.63">2111,63 TL</option>
+              </select>
+            </div>
+            <div>
+              <label>Kadro/Unvan Seçiniz *</label>
+              <select id="kadro" onchange="kadroGuncelle()">
+                <option value="">KADRO SEÇİNİZ</option>
+                <option>Temizlik Personeli</option>
+                <option>Büro Personeli</option>
+                <option>Büro Personeli (Görevlendirme)</option>
+                <option>Bilgi İşlem Personeli</option>
+                <option>Gençlik Lideri / Antrenör</option>
+                <option>Yüzme Antrenörü</option>
+                <option>Cankurtaran</option>
+                <option>Bakım-Onarım / Teknisyen</option>
+                <option>İklimlendirme/Kaloriferci 12 saat çalışan</option>
+                <option>İklimlendirme/Kaloriferci 8 saat çalışan</option>
+                <option>Özel Güvenlik Görevlisi 12 saat çalışan</option>
+                <option>Özel Güvenlik Görevlisi 8 saat çalışan</option>
+                <option>Havuz Suyu Operatörü</option>
+                <option>Aşçı</option>
+                <option>Sekreter</option>
+                <option>Şoför 12 saat çalışan</option>
+                <option>Şoför 8 saat çalışan</option>
+                <option>Resepsiyonist</option>
+                <option>Muhasebeci</option>
+              </select>
+            </div>
+            <div>
+              <label>Maaş Dönemi Seçiniz*</label>
+              <select id="donem" onchange="donemGuncelle(this.value)">
+                <option value="">Maaş Dönemi Seçiniz</option>
+                <option value="31">15 Ocak - 14 Şubat (31 gün)</option>
+                <option value="28">15 Şubat - 14 Mart (28 gün)</option>
+                <option value="31">15 Mart - 14 Nisan (31 gün)</option>
+                <option value="30">15 Nisan - 14 Mayıs (30 gün)</option>
+              </select>
+              <input type="hidden" id="gun">
+            </div>
+            <div><label>Fiili Çalışma Gün Sayısı Giriniz</label><input type="number" id="fiili" value="22" oninput="yogurtOtomatikGuncelle()"></div>
+            <div><label>Hizmet Yılı Giriniz</label><input type="number" id="hizmet" value="7"></div>
+            <div class="info-note">
+                <i class="fas fa-info-circle"></i> Ek çalışma durumunda fiili çalışmaya gün eklenmelidir.
+            </div>
         </div>
-        <div>
-          <label>Brüt Yevmiye Ücreti Seçiniz*</label>
-          <select id="brutYevmiye">
-            <option value="2142.43">2142,43 TL</option>
-            <option value="2111.63">2111,63 TL</option>
-          </select>
+        <div class="section-title">2. BÖLÜM: Yan Haklar</div>
+        <div class="grid-container">
+          <div><label>Yol Ücreti (Net)</label><select id="yol"><option value="4161.91">Büyükşehir</option><option value="2774.61">Diğer</option><option value="0">Yok</option></select></div>
+          <div id="ikinciYemekDiv">
+              <label>2. Yemek Bedeli</label>
+              <button class="toggle-btn" id="yemekToggle" onclick="toggleYemekInput()">PASİF</button>
+              <div id="ikinciYemekInputContainer"><input type="number" id="ikinciYemek" value="0"></div>
+          </div>
+          <div><label>Kreş Yardımı</label><select id="kres"><option value="0">Yok</option><option value="1777">1 Çocuk</option><option value="3554">2 Çocuk</option></select></div>
+          <div><label>Yoğurt Yardımı (Gün)</label><input type="number" id="yogurt" value="0"></div>
         </div>
-        <div>
-          <label>Kadro/Unvan Seçiniz *</label>
-          <select id="kadro" onchange="kadroGuncelle()">
-            <option value="">KADRO SEÇİNİZ</option>
-            <option>Temizlik Personeli</option>
-            <option>Büro Personeli</option>
-            <option>Büro Personeli (Görevlendirme)</option>
-            <option>Bilgi İşlem Personeli</option>
-            <option>Gençlik Lideri / Antrenör</option>
-            <option>Yüzme Antrenörü</option>
-            <option>Cankurtaran</option>
-            <option>Bakım-Onarım / Teknisyen</option>
-            <option>İklimlendirme/Kaloriferci 12 saat çalışan</option>
-            <option>İklimlendirme/Kaloriferci 8 saat çalışan</option>
-            <option>Özel Güvenlik Görevlisi 12 saat çalışan</option>
-            <option>Özel Güvenlik Görevlisi 8 saat çalışan</option>
-            <option>Havuz Suyu Operatörü</option>
-            <option>Aşçı</option>
-            <option>Sekreter</option>
-            <option>Şoför 12 saat çalışan</option>
-            <option>Şoför 8 saat çalışan</option>
-            <option>Resepsiyonist</option>
-            <option>Muhasebeci</option>
-          </select>
+
+        <div class="section-title">3. BÖLÜM: Mesai ve Ek Gelirler</div>
+        <div class="grid-container">
+          <div id="fazlaMesaiDiv"><label>Fazla Mesai (Saat)</label><input type="number" id="fazla" value="0"></div>
+          <div><label>Gece Çalışması (Saat)</label><input type="number" id="gece" value="0"></div>
+          <div><label>UBGT (Gün)</label><input type="number" id="ubgt" value="0"></div>
+          <div><label>Akdi Tatil (Gün)</label><input type="number" id="akdi" value="0"></div>
         </div>
-        <div>
-          <label>Maaş Dönemi Seçiniz*</label>
-          <select id="donem" onchange="donemGuncelle(this.value)">
-            <option value="">Maaş Dönemi Seçiniz</option>
-            <option value="31">15 Ocak - 14 Şubat (31 gün)</option>
-            <option value="28">15 Şubat - 14 Mart (28 gün)</option>
-            <option value="31">15 Mart - 14 Nisan (31 gün)</option>
-            <option value="30">15 Nisan - 14 Mayıs (30 gün)</option>
-          </select>
-          <input type="hidden" id="gun">
+
+        <div class="section-title">4. BÖLÜM: Yardım ve Tazminatlar</div>
+        <div class="grid-container">
+          <div><label>Doğum Yardımı</label><select id="dogum"><option value="0">Yok</option><option value="1150.90">Var</option></select></div>
+          <div><label>Ölüm Yardımı</label><select id="olum"><option value="0">Yok</option><option value="5802.80">İşçinin Ölümü</option></select></div>
+          <div><label>Doğal Afet</label><select id="afet"><option value="0">Yok</option><option value="1988.35">Var</option></select></div>
         </div>
-        <div><label>Fiili Çalışma Gün Sayısı Giriniz</label><input type="number" id="fiili" value="22" oninput="yogurtOtomatikGuncelle()"></div>
-        <div><label>Hizmet Yılı Giriniz</label><input type="number" id="hizmet" value="7"></div>
-        <div class="info-note">
-            <i class="fas fa-info-circle"></i> Ek çalışma durumunda fiili çalışmaya gün eklenmelidir.
+
+        <div class="section-title">5. BÖLÜM: Vergi ve İndirimler</div>
+        <div class="grid-container">
+          <div><label>Engellilik İndirimi</label><select id="engelli"><option value="0">Yok</option><option value="12000">1. Derece</option><option value="7000">2. Derece</option><option value="3000">3. Derece</option></select></div>
+          <div><label>Gazi/Şehit Yakını</label><select id="gazi"><option value="0">Hayır</option><option value="1">Evet</option></select></div>
+          <div><label>Özel Sağlık Sigortası</label><input type="number" id="oss" value="0"></div>
         </div>
-      </div>
 
-      <div class="section-title">2. BÖLÜM: Yan Haklar</div>
-      <div class="grid-container">
-        <div><label>Yol Ücreti (Net)</label><select id="yol"><option value="4161.91">Büyükşehir</option><option value="2774.61">Diğer</option><option value="0">Yok</option></select></div>
-        <div id="ikinciYemekDiv">
-            <label>2. Yemek Bedeli</label>
-            <button class="toggle-btn" id="yemekToggle" onclick="toggleYemekInput()">PASİF</button>
-            <div id="ikinciYemekInputContainer"><input type="number" id="ikinciYemek" value="0"></div>
+        <button class="ana-btn" onclick="hesapla()">MAAŞ HESAPLA</button>
+
+        <div class="net-tutar-card" id="sonucAlani" style="display:none;">
+          <div class="net-tutar-title">Ödenecek Net Tutar</div>
+          <div class="net-tutar-rakam" id="toplamNet">0.00 TL</div>
         </div>
-        <div><label>Kreş Yardımı</label><select id="kres"><option value="0">Yok</option><option value="1777">1 Çocuk</option><option value="3554">2 Çocuk</option></select></div>
-        <div><label>Yoğurt Yardımı (Gün)</label><input type="number" id="yogurt" value="0"></div>
-      </div>
 
-      <div class="section-title">3. BÖLÜM: Mesai ve Ek Gelirler</div>
-      <div class="grid-container">
-        <div id="fazlaMesaiDiv"><label>Fazla Mesai (Saat)</label><input type="number" id="fazla" value="0"></div>
-        <div><label>Gece Çalışması (Saat)</label><input type="number" id="gece" value="0"></div>
-        <div><label>UBGT (Gün)</label><input type="number" id="ubgt" value="0"></div>
-        <div><label>Akdi Tatil (Gün)</label><input type="number" id="akdi" value="0"></div>
-      </div>
-
-      <div class="section-title">4. BÖLÜM: Yardım ve Tazminatlar</div>
-      <div class="grid-container">
-        <div><label>Doğum Yardımı</label><select id="dogum"><option value="0">Yok</option><option value="1150.90">Var</option></select></div>
-        <div><label>Ölüm Yardımı</label><select id="olum"><option value="0">Yok</option><option value="5802.80">İşçinin Ölümü</option></select></div>
-        <div><label>Doğal Afet</label><select id="afet"><option value="0">Yok</option><option value="1988.35">Var</option></select></div>
-      </div>
-
-      <div class="section-title">5. BÖLÜM: Vergi ve İndirimler</div>
-      <div class="grid-container">
-        <div><label>Engellilik İndirimi</label><select id="engelli"><option value="0">Yok</option><option value="12000">1. Derece</option><option value="7000">2. Derece</option><option value="3000">3. Derece</option></select></div>
-        <div><label>Gazi/Şehit Yakını</label><select id="gazi"><option value="0">Hayır</option><option value="1">Evet</option></select></div>
-        <div><label>Özel Sağlık Sigortası</label><input type="number" id="oss" value="0"></div>
-      </div>
-
-      <button class="ana-btn" onclick="hesapla()">MAAŞ HESAPLA</button>
-
-      <div class="net-tutar-card" id="sonucAlani" style="display:none;">
-        <div class="net-tutar-title">Ödenecek Net Tutar</div>
-        <div class="net-tutar-rakam" id="toplamNet">0.00 TL</div>
-      </div>
-
-      <button onclick="detayGoster()" style="background: #444; margin-top: 15px; padding: 12px; color:white; border:none; border-radius:10px; width:100%; cursor:pointer;">Detay Göster / Gizle</button>
-      <div id="sonuc" style="display:none"></div>
-      
-      <div class="footer-note">© 2026 Koop-İş GSB Robotu | Son Güncelleme: 28 Şubat 2026</div>
+        <button onclick="detayGoster()" style="background: #444; margin-top: 15px; padding: 12px; color:white; border:none; border-radius:10px; width:100%; cursor:pointer;">Detay Göster / Gizle</button>
+        <div id="sonuc" style="display:none"></div>
+        
+        <div class="footer-note">© 2026 Koop-İş GSB Robotu | Son Güncelleme: 28 Şubat 2026</div>
     </div>
 </div>
 
@@ -241,7 +258,30 @@ function sayfayaGit() {
     }, 800);
 }
 
-// --- ŞİFRE KONTROLÜ ---
+// --- TİS GERİ SAYIM MANTIĞI (YENİ) ---
+const countDownDate = new Date("Mar 30, 2026 14:00:00").getTime();
+
+const x = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = countDownDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Butonun içindeki metni güncelle
+  document.getElementById("tis-counter").innerHTML = days + "g " + hours + "s " + minutes + "d " + seconds + "s";
+
+  // Süre bittiğinde
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("tis-counter").innerHTML = "TOPLANTI BAŞLADI";
+    document.getElementById("tis-counter").style.color = "red";
+  }
+}, 1000);
+
+// --- ŞİFRE KONTROLÜ VE DİĞER FONKSİYONLAR ---
 function kontrol(){
   if(document.getElementById("sifre").value==="gsbkoopis"){
     document.getElementById("giris").style.display="none";
@@ -249,7 +289,6 @@ function kontrol(){
   }else{ alert("Şifre yanlış."); }
 }
 
-// --- HESAPLAMA MANTIĞI ---
 function donemGuncelle(val) {
     document.getElementById("gun").value = val;
     let k = document.getElementById("kadro").value;
