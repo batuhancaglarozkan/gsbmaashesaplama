@@ -452,22 +452,34 @@ if(donemText.includes("14 Mayıs")) {
   let ossTutar = parseFloat(document.getElementById("oss").value);
   if(ossTutar > 0) ekle("Özel Sağlık Sigortası İndirimi", ossTutar * vYuzde);
   
-  let gvIndirim = 4211.32;
-let dvIndirim = 250.70;
-let tediyeNotuText = "";
+// --- GÜNCEL VERGİ İNDİRİMİ AYARLARI (TEMMUZ-AĞUSTOS GÜNCELLEMESİ) ---
+  let gvIndirim = 4211.32; // Standart (Ocak-Haziran)
+  let dvIndirim = 250.70;
+  let tediyeNotuText = "";
 
-if(donemText.includes("14 Şubat")) {
-    tediyeNotuText = "(26 Ocak Tediye Mahsubu Uygulanmıştır)";
-    if(bYev == 2142.43) { gvIndirim = 660.24; dvIndirim = 39.31; } 
-    else { gvIndirim = 711.29; dvIndirim = 42.35; }
-} else if(donemText.includes("14 Nisan")) {
-    gvIndirim = 0;
-    dvIndirim = 0;
-    tediyeNotuText = "📌 Not: Tediye ve ikramiye ödemelerinde vergi indirimi uygulandığından maaşa indirim uygulanmamıştır.";
-}
+  if(donemText.includes("14 Şubat")) {
+      tediyeNotuText = "(26 Ocak Tediye Mahsubu Uygulanmıştır)";
+      if(bYev == 2142.43) { gvIndirim = 660.24; dvIndirim = 39.31; } 
+      else { gvIndirim = 711.29; dvIndirim = 42.35; }
+  } 
+  else if(donemText.includes("14 Nisan")) {
+      gvIndirim = 0;
+      dvIndirim = 0;
+      tediyeNotuText = "📌 Not: Tediye ve ikramiye ödemelerinde vergi indirimi uygulandığından maaşa indirim uygulanmamıştır.";
+  }
+  else if(donemText.includes("14 Temmuz")) {
+      // Temmuz ayı özel asgari ücret vergi istisnası
+      gvIndirim = 4537.75;
+  }
+  else if(donemText.includes("14 Ağustos") || donemText.includes("14 Eylül") || 
+          donemText.includes("14 Ekim") || donemText.includes("14 Kasım") || 
+          donemText.includes("14 Aralık") || donemText.includes("14 Ocak 2027")) {
+      // Ağustos ve yıl sonuna kadar olan tüm aylar
+      gvIndirim = 5615.10;
+  }
 
-ekle("Gelir Vergisi İndirimi", gvIndirim, tediyeNotuText);
-ekle("Damga Vergisi İndirimi", dvIndirim, tediyeNotuText);
+  ekle("Gelir Vergisi İndirimi", gvIndirim, tediyeNotuText);
+  ekle("Damga Vergisi İndirimi", dvIndirim, tediyeNotuText);
   let brutAidat = bYev * 0.65;
   let netAidat = (brutAidat - (brutAidat * vYuzde)) * -1;
   ekle("Sendika Aidat Kesintisi %65", netAidat, "", true);
