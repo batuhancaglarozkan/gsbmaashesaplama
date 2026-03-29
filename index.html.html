@@ -90,13 +90,17 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
         <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" alt="GSB" class="tis-logo">
         <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" alt="Koop-İş" class="tis-logo">
     </div>
-    <div class="tis-baslik">GSB - 10 NO'LU İŞKOLU<br>1. DÖNEM TİS 4. TOPLANTI</div>
-    <div class="tis-detay">
-        <div><span>📅</span> <b>30 MART 2026 PAZARTESİ</b></div>
-        <div><span>⏰</span> <b>SAAT: 14:00</b></div>
-        <div><span>📍</span> <b>TÜHİS GENEL MERKEZİ</b></div>
+    <div class="tis-baslik">GSB - 10 NO'LU İŞKOLU<br>1. DÖNEM TİS 4. TOPLANTISI</div>
+   <div class="tis-detay">
+    <div><span>📅</span> <b>30 MART 2026 PAZARTESİ</b></div>
+    <div><span>⏰</span> <b>SAAT: 14.00</b></div>
+    <div><span>📍</span> <b>TÜHİS GENEL MERKEZİ</b></div>
+    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(255,255,255,0.2); width: 100%; display: flex; align-items: center;">
+        <span style="font-size: 11px; opacity: 0.9; letter-spacing: 1px; color: #fff;">TOPLANTIYA KALAN SÜRE:</span>
+        <b id="kalan-zaman-splash" style="color: #ffd700; font-size: 18px; margin-left: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">...</b>
     </div>
-    <button class="git-btn" onclick="sayfayaGit()">Maaş Hesaplama Robotuna Giriş Yap</button>
+</div>
+    <button class="git-btn" onclick="sayfayaGit()">Maaş Hesaplama Robotuna Giriş </button>
 </div>
 
 <div id="giris" class="box" style="margin-top: 50px;">
@@ -197,6 +201,12 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
         <option value="30">15 Nisan - 14 Mayıs (30 gün)</option>
         <option value="31">15 Mayıs - 14 Haziran (31 gün)</option>
         <option value="30">15 Haziran - 14 Temmuz (30 gün)</option>
+	<option value="31">15 Temmuz - 14 Ağustos (31 gün)</option>
+	<option value="31">15 Ağustos - 14 Eylül (31 gün)</option>
+	<option value="30">15 Eylül - 14 Ekim (30 gün)</option>
+	<option value="31">15 Ekim - 14 Kasım (31 gün)</option>
+	<option value="30">15 Kasım - 14 Aralık (30 gün)</option>
+	<option value="31">15 Aralık - 14 Ocak 2027 (31 gün)</option>
       </select>
       <input type="hidden" id="gun">
     </div>
@@ -291,9 +301,20 @@ function donemGuncelle(val) {
     if(donemText.includes("14 Nisan")){
         document.getElementById("vergiOrani").selectedIndex = 1; 
     }
-    // 14 Mayıs ve sonrasındaki tüm aylar için %27 (Index 2)
-    else if(donemText.includes("14 Mayıs") || donemText.includes("14 Haziran") || donemText.includes("14 Temmuz")){
+    // Mayıs'tan Aralık sonuna kadar (dahil) tüm aylar için %27 (Index 2)
+    else if(donemText.includes("14 Mayıs") || donemText.includes("14 Haziran") || 
+            donemText.includes("14 Temmuz") || donemText.includes("14 Ağustos") || 
+            donemText.includes("14 Eylül") || donemText.includes("14 Ekim") || 
+            donemText.includes("14 Kasım") || donemText.includes("14 Aralık")){
         document.getElementById("vergiOrani").selectedIndex = 2; 
+    }
+    // Yeni yılın ilk maaşı (14 Ocak 2027) için vergi sıfırlanır %15 (Index 0)
+    else if(donemText.includes("14 Ocak 2027")){
+        document.getElementById("vergiOrani").selectedIndex = 0;
+    }
+    // Yılın başındaki aylar (Ocak, Şubat, Mart) varsayılan %15
+    else {
+        document.getElementById("vergiOrani").selectedIndex = 0;
     }
 
     yogurtOtomatikGuncelle();
@@ -397,6 +418,12 @@ function hesapla(){
   }
   
   ekle("Giyim Yardımı", 238.82 * vKat);
+// --- EK ÖDEME MODÜLÜ ---
+if(donemText.includes("14 Mayıs")) {
+    let ekOdemeBrut = 10152.78;
+    ekle("Ek Ödeme (Mayıs)", ekOdemeBrut * vKat, "📌 Brüt: 10.152,78 TL");
+}
+// -----------------------
   
   let dV = 0.00759;
   if(document.getElementById("dogum").value > 0) { let bD = parseFloat(document.getElementById("dogum").value); ekle("Doğum Yardımı", bD - (bD * dV)); }
@@ -458,8 +485,12 @@ function tabloCiz(){
         <div style="font-weight: 900; font-size: 16px;">GSB MAAŞ BORDRO FİŞİ</div>
         <div style="font-size: 11px; margin-top:5px;">${window.hesaplananKadro}</div>
         <div style="font-size: 10px;">Dönem: ${window.hesaplananDonem}</div>
-    </div>`;
-  window.detayData.forEach(d => {
+    </div>
+    
+    <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 900; margin-bottom: 5px; color: #1f7a4f; border-bottom: 1px solid #eee; padding-bottom: 3px;">
+        <span>ÖDEME KALEMLERİ</span>
+        <span>NET ÜCRETLER</span>
+    </div>`;  window.detayData.forEach(d => {
     let rowClass = d.isAidat ? 'class="receipt-row aidat-row"' : 'class="receipt-row"';
     let noteStyle = d.note.includes("Tediye Mahsubu") ? 'class="tediye-notu"' : 'class="aidat-note"';
 
@@ -487,31 +518,33 @@ function detayGoster(){
   else { s.style.display = "block"; tabloCiz(); }
 }
 
-// --- EKLENEN GERİ SAYIM SAYACI KODU ---
+// --- GÜNCEL ÜÇLÜ GERİ SAYIM SİSTEMİ ---
 const hedefTarih = new Date("March 30, 2026 14:00:00").getTime();
 
 const x = setInterval(function() {
   const simdi = new Date().getTime();
   const mesafe = hedefTarih - simdi;
 
+  let text = "";
   if (mesafe < 0) {
     clearInterval(x);
-    document.getElementById("kalan-zaman-1").innerHTML = "TOPLANTI BAŞLADI!";
-    document.getElementById("kalan-zaman-2").innerHTML = "TOPLANTI BAŞLADI!";
-    return;
+    text = "TOPLANTI BAŞLADI!";
+  } else {
+    const gun = Math.floor(mesafe / (1000 * 60 * 60 * 24));
+    const saat = Math.floor((mesafe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const dakika = Math.floor((mesafe % (1000 * 60 * 60)) / (1000 * 60));
+    const saniye = Math.floor((mesafe % (1000 * 60)) / 1000);
+
+    if(gun > 0) text += gun + "g ";
+    text += saat + "s " + dakika + "d " + saniye + "sn";
   }
 
-  const gun = Math.floor(mesafe / (1000 * 60 * 60 * 24));
-  const saat = Math.floor((mesafe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const dakika = Math.floor((mesafe % (1000 * 60 * 60)) / (1000 * 60));
-  const saniye = Math.floor((mesafe % (1000 * 60)) / 1000);
-
-  let text = "";
-  if(gun > 0) text += gun + "g ";
-  text += saat + "s " + dakika + "d " + saniye + "sn";
-
-  document.getElementById("kalan-zaman-1").innerHTML = text;
-  document.getElementById("kalan-zaman-2").innerHTML = text;
+  // Tüm geri sayım alanlarını senkronize şekilde güncelle
+  const ids = ["kalan-zaman-1", "kalan-zaman-2", "kalan-zaman-splash"];
+  ids.forEach(id => {
+    let el = document.getElementById(id);
+    if(el) el.innerHTML = text;
+  });
 }, 1000);
 </script>
 </body>
