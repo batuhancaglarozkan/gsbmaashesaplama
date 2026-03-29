@@ -1,0 +1,21 @@
+{
+  "name": "GSB Maaş Robotu",
+  "short_name": "GSB Maaş",
+  "description": "GSB 10 Nolu İşkolu Maaş Hesaplama Robotu",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1f7a4f",
+  "theme_color": "#1f7a4f",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/Lhgbx9Ts/gsb-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.ibb.co/Lhgbx9Ts/gsb-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
