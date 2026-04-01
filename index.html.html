@@ -49,33 +49,16 @@ h1{ color:#1f7a4f; margin-bottom: 5px; font-weight: 800; font-size: 22px;}
 .visitor-btn span:first-child { font-size: 8px; opacity: 0.8; text-transform: uppercase; }
 .v-count { font-size: 13px; }
 
-@media (max-width: 600px) {
-    /* Başlık yazılarını küçültüyoruz */
-    .tis-baslik { 
-        font-size: 16px !important; 
-        margin-bottom: 10px !important; 
-    }
-    .tis-baslik span { 
-        font-size: 18px !important; 
-    }
-
-    /* Fotoğrafın boyutunu mobilde biraz daraltıyoruz */
-    .tis-foto-alani {
-        width: 85% !important;
-        margin-bottom: 15px !important;
-    }
-
-    /* Alt yazıyı ve butonu sıkıştırıyoruz */
-    #duyuru-ekrani div[style*="font-size: 19px"] {
-        font-size: 14px !important;
-        margin-bottom: 15px !important;
-    }
-
-    /* Logoları biraz küçültüyoruz ki yer açılsın */
-    .tis-logo {
-        height: 60px !important;
-    }
+@media (max-width: 600px) { 
+  .social-bar-wrapper { flex-direction: column; gap: 15px; } 
+  .visitor-btn { position: static; margin-top: 10px; } 
+  .grid-container { grid-template-columns: 1fr !important; }
+  .net-tutar-rakam { font-size: 32px !important; }
+  h1 { font-size: 18px; }
+  .receipt-container { padding: 15px !important; }
+  .receipt-row { font-size: 12px !important; gap: 10px; }
 }
+
 .box{ background: var(--box-bg); padding:20px; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,0.08); max-width:850px; margin:auto; border: 1px solid var(--border-color); }
 .section-title { background: #1f7a4f; color: white; padding: 12px 18px; border-radius: 10px; margin-top: 25px; margin-bottom: 12px; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
 .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -187,7 +170,7 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
         <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" alt="Koop-İş" class="tis-logo">
     </div>
 
-    <div class="tis-baslik" style="letter-spacing: 1px;">
+    <div class="tis-baslik" style="font-size: 26px; letter-spacing: 1px;">
        T.C. Gençlik ve Spor Bakanlığı - 10 NO'LU İŞKOLU<br>
         <span style="color: #ffd700; font-size: 32px; display: block; margin-top: 10px; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">
             1. DÖNEM TOPLU İŞ SÖZLEŞMESİ İMZALANDI!
