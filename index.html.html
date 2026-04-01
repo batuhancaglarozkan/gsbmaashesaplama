@@ -1,49 +1,708 @@
-<div id="duyuru-ekrani" style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; width: 100%; position: fixed; top: 0; left: 0; background: linear-gradient(135deg, #1f7a4f 0%, #0d3b25 100%); z-index: 10000; padding: 40px 20px; box-sizing: border-box; overflow-y: auto;">
-    
-    <div class="logo-container" style="display: flex; gap: 25px; margin-bottom: 40px; animation: pulse 2s infinite ease-in-out;">
-        <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" alt="GSB" style="height: 85px; width: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));">
-        <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" alt="Koop-İş" style="height: 85px; width: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));">
-    </div>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1f7a4f">
 
-    <div style="text-align: center; max-width: 400px;">
-        <span style="font-size: 14px; opacity: 0.7; font-weight: 700; letter-spacing: 4px; color: #ffd700; text-transform: uppercase; display: block; margin-bottom: 10px;">Sistem Güncelleniyor</span>
-        
-        <h2 style="color: #ffffff; font-size: 28px; font-weight: 900; line-height: 1.4; margin: 0; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
-            MAAŞ HESAPLAMA ROBOTU <br> 
-            <span style="color: #ffd700; animation: glow 1.5s infinite alternate;">YENİLENİYOR</span>
-        </h2>
-    </div>
-
-    <div style="width: 240px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 20px; margin: 40px 0; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.05);">
-        <div style="width: 40%; height: 100%; background: linear-gradient(90deg, #ffd700, #fff); box-shadow: 0 0 20px #ffd700; position: absolute; animation: loading 2s infinite ease-in-out;"></div>
-    </div>
-
-    <div style="background: rgba(255,255,255,0.05); padding: 15px 25px; border-radius: 15px; border: 1px dashed rgba(255,255,255,0.2); text-align: center;">
-        <p style="margin: 0; color: #ffffff; font-size: 14px; font-weight: 500; opacity: 0.9;">
-            <i class="fas fa-sync-alt fa-spin" style="margin-right: 10px; color: #ffd700;"></i> 
-            TİS kazanımları ve 2026 katsayıları sisteme işlenmektedir. Lütfen daha sonra tekrar deneyiniz.
-        </p>
-    </div>
-
-    <div style="position: absolute; bottom: 30px; font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600; letter-spacing: 1px;">
-        © 2026 GSB PERSONEL MAAŞ ROBOTU
-    </div>
-</div>
-
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>	
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSB Maaş Hesaplama Robotu</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
-@keyframes glow {
-    from { opacity: 0.7; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
-    to { opacity: 1; text-shadow: 0 0 25px rgba(255,215,0,0.8); }
+.ust-logolar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.logo-img {
+    height: 85px; /* Logoların boyutu */
+    width: auto;
+}
+:root {
+  --bg-color: linear-gradient(135deg,#e6f5ec,#ffffff);
+  --box-bg: #ffffff;
+  --text-color: #333;
+  --border-color: #e1eee7;
+  --input-border: #dce8e1;
+  --label-color: #444;
 }
 
-@keyframes loading {
-    0% { left: -100%; }
-    100% { left: 100%; }
+body{ font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); padding:15px; color: var(--text-color); margin: 0; }
+.header-container { text-align: center; margin-bottom: 25px; position: relative; }
+h1{ color:#1f7a4f; margin-bottom: 5px; font-weight: 800; font-size: 22px;}
+.version-badge { background: #1f7a4f; color: white; font-size: 10px; padding: 3px 10px; border-radius: 50px; font-weight: bold; display: inline-block; vertical-align: middle; }
+
+.social-bar-wrapper { display: flex; justify-content: center; align-items: center; margin-top: 15px; position: relative; min-height: 50px; }
+.social-icons { display: flex; gap: 10px; }
+.social-icons a { text-decoration: none; font-size: 18px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--box-bg); box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s ease; }
+.social-icons a.ins { color: #E1306C; }
+.social-icons a.fac { color: #1877F2; }
+.social-icons a.twi { color: #000000; }
+
+.visitor-btn { position: absolute; right: 0; background: #1f7a4f; color: white; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 8px rgba(31, 122, 79, 0.15); line-height: 1.1; min-width: 90px; }
+.visitor-btn span:first-child { font-size: 8px; opacity: 0.8; text-transform: uppercase; }
+.v-count { font-size: 13px; }
+
+@media (max-width: 600px) { 
+  .social-bar-wrapper { flex-direction: column; gap: 15px; } 
+  .visitor-btn { position: static; margin-top: 10px; } 
+  .grid-container { grid-template-columns: 1fr !important; }
+  .net-tutar-rakam { font-size: 32px !important; }
+  h1 { font-size: 18px; }
+  .receipt-container { padding: 15px !important; }
+  .receipt-row { font-size: 12px !important; gap: 10px; }
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.04); }
-    100% { transform: scale(1); }
+.box{ background: var(--box-bg); padding:20px; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,0.08); max-width:850px; margin:auto; border: 1px solid var(--border-color); }
+.section-title { background: #1f7a4f; color: white; padding: 12px 18px; border-radius: 10px; margin-top: 25px; margin-bottom: 12px; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+.grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+label{display:block; margin-top:8px; font-weight:700; font-size: 12px; color: var(--label-color);}
+.sub-label { font-size: 10px; color: #777; font-weight: 500; display: block; margin-top: 2px; line-height: 1.2; }
+
+.info-note { grid-column: 1 / -1; background: rgba(31, 122, 79, 0.05); border-left: 3px solid #1f7a4f; padding: 10px 14px; font-size: 11px; color: #1f7a4f; font-weight: 600; margin-top: 8px; border-radius: 4px; line-height: 1.4; }
+
+select,input{ width:100%; padding:10px; border-radius:10px; border:1.5px solid var(--input-border); margin-top:4px; box-sizing: border-box; font-size: 14px; background: var(--box-bg); color: var(--text-color); }
+
+.toggle-btn { background: #e1eee7; color: #1f7a4f; border: 2px solid #1f7a4f; padding: 5px 10px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: bold; margin-top: 5px; transition: 0.3s; width: auto; display: inline-block; }
+.toggle-btn.active { background: #1f7a4f; color: white; }
+#ikinciYemekInputContainer { display: none; margin-top: 5px; }
+
+.net-tutar-card { background: linear-gradient(135deg, #1f7a4f 0%, #0d3b25 100%); margin-top: 30px; padding: 40px 20px; border-radius: 30px; text-align: center; box-shadow: 0 20px 45px rgba(31, 122, 79, 0.3); border: 2px solid rgba(255,255,255,0.1); position: relative; word-wrap: break-word; }
+.net-tutar-title { color: #a8d5be; font-size: 13px; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; margin-bottom: 5px;}
+.net-tutar-rakam { font-size: 48px; color: #ffffff; font-weight: 900; letter-spacing: -1px; margin: 0; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#fff; border:none; border-radius:15px; cursor:pointer; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(31, 122, 79, 0.2); transition: 0.2s; }
+
+.receipt-container { background: #fff; color: #333; padding: 25px; border-radius: 5px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 20px; font-family: 'Courier New', Courier, monospace; border-top: 8px solid #1f7a4f; overflow-wrap: break-word; }
+.receipt-header { text-align: center; border-bottom: 2px dashed #ccc; padding-bottom: 15px; margin-bottom: 15px; }
+.receipt-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; font-size: 13px; font-weight: bold; border-bottom: 1px dotted #eee; padding-bottom: 4px; }
+.receipt-row span:first-child { flex: 1; padding-right: 5px; }
+.receipt-row span:last-child { white-space: nowrap; }
+.receipt-total { border-top: 2px solid #333; margin-top: 15px; padding-top: 10px; font-size: 18px; font-weight: 900; }
+.receipt-footer { text-align: center; font-size: 10px; margin-top: 20px; border-top: 2px dashed #ccc; padding-top: 10px; }
+.aidat-row { color: #e63946; }
+.tediye-notu { color: #e63946; font-size: 10px; font-weight: bold; display: block; margin-top: 2px; }
+
+.footer-note { text-align: center; font-size: 11px; color: #888; margin-top: 20px; font-weight: 600; }
+
+/* --- EKLENEN DUYURU (SPLASH) EKRANI CSS --- */
+#duyuru-ekrani { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: linear-gradient(135deg, #1f7a4f 0%, #0d3b25 100%); 
+    color: white; display: flex; flex-direction: column; justify-content: center; 
+    align-items: center; text-align: center; z-index: 10000; 
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); 
+    padding: 20px; box-sizing: border-box; 
+}
+
+.logo-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px; }
+.tis-logo { height: 100px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+
+.tis-baslik { 
+    font-size: 26px !important; font-weight: 900; margin-bottom: 20px; 
+    text-transform: uppercase; line-height: 1.2; padding: 0 15px; 
+}
+
+.tis-foto-alani {
+    width: 90%; max-width: 500px; margin: 0 auto 25px auto;
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.imza-foto { width: 100%; height: auto; display: block; }
+
+.git-btn { 
+    background: #ffd700 !important; color: #0d3b25 !important; 
+    padding: 18px 35px; border-radius: 50px; font-size: 16px; 
+    font-weight: 800; border: none; cursor: pointer; transition: 0.3s; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: auto; 
+}
+.visitor-btn { text-decoration: none !important; background: #d4af37 !important; border: 1px solid rgba(255,255,255,0.3) !important; transition: 0.3s !important; }
+.visitor-btn:hover { transform: scale(1.05); background: #b8962d !important; }
+/* ZORUNLU ALANLAR İÇİN PARLAMA EFEKTİ */
+.required-field {
+    border: 2px solid #1f7a4f !important;
+    background-color: #f0f9f4 !important; 
+    animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+    0% { box-shadow: 0 0 0 0 rgba(31, 122, 79, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(31, 122, 79, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(31, 122, 79, 0); }
+}
+
+/* Seçim yapılınca animasyonu durdurmak için klas */
+.field-selected {
+    border: 1.5px solid #1f7a4f !important;
+    background-color: #ffffff !important;
+    animation: none !important;
+}
+/* Etiket yazılarını kırmızı ve kalın yapar */
+.red-label {
+    color: #e63946 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    font-size: 13px !important;
+}
+.yogurt-uyari {
+    font-size: 10px;
+    color: #856404;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: none; /* Başlangıçta gizli */
 }
 </style>
+
+<div id="duyuru-ekrani">
+    <div class="logo-container">
+        <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" alt="GSB" class="tis-logo">
+        <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" alt="Koop-İş" class="tis-logo">
+    </div>
+
+    <div class="tis-baslik" style="font-size: 26px; letter-spacing: 1px;">
+       T.C. Gençlik ve Spor Bakanlığı - 10 NO'LU İŞKOLU<br>
+        <span style="color: #ffd700; font-size: 32px; display: block; margin-top: 10px; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+            1. DÖNEM TOPLU İŞ SÖZLEŞMESİ İMZALANDI!
+        </span>
+    </div>
+
+    <div class="tis-foto-alani">
+        <img src="https://i.ibb.co/pvrkjcg6/HEqm-Pj-CXAAETV7k.jpg" alt="TİS İmza Anı" class="imza-foto">
+    </div>
+
+    <div style="margin-bottom: 30px; font-weight: 600; opacity: 0.9; font-size: 19px;">
+        Yeni Dönem Kazanımları ve Güncel Veriler Robota Yüklendi.
+    </div>
+
+    <button class="git-btn" onclick="sayfayaGit()">
+        MAAŞ HESAPLAMA ROBOTUNA GİRİŞ <i class="fas fa-chevron-right" style="margin-left: 10px;"></i>
+    </button>
+</div>
+
+<div id="giris" class="box" style="margin-top: 50px;">
+  <div class="ust-logolar">
+    <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" class="logo-img">
+    <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" class="logo-img">
+  </div>
+  <div class="header-container">
+    <h1 style="line-height: 1.1; margin-bottom: 10px;">
+      GSB Maaş Hesaplama Robotu
+      <div style="font-size: 16px; font-weight: 600; margin-top: 2px;">(10 Nolu İşkolu)</div>
+    </h1>
+      <span class="version-badge">v1.6 | 1 Nisan 2026 GÜNCEL</span>
+    <div class="social-bar-wrapper">
+        <div class="social-icons">
+          <a href="http://instagram.com/batuhancaglarozkan" target="_blank" class="ins"><i class="fab fa-instagram"></i></a>
+          <a href="https://facebook.com/batuwashere" target="_blank" class="fac"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/BatuhanOzkann" target="_blank" class="twi"><i class="fab fa-x-twitter"></i></a>
+        </div>
+       <a href="https://drive.google.com/file/d/1HRuJR0-9wwMaoTG_DuUsf2Pp2vMaCow8/view" target="_blank" class="visitor-btn">
+    <span>10 NO'LU İŞKOLU</span>
+    <span class="v-count"><i class="fas fa-file-pdf"></i> TİS'İ İNDİR (PDF)</span>
+</a>
+    </div>
+  </div>
+  <label>Şifre</label>
+  <input type="password" id="sifre" placeholder="Robot Şifresini giriniz.">
+  <button onclick="kontrol()">GİRİŞ YAPINIZ.</button>
+</div>
+
+<div id="icerik" style="display:none">
+  <div class="box">
+    <div class="ust-logolar">
+      <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" class="logo-img">
+      <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" class="logo-img">
+    </div>
+    <div class="header-container">
+    <h1 style="line-height: 1.1; margin-bottom: 10px;">
+      GSB Maaş Hesaplama Robotu
+      <div style="font-size: 16px; font-weight: 600; margin-top: 2px;">(10 Nolu İşkolu)</div>
+      </h1>
+    <span class="version-badge">v1.6 | 1 Nisan 2026 GÜNCEL</span>
+  <div class="social-bar-wrapper">
+      <div class="social-icons">
+        <a href="http://instagram.com/batuhancaglarozkan" target="_blank" class="ins"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/batuwashere" target="_blank" class="fac"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/BatuhanOzkann" target="_blank" class="twi"><i class="fab fa-x-twitter"></i></a>
+      </div>
+      <a href="https://drive.google.com/file/d/1HRuJR0-9wwMaoTG_DuUsf2Pp2vMaCow8/view" target="_blank" class="visitor-btn">
+    <span>10 NO'LU İŞKOLU</span>
+    <span class="v-count"><i class="fas fa-file-pdf"></i> TİS'İ İNDİR (PDF)</span>
+</a>
+  </div>
+</div>
+
+<div class="box">
+  <div class="section-title">1. BÖLÜM: Temel Bilgiler ve Vergi Dilimi</div>
+  <div class="grid-container">
+    <div>
+      <label>Gelir Vergisi Dilimi Seçiniz*</label>
+      <select id="vergiOrani">
+        <option value="0.71491" data-val="0.15">1. Dilim (%15)</option>
+        <option value="0.67241" data-val="0.20">2. Dilim (%20)</option>
+        <option value="0.61291" data-val="0.27">3. Dilim (%27)</option>
+        <option value="0.54491" data-val="0.35">4. Dilim (%35)</option>
+      </select>
+    </div>
+    <div>
+      <label class="red-label">Brüt Yevmiye Ücreti Seçiniz*</label>
+      <select id="brutYevmiye">
+        <option value="2356.67">2356,67 TL</option>
+        <option value="2322.79">2322,79 TL</option>
+      </select>
+    </div>
+    <div>
+      <label class="red-label">Kadro/Unvan Seçiniz *</label>
+      <select id="kadro" onchange="kadroGuncelle(); this.className='field-selected'" class="required-field">
+        <option value="">KADRO SEÇİNİZ</option>
+        <option>Temizlik Personeli</option>
+        <option>Büro Personeli</option>
+        <option>Büro Personeli (Görevlendirme)</option>
+        <option>Bilgi İşlem Personeli</option>
+        <option>Gençlik Lideri / Antrenör</option>
+        <option>Yüzme Antrenörü</option>
+        <option>Cankurtaran</option>
+        <option>Bakım-Onarım / Teknisyen</option>
+        <option>İklimlendirme/Kaloriferci 12 saat çalışan</option>
+        <option>İklimlendirme/Kaloriferci 8 saat çalışan</option>
+        <option>Özel Güvenlik Görevlisi 12 saat çalışan</option>
+        <option>Özel Güvenlik Görevlisi 8 saat çalışan</option>
+        <option>Havuz Suyu Operatörü</option>
+        <option>Aşçı</option>
+        <option>Sekreter</option>
+        <option>Şoför 12 saat çalışan</option>
+        <option>Şoför 8 saat çalışan</option>
+        <option>Resepsiyonist</option>
+        <option>Muhasebeci</option>
+      </select>
+    </div>
+    <div>
+      <label class="red-label">Maaş Dönemi Seçiniz*</label>
+      <select id="donem" onchange="donemGuncelle(this.value); this.className='field-selected'" class="required-field">
+        <option value="">Maaş Dönemi Seçiniz</option>
+        <option value="31">15 Ocak - 14 Şubat (31 gün)</option>
+        <option value="28">15 Şubat - 14 Mart (28 gün)</option>
+        <option value="31">15 Mart - 14 Nisan (31 gün)</option>
+        <option value="30">15 Nisan - 14 Mayıs (30 gün)</option>
+        <option value="31">15 Mayıs - 14 Haziran (31 gün)</option>
+        <option value="30">15 Haziran - 14 Temmuz (30 gün)</option>
+	<option value="31">15 Temmuz - 14 Ağustos (31 gün)</option>
+	<option value="31">15 Ağustos - 14 Eylül (31 gün)</option>
+	<option value="30">15 Eylül - 14 Ekim (30 gün)</option>
+	<option value="31">15 Ekim - 14 Kasım (31 gün)</option>
+	<option value="30">15 Kasım - 14 Aralık (30 gün)</option>
+	<option value="31">15 Aralık - 14 Ocak 2027 (31 gün)</option>
+      </select>
+      <input type="hidden" id="gun">
+    </div>
+    <div><label>Fiili Çalışma Gün Sayısı Giriniz (İşe gidilen gün sayısı)</label><input type="number" id="fiili" value="22" oninput="yogurtOtomatikGuncelle()"></div>
+    <div><label>Hizmet Yılı Giriniz (696 Sayılı KHK için 8 seçilir)</label><input type="number" id="hizmet" value="8"></div>
+    <div class="info-note">
+        <i class="fas fa-info-circle"></i> Haricen, Akdi/Hafta Tatili ve/veya Ulusal Bayram/Genel Tatil çalışması yapılması durumunda fiili çalışmaya bir gün daha eklenmesi gerekmektedir.
+    </div>
+  </div>
+
+  <div class="section-title">2. BÖLÜM: Yan Haklar</div>
+  <div class="grid-container">
+    <div><label>Yol Ücreti Seçiniz (Net)</label><select id="yol"><option value="4578.10">Büyükşehir Yol Ücreti</option><option value="3052.07">Diğer Şehirler Yol Ücreti</option><option value="0">Yok</option></select></div>
+    <div id="ikinciYemekDiv">
+        <label>2. Yemek Bedeli</label>
+        <button class="toggle-btn" id="yemekToggle" onclick="toggleYemekInput()">PASİF (Giriş Yapmak İçin Tıkla)</button>
+        <div id="ikinciYemekInputContainer">
+            <input type="number" id="ikinciYemek" value="0" placeholder="Gün sayısı giriniz">
+        </div>
+        <span class="sub-label">İkinci yemek bedeli normalde 8 saat çalışan ancak fazla mesai ile günlük çalışmasını 12 saate tamamlayanlara ödenmektedir.</span>
+    </div>
+    <div><label>Kreş Yardımı Ücreti (Net)</label>
+      <select id="kres">
+        <option value="0">Yok</option>
+        <option value="1777">1 Çocuk</option>
+        <option value="3554">2 Çocuk</option>
+        <option value="5331">3 Çocuk</option>
+      </select>
+    </div>
+    <div><label>Yoğurt Yardımı Ücreti (Gün)</label><input type="number" id="yogurt" value="0"></div>
+<div id="yogurtUyariKutusu" class="yogurt-uyari">
+    <i class="fas fa-exclamation-triangle"></i> 
+    <b>Temizlik Personeli Dikkat:</b> Yoğurt yardımı sadece kimyasal madde ile fiilen temizlik yapılan günler için ödenir. Lütfen puantajınıza göre gün sayısını teyit ediniz.
+</div>
+  </div>
+
+  <div class="section-title">3. BÖLÜM: Mesai ve Ek Gelirler</div>
+  <div class="grid-container">
+    <div id="fazlaMesaiDiv"><label>Fazla Çalışma veya Akdi Tatil Çalışması Giriniz (Saat)</label><input type="number" id="fazla" value="0"></div>
+    <div><label>Gece Çalışması Giriniz (Saat)</label><input type="number" id="gece" value="0"></div>
+    <div><label>Ulusal Bayram/Genel Tatil Çalışması Giriniz (Gün)</label><input type="number" id="ubgt" value="0"></div>
+    <div><label>Akdi Tatil / Hafta Tatili Çalışması Giriniz (Gün)</label><input type="number" id="akdi" value="0"></div>
+  </div>
+
+  <div class="section-title">4. BÖLÜM: Yardım ve Tazminatlar</div>
+  <div class="grid-container">
+    <div><label>Doğum Yardımı</label><select id="dogum"><option value="0">Yok</option><option value="1277.51">Var (Brüt)</option></select></div>
+    <div><label>Ölüm Yardımı</label><select id="olum"><option value="0">Yok</option><option value="6383.08">İşçinin Ölümü</option><option value="3850.55">Aileden Ölüm</option><option value="10212.08">İş Kazası</option></select></div>
+    <div><label>Doğal Afet Yardımı</label><select id="afet"><option value="0">Yok</option><option value="2187.19">Var (Brüt)</option></select></div>
+  </div>
+
+  <div class="section-title">5. BÖLÜM: Vergi ve Özel Durum Bilgileri</div>
+  <div class="grid-container">
+    <div><label>Engellilik İndirimi Seçiniz</label>
+      <select id="engelli">
+        <option value="0">Yok</option>
+        <option value="12000">1. Derece</option>
+        <option value="7000">2. Derece</option>
+        <option value="3000">3. Derece</option>
+      </select>
+    </div>
+    <div><label>Gazi, Şehit Yakını, Terör Mağduru</label><select id="gazi"><option value="0">Hayır</option><option value="1">Evet</option></select></div>
+    <div><label>Özel Sağlık Sigortası (Ödenen Tutar)</label><input type="number" id="oss" value="0"></div>
+  </div>
+
+  <button onclick="hesapla()">MAAŞ HESAPLA</button>
+
+  <div class="net-tutar-card" id="sonucAlani" style="display:none;">
+    <div class="net-tutar-title">Ödenecek Net Tutar</div>
+    <div class="net-tutar-rakam" id="toplamNet">0.00 TL</div>
+  </div>
+
+  <button onclick="detayGoster()" style="background: #444; margin-top: 15px; padding: 12px;">Detay Göster / Gizle</button>
+  <div id="sonuc" style="display:none"></div>
+  
+  <div class="footer-note">© 2026 GSB Maaş Hesaplama Robotu | Son Güncelleme: 1 Nisan 2026</div>
+</div>
+</div>
+
+<script>
+/* --- GÜVENLİK VE ÇALINMAYA KARŞI KORUMA --- */
+(function() {
+    // Sağ tık menüsünü tamamen kapatır
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Kritik klavye kısayollarını (F12, Ctrl+U vb.) kilitler
+    document.onkeydown = function(e) {
+        if (
+            e.keyCode === 123 || // F12
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || // Ctrl+Shift+I/J/C
+            (e.ctrlKey && e.keyCode === 85) // Ctrl+U (Kaynağı Görüntüle)
+        ) {
+            return false;
+        }
+    };
+
+    // Geliştirici konsolu açılırsa kodun çalışmasını duraksatır (Opsiyonel Tuzak)
+    setInterval(function() {
+        if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+            debugger;
+        }
+    }, 500);
+})();
+/* ------------------------------------------ */
+function sayfayaGit() { document.getElementById('duyuru-ekrani').style.transform = 'translateY(-100%)'; }
+
+function donemGuncelle(val) {
+    document.getElementById("gun").value = val;
+    let k = document.getElementById("kadro").value;
+    let is12 = k.includes("12 saat");
+    let donemText = document.getElementById("donem").options[document.getElementById("donem").selectedIndex].text;
+
+    if(donemText.includes("14 Mart")) {
+        document.getElementById("fiili").value = is12 ? 15 : 20;
+    } else {
+        document.getElementById("fiili").value = is12 ? 16 : 22;
+    }
+
+    // Nisan maaşı için %20 (Index 1)
+    if(donemText.includes("14 Nisan")){
+        document.getElementById("vergiOrani").selectedIndex = 1; 
+    }
+    // Mayıs'tan Aralık sonuna kadar (dahil) tüm aylar için %27 (Index 2)
+    else if(donemText.includes("14 Mayıs") || donemText.includes("14 Haziran") || 
+            donemText.includes("14 Temmuz") || donemText.includes("14 Ağustos") || 
+            donemText.includes("14 Eylül") || donemText.includes("14 Ekim") || 
+            donemText.includes("14 Kasım") || donemText.includes("14 Aralık")){
+        document.getElementById("vergiOrani").selectedIndex = 2; 
+    }
+    // Yeni yılın ilk maaşı (14 Ocak 2027) için vergi sıfırlanır %15 (Index 0)
+    else if(donemText.includes("14 Ocak 2027")){
+        document.getElementById("vergiOrani").selectedIndex = 0;
+    }
+    // Yılın başındaki aylar (Ocak, Şubat, Mart) varsayılan %15
+    else {
+        document.getElementById("vergiOrani").selectedIndex = 0;
+    }
+
+    yogurtOtomatikGuncelle();
+}
+function yogurtOtomatikGuncelle() {
+    let k = document.getElementById("kadro").value;
+    let fiiliG = document.getElementById("fiili").value;
+    
+    // Yeni Sözleşme: Yoğurt yardımı alan tüm kadrolar
+    let yogurtKadro = [
+        "Yüzme Antrenörü",
+        "Cankurtaran",
+        "Havuz Suyu Operatörü",
+        "İklimlendirme/Kaloriferci 12 saat çalışan",
+        "İklimlendirme/Kaloriferci 8 saat çalışan",
+        "Bakım-Onarım / Teknisyen",
+        "Bilgi İşlem Personeli",
+        "Temizlik Personeli"
+    ];
+    
+    if(yogurtKadro.includes(k)) {
+        document.getElementById("yogurt").value = fiiliG;
+    } else {
+        document.getElementById("yogurt").value = 0;
+    }
+}
+function toggleYemekInput() {
+    const btn = document.getElementById("yemekToggle");
+    const container = document.getElementById("ikinciYemekInputContainer");
+    const input = document.getElementById("ikinciYemek");
+    
+    if (container.style.display === "none" || container.style.display === "") {
+        container.style.display = "block";
+        btn.innerHTML = "AKTİF (Kapatmak İçin Tıkla)";
+        btn.classList.add("active");
+    } else {
+        container.style.display = "none";
+        btn.innerHTML = "PASİF (Giriş Yapmak İçin Tıkla)";
+        btn.classList.remove("active");
+        input.value = 0;
+    }
+}
+
+function kontrol(){
+  if(document.getElementById("sifre").value==="gsbkoopis"){
+    document.getElementById("giris").style.display="none";
+    document.getElementById("icerik").style.display="block";
+  }else{ alert("Şifre yanlış."); }
+}
+
+function kadroGuncelle() {
+    let k = document.getElementById("kadro").value;
+    let is12 = k.includes("12 saat");
+    
+    // 1. Bölümleri göster/gizle (Hata almamak için if kontrolüyle)
+    if(document.getElementById("fazlaMesaiDiv")) document.getElementById("fazlaMesaiDiv").style.display = is12 ? "none" : "block";
+    if(document.getElementById("ikinciYemekDiv")) document.getElementById("ikinciYemekDiv").style.display = is12 ? "none" : "block";
+
+    // 2. Döneme göre fiili gün sayısını ayarla
+    let donemSelect = document.getElementById("donem");
+    if (donemSelect.selectedIndex > 0) {
+        let donemText = donemSelect.options[donemSelect.selectedIndex].text;
+        if (donemText.includes("14 Mart")) {
+            document.getElementById("fiili").value = is12 ? 15 : 20;
+        } else {
+            document.getElementById("fiili").value = is12 ? 16 : 22;
+        }
+    }
+
+    // 3. Yoğurt yardımını ve uyarısını tazele
+    yogurtOtomatikGuncelle();
+}
+
+function yogurtOtomatikGuncelle() {
+    let k = document.getElementById("kadro").value;
+    let fiiliG = document.getElementById("fiili").value;
+    let uyariKutusu = document.getElementById("yogurtUyariKutusu");
+    let yogurtInput = document.getElementById("yogurt");
+
+    // Yoğurt yardımı alan kadrolar listesi
+    let yogurtKadro = [
+        "Yüzme Antrenörü", "Cankurtaran", "Havuz Suyu Operatörü",
+        "İklimlendirme/Kaloriferci 12 saat çalışan", "İklimlendirme/Kaloriferci 8 saat çalışan",
+        "Bakım-Onarım / Teknisyen", "Bilgi İşlem Personeli", "Temizlik Personeli"
+    ];
+
+    // Eğer seçilen kadro listede varsa yoğurdu fiili gün kadar yaz
+    if (yogurtKadro.includes(k)) {
+        yogurtInput.value = fiiliG;
+        
+        // SADECE "Temizlik Personeli" ise notu göster, değilse gizle
+        if (uyariKutusu) {
+            uyariKutusu.style.display = (k === "Temizlik Personeli") ? "block" : "none";
+        }
+    } else {
+        // Yoğurt almayan kadro ise değeri 0 yap ve notu gizle
+        yogurtInput.value = 0;
+        if (uyariKutusu) {
+            uyariKutusu.style.display = "none";
+        }
+    }
+}
+function hesapla(){
+  if(!document.getElementById("kadro").value || !document.getElementById("donem").value){
+    alert("Lütfen kadro/unvan ve maaş dönemini eksiksiz seçiniz!"); 
+    return;
+}
+  let vKat = parseFloat(document.getElementById("vergiOrani").value);
+  let vYuzde = parseFloat(document.getElementById("vergiOrani").options[document.getElementById("vergiOrani").selectedIndex].getAttribute("data-val"));
+  let bYev = parseFloat(document.getElementById("brutYevmiye").value);
+  let gunSay = parseInt(document.getElementById("gun").value);
+  let fiiliG = parseInt(document.getElementById("fiili").value);
+  let hizmetYili = parseInt(document.getElementById("hizmet").value);
+  let donemText = document.getElementById("donem").options[document.getElementById("donem").selectedIndex].text;
+  let kadroSecimi = document.getElementById("kadro").value;
+  
+  let detay = []; let toplam = 0;
+  const ekle = (label, tutar, note="", isAidat=false) => { 
+    if(tutar !== 0 || note !== "" || isAidat) { 
+        detay.push({label, tutar, note, isAidat});
+        toplam += tutar; 
+    } 
+  };
+  
+  ekle(`Yevmiye (${gunSay} Gün)`, bYev * gunSay * vKat);
+  ekle("Yol Ücreti", parseFloat(document.getElementById("yol").value));
+  let yemekBirim = kadro.value.includes("12 saat") ? 580.74 : 290.37;
+  let yemekEtiket = kadro.value.includes("12 saat") ? "Çift Yemek Bedeli (" + fiiliG + " Gün)" : "Yemek Bedeli (" + fiiliG + " Gün)";
+  ekle(yemekEtiket, yemekBirim * fiiliG);
+  
+  if(!kadro.value.includes("12 saat") && document.getElementById("ikinciYemek").value > 0){
+    let ekYemekGun = parseFloat(document.getElementById("ikinciYemek").value);
+    ekle("2. Yemek Bedeli (" + ekYemekGun + " Gün)", yemekBirim * ekYemekGun);
+  }
+  
+  ekle("Kreş Yardımı (Net)", parseFloat(document.getElementById("kres").value));
+  ekle("Sosyal Yardım", 4913.94 * vKat);
+  
+  let primOran = (kadroSecimi === "Temizlik Personeli" || kadroSecimi === "Büro Personeli (Görevlendirme)") ? 0.08 : 0.09;
+  
+  ekle("İş Primi (%" + (primOran*100) + ")", bYev * primOran * fiiliG * vKat);
+  ekle("Hizmet Zammı (" + hizmetYili + " Yıl)", hizmetYili * 22.99 * vKat);
+  if(document.getElementById("yogurt").value > 0) {
+      let yogurtGun = parseFloat(document.getElementById("yogurt").value);
+      ekle("Yoğurt Yardımı (" + yogurtGun + " Gün)", yogurtGun * 70.68 * vKat);
+  }
+  
+  if(document.getElementById("gece").value > 0) {
+      let geceSaat = parseFloat(document.getElementById("gece").value);
+      ekle("Gece Zammı (" + geceSaat + " Saat)", (bYev / 7.5) * 0.08 * geceSaat * vKat);
+  }
+  
+  ekle("Giyim Yardımı", 445.28 * vKat);
+// --- EK ÖDEME MODÜLÜ ---
+if(donemText.includes("14 Mayıs")) {
+    let ekOdemeBrut = 11168.06;
+    ekle("Ek Ödeme (Mayıs)", ekOdemeBrut * vKat, "📌 Brüt: 11.168,06 TL");
+}
+// -----------------------
+  
+  let dV = 0.00759;
+  if(document.getElementById("dogum").value > 0) { let bD = parseFloat(document.getElementById("dogum").value); ekle("Doğum Yardımı", bD - (bD * dV)); }
+  if(document.getElementById("olum").value > 0) { let bO = parseFloat(document.getElementById("olum").value); ekle("Ölüm Yardımı", bO - (bO * dV)); }
+  if(document.getElementById("afet").value > 0) ekle("Doğal Afet Yardımı", parseFloat(document.getElementById("afet").value) * vKat);
+  if(!kadro.value.includes("12 saat") && document.getElementById("fazla").value > 0) {
+      let fazlaSaat = parseFloat(document.getElementById("fazla").value);
+      ekle("Fazla Mesai (" + fazlaSaat + " Saat)", (bYev * vKat * 2 / 7.5) * fazlaSaat);
+  }
+  
+  if(document.getElementById("ubgt").value > 0) {
+      let ubgtGun = parseFloat(document.getElementById("ubgt").value);
+      ekle("UBGT (" + ubgtGun + " Gün)", (bYev * vKat * 2) * ubgtGun);
+  }
+  
+  if(document.getElementById("akdi").value > 0) {
+      let akdiGun = parseFloat(document.getElementById("akdi").value);
+      ekle("Akdi/Hafta Tatili (" + akdiGun + " Gün)", (bYev * vKat * 2) * akdiGun);
+  }
+  
+  let engSelect = document.getElementById("engelli");
+  let engVal = parseFloat(engSelect.value);
+  if(engVal > 0) ekle("Engellilik İndirimi", engVal * vYuzde);
+  if(document.getElementById("gazi").value === "1") ekle("Gazi / Şehit Yakını", (bYev * gunSay * 0.1) * vKat);
+  
+  let ossTutar = parseFloat(document.getElementById("oss").value);
+  if(ossTutar > 0) ekle("Özel Sağlık Sigortası İndirimi", ossTutar * vYuzde);
+  
+// --- GÜNCEL VERGİ İNDİRİMİ AYARLARI (TEMMUZ-AĞUSTOS GÜNCELLEMESİ) ---
+  let gvIndirim = 4211.32; // Standart (Ocak-Haziran)
+  let dvIndirim = 250.70;
+  let tediyeNotuText = "";
+
+  if(donemText.includes("14 Şubat")) {
+      tediyeNotuText = "(26 Ocak Tediye Mahsubu Uygulanmıştır)";
+      if(bYev == 2142.43) { gvIndirim = 660.24; dvIndirim = 39.31; } 
+      else { gvIndirim = 711.29; dvIndirim = 42.35; }
+  } 
+  else if(donemText.includes("14 Nisan")) {
+      gvIndirim = 0;
+      dvIndirim = 0;
+      tediyeNotuText = "📌 Not: Tediye ve ikramiye ödemelerinde vergi indirimi uygulandığından maaşa indirim uygulanmamıştır.";
+  }
+  else if(donemText.includes("14 Temmuz")) {
+      // Temmuz ayı özel asgari ücret vergi istisnası
+      gvIndirim = 4537.75;
+  }
+  else if(donemText.includes("14 Ağustos") || donemText.includes("14 Eylül") || 
+          donemText.includes("14 Ekim") || donemText.includes("14 Kasım") || 
+          donemText.includes("14 Aralık") || donemText.includes("14 Ocak 2027")) {
+      // Ağustos ve yıl sonuna kadar olan tüm aylar
+      gvIndirim = 5615.10;
+  }
+
+  ekle("Gelir Vergisi İndirimi", gvIndirim, tediyeNotuText);
+  ekle("Damga Vergisi İndirimi", dvIndirim, tediyeNotuText);
+  let brutAidat = bYev * 0.65;
+  let netAidat = (brutAidat - (brutAidat * vYuzde)) * -1;
+  ekle("Sendika Aidat Kesintisi %65", netAidat, "", true);
+  document.getElementById("toplamNet").innerHTML = "💰 " + toplam.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " TL";
+  document.getElementById("sonucAlani").style.display = "block";
+  window.detayData = detay;
+  window.hesaplananKadro = document.getElementById("kadro").value;
+  window.hesaplananDonem = donemText;
+  if(document.getElementById("sonuc").style.display === "block") tabloCiz();
+}
+
+function tabloCiz(){
+  let html = `<div class="receipt-container">
+    <div class="receipt-header">
+<div style="font-weight: 900; font-size: 18px; color: #1f7a4f; margin-bottom: 8px;">GSB MAAŞ BORDRO FİŞİ</div>
+<div style="font-size: 14px; font-weight: 800; color: #333; text-transform: uppercase;">${window.hesaplananKadro}</div>
+<div style="font-size: 13px; font-weight: 600; color: #666; margin-top: 3px;">Dönem: ${window.hesaplananDonem}</div>
+    </div>
+    
+    <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 900; margin-bottom: 5px; color: #1f7a4f; border-bottom: 1px solid #eee; padding-bottom: 3px;">
+        <span>ÖDEME KALEMLERİ</span>
+        <span>NET ÜCRETLER</span>
+    </div>`;  window.detayData.forEach(d => {
+    let rowClass = d.isAidat ? 'class="receipt-row aidat-row"' : 'class="receipt-row"';
+    let noteStyle = d.note.includes("Tediye Mahsubu") ? 'class="tediye-notu"' : 'class="aidat-note"';
+
+    html += `<div ${rowClass}>
+        <span>${d.label} ${d.note ? '<br><small '+noteStyle+'>'+d.note+'</small>' : ''}</span>
+        <span>${d.tutar.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} TL</span>
+    </div>`;
+  });
+  let toplamTutar = window.detayData.reduce((acc, curr) => acc + curr.tutar, 0);
+  html += `<div class="receipt-row receipt-total">
+        <span>NET ÖDENECEK MAAŞ</span>
+        <span>${toplamTutar.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} TL</span>
+    </div>
+    <div class="receipt-footer">
+        KOOP-İŞ SENDİKASI<br>Yukarıda hesaplanan rakamlar bilgilendirme amaçlıdır. Hesaplanan rakam girilen verilere istinaden tespit edilmiştir.
+    </div>
+  </div>`;
+  
+  document.getElementById("sonuc").innerHTML = html;
+}
+
+function detayGoster(){
+  let s = document.getElementById("sonuc");
+  if(s.style.display === "block") s.style.display = "none";
+  else { s.style.display = "block"; tabloCiz(); }
+}
+</script>
+</body>
+</html>
