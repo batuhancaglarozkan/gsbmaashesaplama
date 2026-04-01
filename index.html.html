@@ -1,35 +1,49 @@
-<div id="duyuru-ekrani">
-    <div class="logo-container" style="animation: pulse 2s infinite ease-in-out; gap: 10px; margin-bottom: 20px;">
-        <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" alt="GSB" class="tis-logo" style="height: 50px; width: auto;">
-        <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" alt="Koop-İş" class="tis-logo" style="height: 50px; width: auto;">
+<div id="duyuru-ekrani" style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; width: 100%; position: fixed; top: 0; left: 0; background: linear-gradient(135deg, #1f7a4f 0%, #0d3b25 100%); z-index: 10000; padding: 40px 20px; box-sizing: border-box; overflow-y: auto;">
+    
+    <div class="logo-container" style="display: flex; gap: 25px; margin-bottom: 40px; animation: pulse 2s infinite ease-in-out;">
+        <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" alt="GSB" style="height: 85px; width: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));">
+        <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" alt="Koop-İş" style="height: 85px; width: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));">
     </div>
 
-    <div class="tis-baslik" style="margin-bottom: 15px;">
-        <span style="font-size: 16px; opacity: 0.8; font-weight: 400; letter-spacing: 2px;">SİSTEM BAKIMDA</span>
-        <h2 style="color: #ffd700; font-size: 28px; margin: 10px 0; text-shadow: 0 0 15px rgba(255,215,0,0.3); animation: glow 1.5s infinite alternate;">
-            MAAŞ HESAPLAMA ROBOTU <br> GÜNCELLENMEKTEDİR
+    <div style="text-align: center; max-width: 400px;">
+        <span style="font-size: 14px; opacity: 0.7; font-weight: 700; letter-spacing: 4px; color: #ffd700; text-transform: uppercase; display: block; margin-bottom: 10px;">Sistem Güncelleniyor</span>
+        
+        <h2 style="color: #ffffff; font-size: 28px; font-weight: 900; line-height: 1.4; margin: 0; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+            MAAŞ HESAPLAMA ROBOTU <br> 
+            <span style="color: #ffd700; animation: glow 1.5s infinite alternate;">YENİLENİYOR</span>
         </h2>
     </div>
 
-    <div style="width: 180px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 15px 0; overflow: hidden;">
-        <div style="width: 50%; height: 100%; background: #ffd700; box-shadow: 0 0 10px #ffd700; animation: loading 2s infinite ease-in-out;"></div>
+    <div style="width: 240px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 20px; margin: 40px 0; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.05);">
+        <div style="width: 40%; height: 100%; background: linear-gradient(90deg, #ffd700, #fff); box-shadow: 0 0 20px #ffd700; position: absolute; animation: loading 2s infinite ease-in-out;"></div>
     </div>
 
-    <div style="margin-top: 5px; font-weight: 500; opacity: 0.7; font-size: 13px; font-style: italic; color: #ffd700;">
-        Yeni katsayılar ve TİS kazanımları sisteme işleniyor...
+    <div style="background: rgba(255,255,255,0.05); padding: 15px 25px; border-radius: 15px; border: 1px dashed rgba(255,255,255,0.2); text-align: center;">
+        <p style="margin: 0; color: #ffffff; font-size: 14px; font-weight: 500; opacity: 0.9;">
+            <i class="fas fa-sync-alt fa-spin" style="margin-right: 10px; color: #ffd700;"></i> 
+            TİS kazanımları ve 2026 katsayıları sisteme işlenmektedir. Lütfen daha sonra tekrar deneyiniz.
+        </p>
     </div>
 
-    <button class="git-btn" style="margin-top: 30px; background: #888 !important; color: #555 !important; opacity: 0.6; cursor: not-allowed;" disabled>
-        LÜTFEN BEKLEYİNİZ <i class="fas fa-sync fa-spin" style="margin-left: 10px;"></i>
-    </button>
+    <div style="position: absolute; bottom: 30px; font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600; letter-spacing: 1px;">
+        © 2026 GSB PERSONEL MAAŞ ROBOTU
+    </div>
 </div>
 
 <style>
 @keyframes glow {
-    from { text-shadow: 0 0 8px rgba(255,215,0,0.2); }
-    to { text-shadow: 0 0 20px rgba(255,215,0,0.6); transform: scale(1.01); }
+    from { opacity: 0.7; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
+    to { opacity: 1; text-shadow: 0 0 25px rgba(255,215,0,0.8); }
 }
 
 @keyframes loading {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+</style>
