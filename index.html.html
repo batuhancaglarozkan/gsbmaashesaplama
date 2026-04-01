@@ -421,7 +421,12 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
     }, 500);
 })();
 /* ------------------------------------------ */
-function sayfayaGit() { document.getElementById('duyuru-ekrani').style.transform = 'translateY(-100%)'; }
+function sayfayaGit() { 
+    const duyuru = document.getElementById('duyuru-ekrani');
+    duyuru.style.transform = 'translateY(-100%)'; 
+    // 0.8 saniye sonra (animasyon bitince) ekranı tamamen kaldır ki hesaplama ekranına yer açılsın
+    setTimeout(() => { duyuru.style.display = 'none'; }, 800); 
+}
 
 function donemGuncelle(val) {
     document.getElementById("gun").value = val;
