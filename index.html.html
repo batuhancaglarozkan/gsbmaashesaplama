@@ -1,43 +1,35 @@
 <div id="duyuru-ekrani">
-    <div class="logo-container" style="animation: pulse 2s infinite ease-in-out;">
-        <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" alt="GSB" class="tis-logo">
-        <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" alt="Koop-İş" class="tis-logo">
+    <div class="logo-container" style="animation: pulse 2s infinite ease-in-out; gap: 10px; margin-bottom: 20px;">
+        <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" alt="GSB" class="tis-logo" style="height: 50px; width: auto;">
+        <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" alt="Koop-İş" class="tis-logo" style="height: 50px; width: auto;">
     </div>
 
-    <div class="tis-baslik">
-        <span style="font-size: 18px; opacity: 0.8; font-weight: 400; letter-spacing: 2px;">SİSTEM BAKIMDA</span>
-        <h2 style="color: #ffd700; font-size: 36px; margin: 15px 0; text-shadow: 0 0 20px rgba(255,215,0,0.4); animation: glow 1.5s infinite alternate;">
+    <div class="tis-baslik" style="margin-bottom: 15px;">
+        <span style="font-size: 16px; opacity: 0.8; font-weight: 400; letter-spacing: 2px;">SİSTEM BAKIMDA</span>
+        <h2 style="color: #ffd700; font-size: 28px; margin: 10px 0; text-shadow: 0 0 15px rgba(255,215,0,0.3); animation: glow 1.5s infinite alternate;">
             MAAŞ HESAPLAMA ROBOTU <br> GÜNCELLENMEKTEDİR
         </h2>
     </div>
 
-    <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 20px 0; overflow: hidden;">
-        <div style="width: 50%; height: 100%; background: #ffd700; box-shadow: 0 0 15px #ffd700; animation: loading 2s infinite ease-in-out;"></div>
+    <div style="width: 180px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 15px 0; overflow: hidden;">
+        <div style="width: 50%; height: 100%; background: #ffd700; box-shadow: 0 0 10px #ffd700; animation: loading 2s infinite ease-in-out;"></div>
     </div>
 
-    <div style="margin-top: 10px; font-weight: 500; opacity: 0.7; font-size: 14px; font-style: italic;">
+    <div style="margin-top: 5px; font-weight: 500; opacity: 0.7; font-size: 13px; font-style: italic; color: #ffd700;">
         Yeni katsayılar ve TİS kazanımları sisteme işleniyor...
     </div>
 
-    <button class="git-btn" style="margin-top: 40px; opacity: 0.5; cursor: not-allowed;" disabled>
+    <button class="git-btn" style="margin-top: 30px; background: #888 !important; color: #555 !important; opacity: 0.6; cursor: not-allowed;" disabled>
         LÜTFEN BEKLEYİNİZ <i class="fas fa-sync fa-spin" style="margin-left: 10px;"></i>
     </button>
 </div>
 
 <style>
 @keyframes glow {
-    from { text-shadow: 0 0 10px rgba(255,215,0,0.2); }
-    to { text-shadow: 0 0 25px rgba(255,215,0,0.7); transform: scale(1.02); }
+    from { text-shadow: 0 0 8px rgba(255,215,0,0.2); }
+    to { text-shadow: 0 0 20px rgba(255,215,0,0.6); transform: scale(1.01); }
 }
 
 @keyframes loading {
     0% { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-</style>
+    100% { transform: translateX(
