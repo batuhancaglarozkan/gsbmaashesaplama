@@ -49,14 +49,12 @@ h1{ color:#1f7a4f; margin-bottom: 5px; font-weight: 800; font-size: 22px;}
 .visitor-btn span:first-child { font-size: 8px; opacity: 0.8; text-transform: uppercase; }
 .v-count { font-size: 13px; }
 
-@media (max-width: 600px) { 
-  .social-bar-wrapper { flex-direction: column; gap: 15px; } 
-  .visitor-btn { position: static; margin-top: 10px; } 
-  .grid-container { grid-template-columns: 1fr !important; }
-  .net-tutar-rakam { font-size: 32px !important; }
-  h1 { font-size: 18px; }
-  .receipt-container { padding: 15px !important; }
-  .receipt-row { font-size: 12px !important; gap: 10px; }
+@media (min-width: 601px) {
+    .tis-logo { height: 85px; }
+    .tis-baslik { font-size: 20px !important; }
+    .tis-baslik span { font-size: 30px !important; }
+    .tis-foto-alani { max-width: 450px; }
+    .duyuru-alt-yazi { font-size: 18px !important; }
 }
 
 .box{ background: var(--box-bg); padding:20px; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,0.08); max-width:850px; margin:auto; border: 1px solid var(--border-color); }
@@ -91,38 +89,49 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
 
 .footer-note { text-align: center; font-size: 11px; color: #888; margin-top: 20px; font-weight: 600; }
 
-/* --- EKLENEN DUYURU (SPLASH) EKRANI CSS --- */
+/* --- SPLASH EKRANI MOBİL OPTİMİZE --- */
 #duyuru-ekrani { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
     background: linear-gradient(135deg, #1f7a4f 0%, #0d3b25 100%); 
     color: white; display: flex; flex-direction: column; justify-content: center; 
     align-items: center; text-align: center; z-index: 10000; 
     transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); 
-    padding: 20px; box-sizing: border-box; 
+    padding: 15px; box-sizing: border-box; overflow-y: auto;
 }
 
-.logo-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px; }
-.tis-logo { height: 100px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+.logo-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
+.tis-logo { height: 60px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
 
+/* Ana Başlık Alanı */
 .tis-baslik { 
-    font-size: 26px !important; font-weight: 900; margin-bottom: 20px; 
-    text-transform: uppercase; line-height: 1.2; padding: 0 15px; 
+    font-size: 16px !important; font-weight: 700; margin-bottom: 15px; 
+    text-transform: uppercase; line-height: 1.3; padding: 0 10px; 
+}
+.tis-baslik span { 
+    color: #ffd700; font-size: 22px !important; display: block; 
+    margin-top: 8px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); 
 }
 
+/* Fotoğraf Alanı - Mobilde Ezilmemesi İçin */
 .tis-foto-alani {
-    width: 90%; max-width: 500px; margin: 0 auto 25px auto;
-    border-radius: 20px; overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    border: 3px solid rgba(255, 255, 255, 0.2);
+    width: 95%; max-width: 350px; margin: 0 auto 15px auto;
+    border-radius: 15px; overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
-
 .imza-foto { width: 100%; height: auto; display: block; }
+
+/* Alt Bilgi Yazısı */
+.duyuru-alt-yazi { 
+    margin-bottom: 20px; font-weight: 500; opacity: 0.9; 
+    font-size: 14px !important; line-height: 1.4; 
+}
 
 .git-btn { 
     background: #ffd700 !important; color: #0d3b25 !important; 
-    padding: 18px 35px; border-radius: 50px; font-size: 16px; 
+    padding: 14px 25px; border-radius: 50px; font-size: 14px; 
     font-weight: 800; border: none; cursor: pointer; transition: 0.3s; 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: auto; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); width: 85%; max-width: 300px;
 }
 .visitor-btn { text-decoration: none !important; background: #d4af37 !important; border: 1px solid rgba(255,255,255,0.3) !important; transition: 0.3s !important; }
 .visitor-btn:hover { transform: scale(1.05); background: #b8962d !important; }
