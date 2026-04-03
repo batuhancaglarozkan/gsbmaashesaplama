@@ -32,10 +32,10 @@
   --input-border: #dce8e1;
   --label-color: #444;
 }
-/* Kayan Yazı Animasyonu */
+/* Kayan Yazı Animasyonu Güncellendi */
 @keyframes kayanYaziEfekti {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+    0% { transform: translateX(0%); } /* Site açıldığında yazı zaten ekranda başlar */
+    100% { transform: translateX(-100%); } /* Sola doğru kayıp biter ve döngü başa döner */
 }
 
 .haber-bandi {
@@ -52,9 +52,18 @@
 .kayan-metin {
     display: inline-block;
     font-weight: 800;
-    color: #ffd700; /* Dikkat çekici sarı */
-    font-size: 15px;
-    animation: kayanYaziEfekti 20s linear infinite;
+    color: #ffd700;
+    font-size: 16px;
+    
+    /* Ayarlar: */
+    animation-name: kayanYaziEfekti;
+    animation-duration: 25s;         /* Hız (Önceki mesajda yavaşlatmıştık) */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;             /* Site açıldıktan 2 saniye sonra kaymaya başlar */
+    
+    /* Önemli: Gecikme süresince yazının ekranda sabit durması için */
+    animation-fill-mode: backwards; 
 }
 
 body{ font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); padding:15px; color: var(--text-color); margin: 0; }
