@@ -32,6 +32,30 @@
   --input-border: #dce8e1;
   --label-color: #444;
 }
+/* Kayan Yazı Animasyonu */
+@keyframes kayanYaziEfekti {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.haber-bandi {
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3); /* Hafif şeffaf koyu zemin */
+    border-top: 1px solid #ffd700;
+    border-bottom: 1px solid #ffd700;
+    margin: 15px 0;
+    padding: 8px 0;
+    white-space: nowrap;
+}
+
+.kayan-metin {
+    display: inline-block;
+    font-weight: 800;
+    color: #ffd700; /* Dikkat çekici sarı */
+    font-size: 16px;
+    animation: kayanYaziEfekti 12s linear infinite;
+}
 
 body{ font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); padding:15px; color: var(--text-color); margin: 0; }
 .header-container { text-align: center; margin-bottom: 25px; position: relative; }
@@ -188,16 +212,48 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
         <img src="https://i.ibb.co/pvrkjcg6/HEqm-Pj-CXAAETV7k.jpg" alt="TİS İmza Anı" class="imza-foto">
     </div>
 
-    <div style="margin-bottom: 30px; font-weight: 600; opacity: 0.9; font-size: 19px;">
-        Yeni Dönem Kazanımları ve Güncel Veriler Robota Yüklendi.
+    <div class="haber-bandi">
+        <div class="kayan-metin">
+            📢 14 NİSAN 2026 MAAŞLARI ZAMLI ÖDENMESİ BEKLENMEKTEDİR. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            ⚠️ 15 MART - 14 NİSAN DÖNEMİ ZAMLI ÖDENECEĞİ İÇİN GERİYE DÖNÜK ÜCRETLER REVİZE EDİLMİŞTİR. LÜTFEN AÇIKLAMALARI OKUYUNUZ.
+        </div>
     </div>
 
-    <button class="git-btn" onclick="sayfayaGit()">
-        Maaş Hesaplama Robotuna Giriş <i class="fas fa-chevron-right" style="margin-left: 10px;"></i>
-    </button>
+   <div style="margin-bottom: 25px; padding: 20px; border: 2px dashed #ffd700; border-radius: 20px; background: rgba(255, 255, 255, 0.07); margin: 0 10px; text-align: left; box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);">
+    
+    <div style="margin-bottom: 18px;">
+        <span style="background: #e63946; color: #fff; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 8px;">
+            <i class="fas fa-exclamation-triangle"></i> GERİYE DÖNÜK ÖDEME REVİZESİ (1 OCAK - 14 MART 2026)
+        </span>
+        <p style="font-size: 14px; line-height: 1.5; color: #fff; font-weight: 500; margin: 0;">
+            15 Mart - 14 Nisan döneminin zamlı ödenecek olması nedeniyle geriye dönük ücretler: <br>
+            <span style="color: #ffd700; font-size: 19px; font-weight: 900; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
+                22.000 ₺ — 23.000 ₺
+            </span> 
+            <span style="font-size: 12px; opacity: 0.8; display: block; margin-top: 4px;">(28.000 ₺ olan eski tahmin bu yönde güncellenmiştir.)</span>
+        </p>
+    </div>
+
+    <div style="height: 1px; background: linear-gradient(to right, transparent, rgba(255,215,0,0.5), transparent); margin-bottom: 18px;"></div>
+
+    <div>
+        <span style="background: #1f7a4f; color: #fff; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 8px;">
+            <i class="fas fa-plus-circle"></i> EK KAZANIM
+        </span>
+        <p style="font-size: 14px; line-height: 1.5; color: #fff; font-weight: 500; margin: 0;">
+            <b style="color: #ffd700;">Yoğurt Ücretini</b> ilk defa alacak kadroların toplam farkına yaklaşık: <br>
+            <span style="color: #58d68d; font-size: 19px; font-weight: 900; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
+                +2.000 ₺
+            </span> 
+            <span style="font-size: 12px; opacity: 0.8; display: block; margin-top: 4px;">civarında ekstra ödeme eklenecektir.</span>
+        </p>
+    </div>
 </div>
 
-<div id="giris" class="box" style="margin-top: 50px;">
+    <button class="git-btn" onclick="sayfayaGit()">
+       Robota Giriş İçin Tıklayınız <i class="fas fa-chevron-right" style="margin-left: 10px;"></i>
+    </button>
+</div><div id="giris" class="box" style="margin-top: 50px;">
   <div class="ust-logolar">
     <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" class="logo-img">
     <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" class="logo-img">
@@ -218,11 +274,20 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
     <span>10 NO'LU İŞKOLU</span>
     <span class="v-count"><i class="fas fa-file-pdf"></i> TİS'İ İNDİR (PDF)</span>
 </a>
+
     </div>
   </div>
   <label>Şifre</label>
-  <input type="password" id="sifre" placeholder="Robot Şifresini giriniz.">
-  <button onclick="kontrol()">GİRİŞ YAPINIZ.</button>
+<input type="password" id="sifre" placeholder="Robot Şifresini giriniz.">
+
+<div style="text-align: right; margin-top: 5px;">
+    <button onclick="kontrol()" style="width: 100%; margin-top: 15px;">GİRİŞ YAPINIZ.</button>
+    
+    <div style="font-size: 9px; color: rgba(0, 0, 0, 0.4); font-weight: 700; letter-spacing: 0.5px; margin-top: 8px; text-transform: uppercase;">
+        <i class="fas fa-terminal" style="font-size: 8px; margin-right: 3px;"></i> 
+        Design & Dev by <span style="color: #1f7a4f;">Batuhan Çağlar ÖZKAN</span>
+    </div>
+</div>
 </div>
 
 <div id="icerik" style="display:none">
@@ -375,7 +440,16 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
     <div><label>Özel Sağlık Sigortası (Ödenen Tutar)</label><input type="number" id="oss" value="0"></div>
   </div>
 
-  <button onclick="hesapla()">MAAŞ HESAPLA</button>
+  <div style="text-align: right; margin-top: 5px;">
+    <button onclick="hesapla()" style="width: 100%; margin-top: 20px; background:#1f7a4f; color:#fff; border:none; border-radius:15px; cursor:pointer; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(31, 122, 79, 0.2);">
+        MAAŞ HESAPLA
+    </button>
+    
+    <div style="font-size: 9px; color: rgba(0, 0, 0, 0.4); font-weight: 700; letter-spacing: 0.5px; margin-top: 8px; text-transform: uppercase;">
+        <i class="fas fa-terminal" style="font-size: 8px; margin-right: 3px;"></i> 
+        Design & Dev by <span style="color: #1f7a4f;">Batuhan Çağlar ÖZKAN</span>
+    </div>
+</div>
 
   <div class="net-tutar-card" id="sonucAlani" style="display:none;">
     <div class="net-tutar-title">Ödenecek Net Tutar</div>
