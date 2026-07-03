@@ -3,110 +3,201 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maaş Hesaplama Sistemi</title>
+<title>GSB Hesaplama Robotu</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #0f3d2e, #1f7a4f);
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-    .container {
-        text-align: center;
-        padding: 20px;
-        width: 100%;
-        max-width: 500px;
-    }
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #0f5132, #06281f);
+    color: white;
+}
 
-    .logo-area {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        margin-bottom: 30px;
-        flex-wrap: wrap;
-    }
+.wrapper {
+    width: 92%;
+    max-width: 560px;
+}
 
-    .logo-area img {
-        width: 90px;
-        height: auto;
-        background: white;
-        padding: 8px;
-        border-radius: 10px;
-    }
+.card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 22px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    text-align: center;
+}
 
-    h1 {
-        font-size: 22px;
-        margin-bottom: 30px;
-    }
+/* LOGO */
+.logo-area {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
 
-    .btn {
-        display: block;
-        width: 100%;
-        padding: 15px;
-        margin: 12px 0;
-        font-size: 16px;
-        font-weight: bold;
-        color: #1f7a4f;
-        background: white;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: 0.3s;
-    }
+.logo-area img {
+    width: 78px;
+    background: white;
+    padding: 8px;
+    border-radius: 12px;
+}
 
-    .btn:hover {
-        background: #e6e6e6;
-        transform: scale(1.03);
-    }
+/* TITLE */
+h1 {
+    font-size: 20px;
+    margin: 10px 0 6px;
+}
 
-    .footer {
-        margin-top: 25px;
-        font-size: 12px;
-        opacity: 0.8;
-    }
+.subtitle {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-bottom: 14px;
+}
 
-    @media (max-width: 600px) {
-        .logo-area img {
-            width: 70px;
-        }
+/* BADGE */
+.badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #20c997, #198754);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
 
-        h1 {
-            font-size: 18px;
-        }
-    }
+/* INFO BOX */
+.box {
+    background: rgba(255,255,255,0.06);
+    padding: 14px;
+    border-radius: 12px;
+    margin: 10px 0;
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.box strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* BUTTONS */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    color: white;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #198754, #20c997);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* FOOTER */
+.footer {
+    font-size: 11px;
+    opacity: 0.75;
+    margin-top: 14px;
+}
+
+.signature {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-top: 6px;
+}
+
+/* DESIGN SIGNATURE BOX */
+.credit {
+    margin-top: 14px;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    font-size: 12px;
+    opacity: 0.85;
+    border-left: 3px solid #20c997;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    h1 { font-size: 17px; }
+    .logo-area img { width: 65px; }
+}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper">
+
+<div class="card">
 
     <div class="logo-area">
-        <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" alt="Sendika Logo">
-        <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" alt="GSB Logo">
+        <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png">
+        <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png">
     </div>
 
-    <h1>GSB Maaş Hesaplama Sistemine Hoş Geldiniz</h1>
-<h6><i>1-14 Temmuz 2026 tarihi için fark ödemesi yapılacak olup; fark ücretlerinin ortalama 4000 ₺ civarında olması düşünülmektedir.</i></h6>
+    <h1>GSB Hesaplama Robotu</h1>
 
-    <a href="temmuz.html" class="btn">14 Temmuz 2026 Maaş Hesapla</a>
+    <div class="subtitle">
+        Maaş hesaplama robotu
+    </div>
 
-    <a href="gsb10maas.html" class="btn">GSB Zamlı Maaş Hesaplama Programı</a>
+    <div class="badge">
+        🔔 %13,76 ZAM SİSTEME ENTEGRE EDİLDİ
+    </div>
+
+    <div class="box">
+        <strong>📌 Temmuz Dönemi Bilgilendirme</strong>
+        14 Temmuz 2026 maaş hesaplamaları <b>zamsız tutarlar</b> üzerinden yapılacaktır.
+    </div>
+
+    <div class="box">
+        <strong>💰 Fark Ödemesi</strong>
+        1–14 Temmuz dönemi için yaklaşık <b>4.000 ₺</b> fark ücreti ödenmesi öngörülmektedir.  
+        <br><br>
+        <i>Bu ödeme 14 Temmuz maaşının ardından yansıtılacaktır.</i>
+    </div>
+
+    <a href="temmuz.html" class="btn btn-primary">
+        📅 14 Temmuz Zamsız Maaş Hesapla
+    </a>
+
+    <a href="gsb10maas.html" class="btn btn-secondary">
+        🚀 Zamlı Maaş Hesaplama Robotu
+    </a>
+
+    <div class="credit">
+        🎨 Tasarım & Geliştirme: <b>Batuhan Çağlar Özkan</b>
+    </div>
 
     <div class="footer">
-        Koop-İş & GSB Maaş Hesaplama Robotu
+        Koop-İş Sendikası & GSB Maaş Hesaplama Robotu
     </div>
- <div class="footer">
-        <i>Bu robot Batuhan Çağlar Özkan tarafından tasarlanmıştır.</i>
-    </div>
+
+</div>
+
 </div>
 
 </body>
