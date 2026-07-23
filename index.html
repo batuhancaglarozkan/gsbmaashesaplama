@@ -12,7 +12,7 @@ if ('serviceWorker' in navigator) {
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GSB Hesaplama Robotu</title>
+<title>Maaş Hesaplama Robotu</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -97,6 +97,25 @@ h1 {
     margin-bottom: 6px;
 }
 
+/* ONAY KUTUSU (CHECKBOX) */
+.terms-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 14px 0 6px;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.terms-check input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    accent-color: #20c997;
+}
+
 /* BUTTONS */
 .btn {
     display: block;
@@ -108,6 +127,7 @@ h1 {
     font-weight: 600;
     transition: 0.25s;
     color: white;
+    box-sizing: border-box;
 }
 
 .btn-primary {
@@ -118,7 +138,17 @@ h1 {
     background: linear-gradient(135deg, #0d6efd, #6610f2);
 }
 
-.btn:hover {
+/* Pasif Buton Stili */
+.btn-disabled {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    pointer-events: none;
+    cursor: not-allowed;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.btn:not(.btn-disabled):hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
@@ -166,38 +196,40 @@ h1 {
         <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png">
     </div>
 
-    <h1>GSB Hesaplama Robotu</h1>
-
-    <div class="subtitle">
-        Maaş hesaplama robotu
-    </div>
+    
 
     <div class="badge">
-        🔔 %13,76 ZAM SİSTEME ENTEGRE EDİLDİ
+        💵 MAAŞ HESAPLAMA ROBOTU
+    </div>
+
+<h1>T.C. GENÇLİK VE SPOR BAKANLIĞI</h1>
+
+    <div class="subtitle">
+        10 NOLU İŞ KOLU İŞÇİLERİ
     </div>
 
     <div class="box">
-        <strong>📌 Temmuz Dönemi Bilgilendirme</strong>
-        1–14 Temmuz 2026 maaş hesaplamaları <b>zamsız tutarlar</b> üzerinden yapılacaktır.
-    </div>
+        <strong>⚠️<b> <span style="color: red;"><b>MAAŞ HESAPLAMA ROBOTU HAKKINDA</b></span></b></strong>
+        ➡️ Bu robot yalnızca bilgilendirme ve tahmin amacıyla hazırlanmış olup resmi bir bordro veya ödeme belgesi niteliği taşımamaktadır.<br> <br>
+	➡️ Yapılan hesaplamalar tamamen girilen veriler doğrultusunda oluşmaktadır.<br> <br>
+	➡️ Yapılacak hesaplamalara; BES kesintisi, fazla mesai, izin ve benzeri ek ödeme veya kesintiler dahil değildir.<br><br>
+	➡️ GSB Resmi Bordro Programına ulaşmak için <a href="http://ekip.gsb.gov.tr" target="_blank" style="color: red; text-decoration: none;"><b>Tıklayınız.</b></a><br><br>
+	➡️ Maaş hesaplamaları her ayın 15'i ile takip eden ayın 14'ü arasındaki dönemi kapsayacak şekilde yapılır. (Örn: 15 Ağustos - 14 Eylül)<br> <br>
+	➡️ Yapılacak olan hatalı hesaplamalarda sorumluluk kabul edilmemektedir.    
+</div>
 
-    <div class="box">
-        <strong>💰 Fark Ödemesi</strong>
-        1–14 Temmuz dönemi için yaklaşık <b>4.000 ₺</b> fark ücreti ödenmesi öngörülmektedir.  
-        <br><br>
-        <i>Bu ödeme 14 Temmuz maaşının ardından yansıtılacaktır.</i>
-    </div>
+    <!-- ONAY KUTUSU -->
+    <label class="terms-check">
+        <input type="checkbox" id="acceptCheck" onchange="toggleButton()">
+        Yukarıdaki bilgilendirmeleri okudum ve kabul ediyorum.
+    </label>
 
-    <a href="temmuz.html" class="btn btn-primary">
-        📅 14 Temmuz Zamsız Maaş Hesapla
-    </a>
-
-    <a href="gsb10maas.html" class="btn btn-secondary">
-        🚀 Zamlı Maaş Hesaplama Robotu
-    </a>
+    
+    <a href="gsb10maas.html" id="targetBtn" class="btn btn-secondary btn-disabled">
+        🚀 Maaş Hesaplama Robotuna Git </a>
 
     <div class="credit">
-        🎨 Tasarım & Geliştirme: <b>Batuhan Çağlar Özkan</b>
+        🎨 Tasarım & Geliştirme: <b><a href="https://instagram.com/batuhancaglarozkan" target="_blank" style="color: inherit; text-decoration: none;">Batuhan Çağlar Özkan</a></b> 
     </div>
 
     <div class="footer">
@@ -207,6 +239,19 @@ h1 {
 </div>
 
 </div>
+
+<script>
+function toggleButton() {
+    const checkBox = document.getElementById('acceptCheck');
+    const targetBtn = document.getElementById('targetBtn');
+    
+    if (checkBox.checked) {
+        targetBtn.classList.remove('btn-disabled');
+    } else {
+        targetBtn.classList.add('btn-disabled');
+    }
+}
+</script>
 
 </body>
 </html>
