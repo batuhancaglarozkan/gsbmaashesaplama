@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gsb-maas-v2';
+const CACHE_NAME = 'gsb-maas-v3';
 const ASSETS = [
   './',
   './index.html'
