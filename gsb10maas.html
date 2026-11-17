@@ -307,6 +307,12 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
 @media(max-width:360px){.login-card{padding-left:14px;padding-right:14px}.login-footer{font-size:8px}.login-footer-copy small{font-size:8px}}
 
 
+/* Geçici tediye bağlantısı */
+.tediye-header-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:9px;padding:7px 13px;border:1px solid #d9e7df;border-radius:999px;background:#edf5f0;color:#174c3a;font-size:11px;font-weight:800;letter-spacing:.35px;text-decoration:none;transition:background .2s ease,transform .2s ease}
+.tediye-header-link:hover{background:#dcebe2;transform:translateY(-1px)}
+.tediye-header-link span{font-size:15px}
+@media(max-width:600px){.tediye-header-link{font-size:9px;padding:6px 10px;margin-top:7px;letter-spacing:.1px}}
+
 /* KOOP-İŞ DİJİTAL ana ekran kurumsal başlığı */
 .digital-header{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;padding:18px 20px 17px;margin:-15px -15px 22px;border-radius:19px 19px 0 0;background:linear-gradient(120deg,#f7faf8 0%,#fff 52%,#f0f6f2 100%);border-bottom:3px solid #174c3a}
 .digital-header-logos{display:flex;align-items:center;justify-content:space-between;gap:14px;min-width:0}
@@ -572,6 +578,7 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
       <div class="digital-brand">
         <div class="digital-brand-name">KOOP-İŞ <span>DİJİTAL</span></div>
         <div class="digital-brand-subtitle">GSB MAAŞ VE HAKEDİŞ HESAPLAMA</div>
+        <a class="tediye-header-link" href="gsb10tediye.html">18 ARALIK TEDİYE HESAPLAMA <span>→</span></a>
       </div>
       <div class="digital-header-meta"><span>10 NOLU İŞKOLU</span><span class="version-badge">v2.0 · 17 Kasım 2026</span></div>
     </div>
