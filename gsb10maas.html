@@ -292,164 +292,317 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
     .splash-content h2 { font-size: 17px !important; }
     .info-card-new li { font-size: 11px; }
     #start-btn-new { padding: 14px !important; font-size: 14px !important; }
-}</style>
+}
+.login-shell{min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:22px 16px}
+.login-card{width:min(100%,470px);box-sizing:border-box;background:#fff;border:1px solid #e4ece6;border-radius:26px;padding:28px 32px 22px;box-shadow:0 18px 48px rgba(25,65,46,.12)}
+.login-brand{text-align:center}.login-logo{display:block;width:104px;height:104px;object-fit:contain;margin:0 auto 7px}.login-wordmark{color:#174c3a;font-size:36px;line-height:1.05;letter-spacing:-1.5px;font-weight:900}.login-ribbon{display:inline-block;margin-top:6px;padding:7px 26px;background:#174c3a;color:#fff;font-size:12px;font-weight:800;letter-spacing:4px}.login-subtitle{margin-top:10px;color:#718078;font-size:12px;font-weight:700;letter-spacing:.5px}
+.login-welcome{margin:24px 0 18px;text-align:center}.login-kicker{display:inline-block;color:#287454;background:#edf5ef;border-radius:30px;padding:6px 11px;font-size:9px;font-weight:800;letter-spacing:1.1px}.login-welcome h1{margin:11px 0 5px;color:#203b2e;font-size:23px}.login-welcome p{margin:0;color:#758078;font-size:13px;line-height:1.5}
+.login-form label,.petition-tool label{display:block;margin:0 0 8px;color:#34483c;font-size:12px;font-weight:800}.password-wrap{display:flex;align-items:center;gap:10px;min-height:56px;padding:0 13px;border:1.5px solid #dce7df;border-radius:14px;background:#fbfdfb}.password-wrap:focus-within{border-color:#287454;box-shadow:0 0 0 4px rgba(40,116,84,.11)}.password-icon{color:#56816a;font-size:16px}.password-wrap input{flex:1;min-width:0;width:100%;margin:0;padding:15px 0;border:0;outline:0;box-shadow:none;background:transparent;color:#203b2e;font-size:16px}.password-wrap input:focus{outline:none;box-shadow:none}.password-wrap input::placeholder{color:#9aa79f;font-size:14px}.password-toggle{width:38px;height:38px;flex:0 0 38px;margin:0;padding:0;border:0;border-radius:10px;background:transparent;color:#718078;box-shadow:none;font-size:15px}
+.login-submit{display:flex;align-items:center;justify-content:center;gap:12px;min-height:52px;margin-top:14px;padding:13px 18px;border:0;border-radius:13px;background:#174c3a;color:#fff;font-size:14px;font-weight:800;box-shadow:0 7px 16px rgba(23,76,58,.18)}.login-error{min-height:0;margin:0;color:#b42318;font-size:12px;font-weight:700;text-align:center}.login-error:not(:empty){margin-top:9px}
+.login-tools{display:grid;gap:10px;margin-top:19px}.login-tools>a{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid #e3ebe5;border-radius:13px;background:#f8fbf8;color:#28533e;text-decoration:none}.login-tools>a>i:first-child{font-size:18px;color:#287454}.login-tools>a span{display:flex;flex:1;flex-direction:column;gap:3px}.login-tools>a strong{font-size:12px}.login-tools>a small{color:#849087;font-size:10px}.login-tools .tool-arrow{color:#98a59c;font-size:11px}
+.petition-tool{padding:12px 14px;border:1px solid #e3ebe5;border-radius:13px}.petition-tool label{margin-bottom:6px;font-size:11px}.petition-tool select{min-height:44px;margin:0;border:1px solid #dce7df;border-radius:10px;background:#fff;font-size:14px}.login-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;padding-top:14px;border-top:1px solid #edf1ee;color:#98a39b;font-size:9px}.login-footer-copy{display:flex;flex-direction:column;align-items:flex-end;gap:4px;text-align:right}.login-footer-copy small{font-size:9px;color:#718078}.login-footer-copy strong{color:#426b53;font-weight:800}.login-social{display:flex;gap:8px}.login-social a{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#f0f5f1;color:#426b53;text-decoration:none;font-size:13px}
+body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f8faf8 55%,#e5eee8 100%)}
+@media(max-width:520px){.login-shell{padding:max(10px,env(safe-area-inset-top)) 12px max(10px,env(safe-area-inset-bottom))}.login-card{width:100%;padding:clamp(16px,3.2svh,24px) 19px 15px;border-radius:22px}.login-logo{width:clamp(88px,14svh,112px);height:clamp(88px,14svh,112px);margin-bottom:4px}.login-wordmark{font-size:clamp(30px,8vw,35px)}.login-ribbon{margin-top:5px;padding:6px 23px;font-size:10px}.login-subtitle{margin-top:7px;font-size:11px}.login-welcome{margin:clamp(13px,2.4svh,20px) 0 13px}.login-welcome h1{font-size:21px}.login-welcome p{font-size:12px}.password-wrap{min-height:56px}.password-wrap input{font-size:16px}.login-submit{min-height:50px}.login-tools{gap:8px;margin-top:14px}.login-tools>a{padding:11px 12px}.petition-tool{padding:10px 12px}.login-footer{margin-top:13px;padding-top:10px}}
+@media(max-height:740px) and (max-width:520px){.login-shell{align-items:flex-start}.login-card{margin:auto 0}.login-logo{width:78px;height:78px}.login-welcome{margin:9px 0 10px}.login-welcome h1{margin:7px 0 3px;font-size:19px}.login-tools{margin-top:10px}.login-footer{margin-top:9px}}
+@media(max-width:360px){.login-card{padding-left:14px;padding-right:14px}.login-footer{font-size:8px}.login-footer-copy small{font-size:8px}}
+
+
+/* KOOP-İŞ DİJİTAL ana ekran kurumsal başlığı */
+.digital-header{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;padding:18px 20px 17px;margin:-15px -15px 22px;border-radius:19px 19px 0 0;background:linear-gradient(120deg,#f7faf8 0%,#fff 52%,#f0f6f2 100%);border-bottom:3px solid #174c3a}
+.digital-header-logos{display:flex;align-items:center;justify-content:space-between;gap:14px;min-width:0}
+.institution-logo,.koop-logo{display:flex;align-items:center;justify-content:center}
+.institution-logo img{display:block;width:58px;height:58px;object-fit:contain}
+.koop-logo img{display:block;width:76px;height:76px;object-fit:contain}
+.digital-brand{text-align:center;white-space:nowrap}
+.digital-brand-name{font-size:27px;line-height:1;font-weight:900;letter-spacing:-1px;color:#174c3a}
+.digital-brand-name span{display:inline-block;margin-left:4px;padding:5px 8px;border-radius:4px;background:#174c3a;color:#fff;font-size:12px;letter-spacing:2px;vertical-align:middle}
+.digital-brand-subtitle{margin-top:9px;color:#65766b;font-size:9px;font-weight:800;letter-spacing:1.15px}
+.digital-header-meta{display:flex;flex-direction:column;align-items:flex-end;gap:7px;color:#54705e;font-size:9px;font-weight:800;letter-spacing:1px}
+.digital-header-meta .version-badge{font-size:9px;background:#eaf2ec;color:#174c3a;border:1px solid #d5e4d9}
+.header-container{margin-bottom:20px}
+.header-container h1{color:#174c3a!important;font-size:23px!important;letter-spacing:-.4px}
+@media(max-width:600px){
+ .digital-header{grid-template-columns:1fr auto;gap:7px 10px;padding:12px 10px 13px;margin:-12px -12px 17px;border-radius:15px 15px 0 0}
+ .digital-header-logos{grid-column:1/-1;grid-row:1;justify-content:space-between;padding:0 5px}
+ .institution-logo img{width:42px;height:42px}
+ .koop-logo img{width:56px;height:56px}
+ .digital-brand{grid-column:1;grid-row:2;text-align:left;white-space:normal}
+ .digital-brand-name{font-size:22px}
+ .digital-brand-name span{font-size:9px;padding:4px 6px;letter-spacing:1.4px}
+ .digital-brand-subtitle{font-size:8px;letter-spacing:.55px;margin-top:6px}
+ .digital-header-meta{grid-column:2;grid-row:2;align-items:flex-end;gap:5px;font-size:8px}
+ .digital-header-meta .version-badge{font-size:8px;padding:3px 6px}
+ .header-container{margin-bottom:15px}
+ .header-container h1{font-size:19px!important}
+}
+@media(max-width:360px){
+ .digital-header{padding-left:8px;padding-right:8px}
+ .digital-brand-name{font-size:19px}
+ .digital-brand-subtitle{font-size:7px}
+ .digital-header-meta .version-badge{font-size:7px}
+}
+
+
+/* v2.0 üst alan ve sade sosyal medya bağlantıları */
+.institution-logo img{width:68px;height:68px}
+.digital-social{justify-content:flex-end;align-items:center;gap:9px;min-height:0;margin:0 2px 16px;padding:0}
+.digital-social-label{color:#84948a;font-size:9px;font-weight:800;letter-spacing:1px}
+.digital-social .social-icons{gap:7px}
+.digital-social .social-icons a{width:30px;height:30px;font-size:13px;background:#edf4ef;color:#174c3a;border:1px solid #dce9df;box-shadow:none}
+.digital-social .social-icons a.ins,.digital-social .social-icons a.fac,.digital-social .social-icons a.twi{color:#174c3a}
+.digital-social .social-icons a:hover{background:#174c3a;color:#fff;transform:translateY(-1px)}
+@media(max-width:600px){
+ .institution-logo img{width:49px;height:49px}
+ .digital-social{margin:0 2px 13px}
+ .digital-social .social-icons a{width:29px;height:29px}
+}
+
+
+/* Masaüstü ve mobil için dengeli, ortak kurumsal üst alan */
+@media(min-width:601px){
+ .digital-header{display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:142px;padding:20px 150px 16px;gap:0}
+ .digital-header-logos{position:absolute;inset:0 22px;display:block;pointer-events:none}
+ .institution-logo{position:absolute;left:0;top:50%;transform:translateY(-50%)}
+ .koop-logo{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+ .institution-logo img{width:70px;height:70px}
+ .koop-logo img{width:78px;height:78px}
+ .digital-brand{position:relative;z-index:1}
+ .digital-brand-name{font-size:30px}
+ .digital-brand-subtitle{font-size:10px;letter-spacing:1.3px}
+ .digital-header-meta{flex-direction:row;align-items:center;justify-content:center;gap:10px;margin-top:11px}
+ .digital-header-meta>span:first-child{font-size:9px}
+ .digital-header-meta .version-badge{font-size:9px}
+ .digital-social{justify-content:flex-end!important;margin:0 2px 16px!important}
+}
+.digital-social{justify-content:flex-end;gap:8px}
+.digital-social .social-icons a{width:29px;height:29px;border-radius:9px;background:#f1f6f2;border-color:#e2ece4}
+.digital-social .social-icons a:hover{background:#174c3a;color:#fff}
+@media(max-width:600px){
+ .digital-header{display:grid}
+ .digital-header-logos{display:flex}
+ .digital-social{justify-content:flex-end!important;margin:0 2px 13px!important}
+}
+@media(min-width:601px) and (max-width:760px){
+ .digital-header{padding-left:112px;padding-right:112px}
+ .institution-logo img{width:58px;height:58px}
+ .koop-logo img{width:68px;height:68px}
+ .digital-brand-name{font-size:25px}
+ .digital-brand-subtitle{font-size:8px}
+}
+
+
+/* Mobilde sosyal medya grubunu kesin olarak sağa hizala */
+@media(max-width:600px){
+ .social-bar-wrapper.digital-social{
+   display:flex!important;
+   flex-direction:row!important;
+   justify-content:flex-end!important;
+   align-items:center!important;
+   width:100%!important;
+   text-align:right!important;
+   padding-right:2px!important;
+   box-sizing:border-box!important;
+ }
+ .digital-social .social-icons{
+   display:flex!important;
+   justify-content:flex-end!important;
+   margin-left:auto!important;
+   width:auto!important;
+ }
+}
+
+
+/* Sade sosyal medya alanı ve hesaplama ekranına daha fazla çalışma alanı */
+.digital-social{margin-bottom:9px!important}
+.digital-social .social-icons{gap:6px!important}
+.digital-social .social-icons a{width:26px!important;height:26px!important;font-size:11px!important;border-radius:8px!important}
+.digital-social .social-icons a i{line-height:1}
+#icerik>.box+.box{max-width:1040px}
+.digital-credit{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px 14px;margin-top:18px;padding-top:12px;border-top:1px solid #e8eee9;color:#8a968e;font-size:10px;font-weight:600}
+.digital-credit span{color:#718078}
+.digital-credit strong{color:#174c3a;font-weight:800}
+@media(max-width:600px){
+ .digital-social{margin-bottom:8px!important}
+ .digital-social .social-icons{gap:6px!important}
+ .digital-social .social-icons a{width:25px!important;height:25px!important;font-size:10px!important}
+ #icerik>.box+.box{max-width:100%}
+ .digital-credit{font-size:9px;gap:4px 9px;margin-top:14px}
+}
+
+
+/* KOOP-İŞ DİJİTAL - beş adımlı maaş hesaplama arayüzü */
+.salary-wizard{max-width:100%;margin:0 auto}
+.salary-step{display:none;animation:wizardIn .22s ease}
+.salary-step.is-active{display:block}
+.salary-step .section-title{margin-top:0;margin-bottom:16px;padding:13px 16px;border-radius:12px;font-size:13px;letter-spacing:.25px;background:linear-gradient(100deg,#174c3a,#246b4e)}
+.salary-step .grid-container{gap:14px}
+.wizard-progress{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:2px 0 13px;padding:12px 14px;background:#f3f7f4;border:1px solid #e3ece5;border-radius:14px}
+.wizard-progress-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.wizard-progress-copy strong{font-size:12px;color:#174c3a}
+.wizard-progress-copy span{font-size:10px;color:#718078}
+.wizard-progress-count{flex:0 0 auto;font-size:11px;font-weight:800;color:#174c3a}
+.wizard-track{display:flex;gap:5px;margin:0 0 18px}
+.wizard-track span{height:5px;flex:1;border-radius:99px;background:#e4ebe6;transition:background .2s}
+.wizard-track span.done{background:#174c3a}
+.wizard-navigation{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;padding-top:14px;border-top:1px solid #e8eee9}
+.wizard-navigation button{width:auto;min-width:112px;margin:0;padding:12px 18px;border-radius:12px;font-size:13px;box-shadow:none}
+.wizard-prev{background:#edf3ef;color:#315d45;border:1px solid #dce8df}
+.wizard-next{background:#174c3a;color:#fff}
+.wizard-navigation button:disabled{opacity:.35;cursor:not-allowed}
+.wizard-step-hint{font-size:10px;color:#87948b;text-align:center;flex:1}
+.salary-step .info-note{margin-top:12px}
+/* Hesaplama eylemleri yalnızca beşinci adımın içindeyken görünür. */
+#icerik button[onclick="hesapla()"],#icerik .digital-detail-button{display:none}
+.salary-step.is-active .digital-calc-action button[onclick="hesapla()"],.salary-step.is-active .digital-calc-action .digital-detail-button{display:inline-flex!important}
+.salary-step .digital-calc-action{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px;margin-top:20px!important;padding:16px;background:#f5f8f6;border:1px solid #e2ebe5;border-radius:16px}
+.salary-step .digital-calc-action>button[onclick="hesapla()"]{width:auto!important;min-width:210px;margin:0!important;padding:14px 24px!important;min-height:50px;background:linear-gradient(135deg,#174c3a,#236b4d)!important;color:#fff;border:0;border-radius:12px;font-size:14px;font-weight:800;letter-spacing:.2px;box-shadow:0 6px 16px rgba(23,76,58,.18)}
+.salary-step .digital-calc-action .digital-detail-button{width:auto!important;min-width:190px;margin:0!important;padding:13px 20px!important;min-height:50px;background:#fff!important;color:#174c3a!important;border:1px solid #cbdcd0!important;border-radius:12px;font-size:13px;font-weight:750;box-shadow:none;cursor:pointer}
+.salary-step .digital-calc-action>div{flex-basis:100%;text-align:right}
+@media(min-width:601px){
+ .salary-step .digital-calc-action{justify-content:center;gap:14px;padding:20px 22px}
+ .salary-step .digital-calc-action>button[onclick="hesapla()"]{min-width:280px;min-height:56px;padding:16px 32px!important;font-size:15px}
+ .salary-step .digital-calc-action .digital-detail-button{min-width:260px;min-height:56px;padding:15px 28px!important;font-size:14px}
+}
+/* Sonuç kartı ve yeniden hesaplama */
+.net-tutar-card{overflow:hidden}
+.digital-recalculate{display:none;align-items:center;justify-content:center;width:auto;min-width:220px;margin:14px auto 4px;padding:13px 24px;background:#fff;color:#174c3a;border:1px solid #cbdcd0;border-radius:12px;font-size:13px;font-weight:800;letter-spacing:.3px;box-shadow:0 4px 14px rgba(23,76,58,.08)}
+.digital-recalculate:hover{background:#f2f7f3}
+.receipt-container{font-family:Arial,Helvetica,sans-serif;border:1px solid #e1e9e3;border-top:6px solid #174c3a;border-radius:16px;padding:22px;box-shadow:0 12px 30px rgba(20,55,35,.09);overflow:hidden}
+.receipt-header{border-bottom:1px solid #dce7df;padding:8px 0 18px;margin-bottom:16px}
+.receipt-header>div:first-child{font-size:15px!important;letter-spacing:1px}
+.receipt-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start;margin:0;padding:11px 2px;border-bottom:1px solid #edf1ee;font-size:13px;line-height:1.4}
+.receipt-row span:first-child{min-width:0;padding-right:0;overflow-wrap:anywhere;word-break:normal;color:#34443a}
+.receipt-row span:last-child{white-space:nowrap;text-align:right;color:#174c3a;font-variant-numeric:tabular-nums}
+.receipt-row.aidat-row span{color:#b54747}
+.receipt-total{margin-top:14px;padding:15px 12px;background:#edf5ef;border:1px solid #dce9df;border-radius:12px;font-size:15px;color:#174c3a}
+.receipt-total span:first-child{font-weight:800}
+.receipt-total span:last-child{font-weight:900}
+.receipt-footer{border-top:1px solid #e3ebe5;color:#7b887f;font-size:10px;line-height:1.5;margin-top:16px;padding-top:14px}
+@media(max-width:600px){
+ .net-tutar-card{padding:28px 12px!important;border-radius:26px;margin-top:20px}
+ .net-tutar-title{font-size:12px;letter-spacing:1.2px;margin-bottom:9px}
+ .net-tutar-rakam{font-size:clamp(21px,6.2vw,28px)!important;line-height:1.2;letter-spacing:-.8px;gap:5px;flex-wrap:nowrap;white-space:nowrap}
+ .digital-recalculate{width:100%;max-width:100%;min-height:48px;margin:12px 0 4px}
+ .receipt-container{padding:14px 11px;border-radius:13px;margin-top:14px}
+ .receipt-header{padding:5px 0 14px}
+ .receipt-header>div:first-child{font-size:13px!important}
+ .receipt-row{grid-template-columns:minmax(0,1fr) auto;gap:7px;padding:10px 1px;font-size:11.5px;line-height:1.35}
+ .receipt-row span:first-child{font-size:11.5px;overflow-wrap:anywhere}
+ .receipt-row span:last-child{font-size:11px;white-space:nowrap}
+ .receipt-total{font-size:12px;padding:12px 8px;gap:6px}
+ .receipt-total span:last-child{font-size:12px}
+ .receipt-footer{font-size:9px}
+}
+@media(max-width:600px){
+ .salary-step .digital-calc-action{display:grid;grid-template-columns:1fr;gap:9px;padding:12px;margin-top:16px!important}
+ .salary-step .digital-calc-action>button[onclick="hesapla()"],.salary-step .digital-calc-action .digital-detail-button{width:100%!important;min-width:0;min-height:48px}
+ .salary-step .digital-calc-action>button[onclick="hesapla()"]{order:1}
+ .salary-step .digital-calc-action .digital-detail-button{order:2}
+ .salary-step .digital-calc-action>div{order:3;text-align:center}
+}
+@keyframes wizardIn{from{opacity:.45;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+ .salary-wizard{margin:0}
+ .wizard-progress{padding:10px 12px;margin-bottom:10px}
+ .wizard-track{margin-bottom:14px}
+ .salary-step .section-title{font-size:11px;padding:11px 12px;margin-bottom:12px}
+ .salary-step .grid-container{gap:10px}
+ .wizard-navigation{position:sticky;bottom:0;z-index:30;background:rgba(255,255,255,.97);padding:10px 0 max(10px,env(safe-area-inset-bottom));margin:14px -2px 0}
+ .wizard-navigation button{min-width:96px;padding:12px 14px;font-size:12px}
+ .wizard-step-hint{font-size:9px}
+ .salary-step .digital-calc-action>button{min-height:50px}
+}
+
+
+/* Son düzenleme: net tutar, geri düğmesi ve geliştirici imzası */
+.net-tutar-card{margin-top:12px!important;padding:26px 14px!important;overflow:hidden}
+.net-tutar-rakam{display:block!important;width:100%;max-width:100%;font-size:clamp(28px,4.2vw,44px)!important;line-height:1.14!important;letter-spacing:-1.2px!important;white-space:normal!important;overflow-wrap:anywhere;word-break:normal;filter:drop-shadow(0 3px 5px rgba(0,0,0,.25))}
+.wizard-progress{align-items:flex-start}
+.wizard-progress-copy{align-items:flex-start;gap:5px}
+.wizard-prev{order:0;width:auto!important;min-width:0!important;margin:0 0 4px!important;padding:6px 11px!important;border-radius:9px!important;font-size:11px!important;line-height:1.2}
+.wizard-progress-copy strong{order:1}
+.wizard-progress-copy span{order:2}
+.wizard-navigation{justify-content:flex-end}
+.digital-credit{margin-top:22px;padding:15px 10px 4px;border-top:1px solid #dce8df;color:#829087;font-size:10px;letter-spacing:.15px}
+.digital-credit span{color:#5f7567}
+.digital-credit strong{color:#174c3a;font-weight:900}
+@media(max-width:600px){
+ .net-tutar-card{margin-top:10px!important;padding:22px 10px!important;border-radius:24px!important}
+ .net-tutar-title{font-size:12px!important;letter-spacing:1.4px!important;margin-bottom:9px!important}
+ .net-tutar-rakam{font-size:clamp(25px,7.1vw,34px)!important;letter-spacing:-.9px!important;line-height:1.16!important}
+ .wizard-progress{padding:11px 12px}
+ .wizard-progress-copy strong{font-size:11px}
+ .wizard-progress-copy span{font-size:10px}
+ .wizard-prev{font-size:11px!important;padding:6px 10px!important}
+ .digital-credit{font-size:9px;margin-top:18px;padding-top:12px}
+}
+
+/* Yan haklar ve fiili çalışma alanı - sade bilgilendirme ve ikincil yemek kontrolü */
+.fiili-help{margin-top:5px;color:#718078;font-size:9px;font-weight:600;line-height:1.2;white-space:nowrap;letter-spacing:.05px}
+.fiili-help::first-letter{color:#287454}
+#yemekToggle.compact-meal-toggle{display:inline-flex;align-items:center;justify-content:center;width:auto!important;min-width:0;margin:5px 0 2px!important;padding:7px 11px!important;min-height:0;border:1px solid #d5e4d9!important;border-radius:9px!important;background:#f2f7f3!important;color:#285b40!important;font-size:11px!important;font-weight:750;line-height:1.2;box-shadow:none!important}
+#yemekToggle.compact-meal-toggle.active{background:#e5f1e8!important;border-color:#9fc5aa!important;color:#174c3a!important}
+#ikinciYemekInputContainer{margin-top:7px}
+#ikinciYemekDiv .sub-label{font-size:9px;line-height:1.3;color:#78867d}
+@media(max-width:600px){
+ .fiili-help{font-size:8px;letter-spacing:-.12px;white-space:nowrap}
+ #yemekToggle.compact-meal-toggle{padding:7px 10px!important;font-size:10px!important}
+}
+</style>
             </div>
     </div>
 </div>
-</div>   <div id="giris" class="box" style="margin-top: 50px;">
-  <div class="ust-logolar">
-    <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" class="logo-img">
-    <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" class="logo-img">
-  </div>
-  <div class="header-container">
-    <h1 style="line-height: 1.1; margin-bottom: 10px;">
-      GSB Maaş Hesaplama Robotu
-      <div style="font-size: 16px; font-weight: 600; margin-top: 2px;">(10 Nolu İşkolu)</div>
-    </h1>
-      <span class="version-badge">v1.8 | 23 Temmuz 2026 </span>
-    <div class="social-bar-wrapper">
-<div style="margin: 15px 0; width: 100%; max-width: 250px; text-align: left;">
-    <label style="font-size: 9px; color: #1f7a4f; margin-bottom: 5px; display: block; text-align: left; font-weight: bold;">MATBU DİLEKÇE ÖRNEKLERİ</label>
-    <select id="dilekceListesi" onchange="dilekceyeGit(this.value)" style="border: 2px solid #d4af37; background: #fffdf5; cursor: pointer; font-weight: bold; font-size: 11px; height: 35px; border-radius: 10px;">
-        <option value="">Bir Dilekçe Seçiniz --</option>
-        <option value="https://drive.google.com/file/d/1KVu0xWesx14KQnyOMPTgjTTPfpRrvnd0/view?usp=drive_link">Evlilik İzin Dilekçesi</option>
-        <option value="https://drive.google.com/file/d/14q392fX9571dZnUEms6Ze9zumrv7QhfI/view?usp=drive_link">Ölüm İzni Dilekçesi</option>
-        <option value="https://drive.google.com/file/d/1IIxB0_A6qEh_DdFLPFQwyACt8eZOvNjZ/view?usp=drive_link">Doğal Afet İzin Dilekçesi</option>
-        <option value="https://drive.google.com/file/d/1PXrK1ln3-JR2ge6eEM8bvEDqC_TU_UlG/view?usp=drive_link">Babalık İzin Dilekçesi</option>
-        <option value="https://drive.google.com/file/d/1x7nEOAJGoGPz544nWosCvhvd3CmaVXxu/view?usp=drive_link">Çocuğun Evlenmesi İzin Dilekçesi</option>
-        <option value="https://drive.google.com/file/d/1s-EEKW7bU_BDdHZ82i9QmF1eJOMwHnHR/view?usp=drive_link">Evlat Edinme İzin Dilekçesi</option>
-        <option value="https://drive.google.com/file/d/1vJXGMcsA0oxhPL_aKKRNSTkqzzmXLlCP/view">Engelli Çocuk İçin Tedavi İzin Dilekçesi</option>
-	    <option value="https://drive.google.com/file/d/1qjqc7LDR9lzDpnRYD_CWy6YtLv45mplD/view">Refakatçi İzin Dilekçesi</option>
-        <option value="https://drive.google.com/file/d/1XyPG4Svf3Hy9PCVmN8AKgGv7vVUFOBa4/view?usp=drive_link">Mazeret İzin Dilekçesi</option>
-        <option value="https://drive.google.com/file/d/1SExrose1cQgF9WfcTwpvqsBVQ6QQOGbh/view?usp=drive_link">Ücretsiz Mazeret izin Dilekçesi</option> 
-	<option value="https://drive.google.com/file/d/1-nybTjyjzAqQ4pXUDVKw7lbzIWB0WTky/view?usp=drive_link">10 yılını dolduran Ücretsiz Mazeret izin Dilekçesi</option>
-	<option value="https://drive.google.com/file/d/1nX2tg2635n84on7sFrDRiUlIgGzMb_wj/view?usp=drive_link">Kreş Yardımı Talep Dilekçesi</option>
-
-    </select>
- <label style="font-size: 9px; color: #1f7a4f; margin-bottom: 5px; display: block; text-align: left; font-weight: bold;">Dilekçeleri Google Drive uygulamasından açabilirsiniz.</label>
-</div>
-       <a href="https://drive.google.com/file/d/1HRuJR0-9wwMaoTG_DuUsf2Pp2vMaCow8/view" target="_blank" class="visitor-btn">
-    <span>10 NO'LU İŞKOLU</span>
-    <span class="v-count"><i class="fas fa-file-pdf"></i>GÜNCEL TİS</span>
-</a>
-
-    </div>
-  </div>
-  <label>Şifre</label>
-<input type="password" id="sifre" placeholder="Robot Şifresini giriniz.">
-
-<div style="text-align: right; margin-top: 5px;">
-    <button onclick="kontrol()" style="width: 100%; margin-top: 15px;">GİRİŞ YAPINIZ.</button>
-    
-    <div style="font-size: 9px; color: rgba(0, 0, 0, 0.4); font-weight: 700; letter-spacing: 0.5px; margin-top: 8px; text-transform: uppercase;">
-        <i class="fas fa-terminal" style="font-size: 8px; margin-right: 3px;"></i> 
-        <span style="color: #1f7a4f;">Batuhan Çağlar ÖZKAN</span> tarafından geliştirilmiştir. 
-<div class="social-icons">
-          <a href="http://instagram.com/batuhancaglarozkan" target="_blank" class="ins"><i class="fab fa-instagram"></i></a>
-          <a href="https://facebook.com/batuwashere" target="_blank" class="fac"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://x.com/BatuhanOzkann" target="_blank" class="twi"><i class="fab fa-x-twitter"></i></a>
-        </div>
-    </div>
-</div>
-</div>
-
+</div>   <div id="giris" class="login-shell">
+<main class="login-card">
+<div class="login-brand"><img src="https://i.ibb.co/7t7zNQq2/koop-i-gri-arka-planl-logo.png" alt="Koop-İş Sendikası" class="login-logo"><div class="login-wordmark">KOOP-İŞ</div><div class="login-ribbon">D İ J İ T A L</div><div class="login-subtitle">GSB · 10 Nolu İşkolu</div></div>
+<div class="login-welcome"><span class="login-kicker">ÜYELERE ÖZEL ERİŞİM</span><h1>Hoş geldiniz</h1><p>Devam etmek için ortak erişim şifresini giriniz.</p></div>
+<form class="login-form" onsubmit="event.preventDefault(); kontrol();"><label for="sifre">Erişim şifresi</label><div class="password-wrap"><span class="password-icon"><i class="fas fa-lock"></i></span><input type="password" id="sifre" placeholder="Şifrenizi giriniz" autocomplete="current-password"><button type="button" class="password-toggle" onclick="sifreyiGoster()" aria-label="Şifreyi göster veya gizle"><i id="sifreIkon" class="fas fa-eye"></i></button></div><button type="submit" class="login-submit"><span>Giriş yap</span><i class="fas fa-arrow-right"></i></button><p id="login-error" class="login-error" role="alert" aria-live="polite"></p></form>
+<div class="login-tools"><a href="https://drive.google.com/file/d/1HRuJR0-9wwMaoTG_DuUsf2Pp2vMaCow8/view" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i><span><strong>Güncel Toplu İş Sözleşmesi</strong><small>10 Nolu İşkolu</small></span><i class="fas fa-arrow-up-right-from-square tool-arrow"></i></a>
+<div class="petition-tool"><label for="dilekceListesi">Matbu dilekçe örnekleri</label><select id="dilekceListesi" onchange="dilekceyeGit(this.value)"><option value="">Bir dilekçe seçiniz</option>
+<option value="https://drive.google.com/file/d/1KVu0xWesx14KQnyOMPTgjTTPfpRrvnd0/view?usp=drive_link">Evlilik İzin Dilekçesi</option><option value="https://drive.google.com/file/d/14q392fX9571dZnUEms6Ze9zumrv7QhfI/view?usp=drive_link">Ölüm İzni Dilekçesi</option><option value="https://drive.google.com/file/d/1IIxB0_A6qEh_DdFLPFQwyACt8eZOvNjZ/view?usp=drive_link">Doğal Afet İzin Dilekçesi</option><option value="https://drive.google.com/file/d/1PXrK1ln3-JR2ge6eEM8bvEDqC_TU_UlG/view?usp=drive_link">Babalık İzin Dilekçesi</option><option value="https://drive.google.com/file/d/1x7nEOAJGoGPz544nWosCvhvd3CmaVXxu/view?usp=drive_link">Çocuğun Evlenmesi İzin Dilekçesi</option><option value="https://drive.google.com/file/d/1s-EEKW7bU_BDdHZ82i9QmF1eJOMwHnHR/view?usp=drive_link">Evlat Edinme İzin Dilekçesi</option><option value="https://drive.google.com/file/d/1vJXGMcsA0oxhPL_aKKRNSTkqzzmXLlCP/view">Engelli Çocuk İçin Tedavi İzin Dilekçesi</option><option value="https://drive.google.com/file/d/1qjqc7LDR9lzDpnRYD_CWy6YtLv45mplD/view">Refakatçi İzin Dilekçesi</option><option value="https://drive.google.com/file/d/1XyPG4Svf3Hy9PCVmN8AKgGv7vVUFOBa4/view?usp=drive_link">Mazeret İzin Dilekçesi</option><option value="https://drive.google.com/file/d/1SExrose1cQgF9WfcTwpvqsBVQ6QQOGbh/view?usp=drive_link">Ücretsiz Mazeret İzin Dilekçesi</option><option value="https://drive.google.com/file/d/1-nybTjyjzAqQ4pXUDVKw7lbzIWB0WTky/view?usp=drive_link">10 yılını dolduran ücretsiz mazeret izin dilekçesi</option><option value="https://drive.google.com/file/d/1nX2tg2635n84on7sFrDRiUlIgGzMb_wj/view?usp=drive_link">Kreş Yardımı Talep Dilekçesi</option></select></div></div>
+<div class="login-footer"><div class="login-social"><a href="https://instagram.com/batuhancaglarozkan" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><a href="https://facebook.com/batuwashere" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a><a href="https://x.com/BatuhanOzkann" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a></div><div class="login-footer-copy"><span>KOOP-İŞ DİJİTAL · GSB 10 Nolu İşkolu</span><small>Geliştiren: <strong>Batuhan Çağlar ÖZKAN</strong></small></div></div>
+</main></div>
 <div id="icerik" style="display:none">
   <div class="box">
-    <div class="ust-logolar">
-      <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png" class="logo-img">
-      <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" class="logo-img">
+    <div class="digital-header">
+      <div class="digital-header-logos">
+        <div class="institution-logo"><img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png" alt="Gençlik ve Spor Bakanlığı"></div>
+        <div class="koop-logo"><img src="https://i.ibb.co/7t7zNQq2/koop-i-gri-arka-planl-logo.png" alt="Koop-İş Sendikası"></div>
+      </div>
+      <div class="digital-brand">
+        <div class="digital-brand-name">KOOP-İŞ <span>DİJİTAL</span></div>
+        <div class="digital-brand-subtitle">GSB MAAŞ VE HAKEDİŞ HESAPLAMA</div>
+      </div>
+      <div class="digital-header-meta"><span>10 NOLU İŞKOLU</span><span class="version-badge">v2.0 · 17 Kasım 2026</span></div>
     </div>
     <div class="header-container">
-    <h1 style="line-height: 1.1; margin-bottom: 10px;">
-      GSB Maaş Hesaplama Robotu
-      <div style="font-size: 16px; font-weight: 600; margin-top: 2px;">(10 Nolu İşkolu)</div>
-      </h1>
-    <span class="version-badge">v1.8 | 23 Temmuz 2026 </span>
-  <div class="social-bar-wrapper">
+  <div class="social-bar-wrapper digital-social">
       <div class="social-icons">
-        <a href="http://instagram.com/batuhancaglarozkan" target="_blank" class="ins"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/batuwashere" target="_blank" class="fac"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://x.com/BatuhanOzkann" target="_blank" class="twi"><i class="fab fa-x-twitter"></i></a>
+        <a href="http://instagram.com/batuhancaglarozkan" target="_blank" rel="noopener" class="ins" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/batuwashere" target="_blank" rel="noopener" class="fac" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/BatuhanOzkann" target="_blank" rel="noopener" class="twi" aria-label="X"><i class="fab fa-x-twitter"></i></a>
       </div>
-      <a href="https://drive.google.com/file/d/1HRuJR0-9wwMaoTG_DuUsf2Pp2vMaCow8/view" target="_blank" class="visitor-btn">
-    <span>10 NO'LU İŞKOLU</span>
-    <span class="v-count"><i class="fas fa-file-pdf"></i> GÜNCEL TİS</span>
-</a>
-
   </div>
 </div>
 
 <div class="box">
-  <div class="section-title">1. BÖLÜM: Temel Bilgiler ve Vergi Dilimi</div>
+  <div class="section-title">1. BÖLÜM: TEMEL BİLGİLER</div>
   <div class="grid-container">
-    <div>
-      <label>Gelir Vergisi Dilimi Seçiniz*</label>
-      <select id="vergiOrani">
-        <option value="0.71491" data-val="0.15">1. Dilim (%15)</option>
-        <option value="0.67241" data-val="0.20">2. Dilim (%20)</option>
-        <option value="0.61291" data-val="0.27">3. Dilim (%27)</option>
-        <option value="0.54491" data-val="0.35">4. Dilim (%35)</option>
-      </select>
-    </div>
-    <div>
-      <label class="red-label">Brüt Yevmiye Ücreti Seçiniz*</label>
-      <select id="brutYevmiye">
-        <option value="2680.95">2680,95 TL (Eski İşçi)</option>
-        <option value="2642.41">2642,41 TL (Yeni İşçi)</option>
-      </select>
-    </div>
-    <div>
-      <label class="red-label">Kadro/Unvan Seçiniz *</label>
-      <select id="kadro" onchange="kadroGuncelle(); this.className='field-selected'" class="required-field">
-        <option value="">KADRO SEÇİNİZ</option>
-        <option>Temizlik Personeli</option>
-        <option>Büro Personeli</option>
-        <option>Büro Personeli (Görevlendirme)</option>
-        <option>Bilgi İşlem Personeli</option>
-        <option>Gençlik Lideri / Antrenör</option>
-        <option>Yüzme Antrenörü</option>
-        <option>Cankurtaran</option>
-        <option>Bakım-Onarım / Teknisyen</option>
-        <option>İklimlendirme/Kaloriferci 12 saat çalışan</option>
-        <option>İklimlendirme/Kaloriferci 8 saat çalışan</option>
-        <option>Özel Güvenlik Görevlisi 12 saat çalışan</option>
-        <option>Özel Güvenlik Görevlisi 8 saat çalışan</option>
-        <option>Havuz Suyu Operatörü</option>
-        <option>Aşçı</option>
-        <option>Sekreter</option>
-        <option>Şoför 12 saat çalışan</option>
-        <option>Şoför 8 saat çalışan</option>
-        <option>Resepsiyonist</option>
-        <option>Muhasebeci</option>
-		<option>Sağlık Personeli</option>
-      </select>
-    </div>
-    <div>
-      <label class="red-label">Maaş Dönemi Seçiniz*</label>
-      <select id="donem" onchange="donemGuncelle(this.value); this.className='field-selected'" class="required-field">
-        <option value="">Maaş Dönemi Seçiniz</option>
-        <option value="31">15 Temmuz - 14 Ağustos (31 gün)</option>
-	<option value="31">15 Ağustos - 14 Eylül (31 gün)</option>
-	<option value="30">15 Eylül - 14 Ekim (30 gün)</option>
-	<option value="31">15 Ekim - 14 Kasım (31 gün)</option>
-	<option value="30">15 Kasım - 14 Aralık (30 gün)</option>
-	<option value="31">15 Aralık - 14 Ocak 2027 (31 gün)</option>
-      </select>
-      <input type="hidden" id="gun">
-    </div>
-    <div><label>Fiili Çalışma Gün Sayısı Giriniz (İşe gidilen gün sayısı)</label><input type="number" id="fiili" value="22" oninput="yogurtOtomatikGuncelle()"></div>
-    <div><label>Hizmet Yılı Giriniz (696 Sayılı KHK için 8 seçilir)</label><input type="number" id="hizmet" value="8"></div>
-    <div class="info-note">
-        <i class="fas fa-info-circle"></i> Haricen, Akdi/Hafta Tatili ve/veya Ulusal Bayram/Genel Tatil çalışması yapılması durumunda fiili çalışmaya bir gün daha eklenmesi gerekmektedir.
-    </div>
+    <div><label class="red-label">Brüt Yevmiye Ücreti Seçiniz*</label><select id="brutYevmiye"><option value="2680.95">2680,95 TL (Eski İşçi)</option><option value="2642.41">2642,41 TL (Yeni İşçi)</option></select></div>
+    <div><label class="red-label">Kadro/Unvan Seçiniz *</label><select id="kadro" onchange="kadroGuncelle(); this.className='field-selected'" class="required-field"><option value="">KADRO SEÇİNİZ</option><option>Temizlik Personeli</option><option>Büro Personeli</option><option>Büro Personeli (Görevlendirme)</option><option>Bilgi İşlem Personeli</option><option>Gençlik Lideri / Antrenör</option><option>Yüzme Antrenörü</option><option>Cankurtaran</option><option>Bakım-Onarım / Teknisyen</option><option>İklimlendirme/Kaloriferci 12 saat çalışan</option><option>İklimlendirme/Kaloriferci 8 saat çalışan</option><option>Özel Güvenlik Görevlisi 12 saat çalışan</option><option>Özel Güvenlik Görevlisi 8 saat çalışan</option><option>Havuz Suyu Operatörü</option><option>Aşçı</option><option>Sekreter</option><option>Şoför 12 saat çalışan</option><option>Şoför 8 saat çalışan</option><option>Resepsiyonist</option><option>Muhasebeci</option><option>Sağlık Personeli</option></select></div>
+    <div><label class="red-label">Maaş Dönemi Seçiniz*</label><select id="donem" onchange="donemGuncelle(this.value); this.className='field-selected'" class="required-field"><option value="">Maaş Dönemi Seçiniz</option><option value="31">15 Temmuz - 14 Ağustos (31 gün)</option><option value="31">15 Ağustos - 14 Eylül (31 gün)</option><option value="30">15 Eylül - 14 Ekim (30 gün)</option><option value="31">15 Ekim - 14 Kasım (31 gün)</option><option value="30">15 Kasım - 14 Aralık (30 gün)</option><option value="31">15 Aralık - 14 Ocak 2027 (31 gün)</option></select><input type="hidden" id="gun"></div>
+    <div><label>Gelir Vergisi Dilimi</label><select id="vergiOrani"><option value="0.71491" data-val="0.15">1. Dilim (%15)</option><option value="0.67241" data-val="0.20">2. Dilim (%20)</option><option value="0.61291" data-val="0.27">3. Dilim (%27)</option><option value="0.54491" data-val="0.35">4. Dilim (%35)</option></select></div>
   </div>
 
-  <div class="section-title">2. BÖLÜM: Yan Haklar</div>
+  <div class="section-title">2. BÖLÜM: YAN HAKLAR VE FİİLİ ÇALIŞMA</div>
   <div class="grid-container">
+    <div class="fiili-field"><label>Fiili Çalışma Gün Sayısı Giriniz (İşe gidilen gün sayısı)</label><input type="number" id="fiili" value="22" oninput="yogurtOtomatikGuncelle()"><div class="fiili-help">ⓘ Ek tatil çalışması varsa fiili güne +1 gün ekleyin.</div></div>
+    <div><label>Hizmet Yılı Giriniz (696 Sayılı KHK için 8 seçilir)</label><input type="number" id="hizmet" value="8"></div>
+    
     <div><label>Yol Ücreti Seçiniz (Net)</label><select id="yol"><option value="5208.05">Büyükşehir Yol Ücreti</option><option value="3472.03">Diğer Şehirler Yol Ücreti</option><option value="0">Yok</option></select></div>
     <div id="ikinciYemekDiv">
         <label>2. Yemek Ücreti</label>
-        <button class="toggle-btn" id="yemekToggle" onclick="toggleYemekInput()">PASİF (Giriş Yapmak İçin Tıkla)</button>
+        <button type="button" class="toggle-btn compact-meal-toggle" id="yemekToggle" onclick="toggleYemekInput()">+ İkinci yemek ekle</button>
         <div id="ikinciYemekInputContainer">
             <input type="number" id="ikinciYemek" value="0" placeholder="Gün sayısı giriniz">
         </div>
@@ -504,21 +657,17 @@ button{ margin-top:20px; padding:15px; width:100%; background:#1f7a4f; color:#ff
         MAAŞ HESAPLA
     </button>
     
-    <div style="font-size: 9px; color: rgba(0, 0, 0, 0.4); font-weight: 700; letter-spacing: 0.5px; margin-top: 8px; text-transform: uppercase;">
-        <i class="fas fa-terminal" style="font-size: 8px; margin-right: 3px;"></i> 
-        <span style="color: #1f7a4f;">Batuhan Çağlar ÖZKAN</span> tarafından geliştirilmiştir.
-    </div>
 </div>
 
   <div class="net-tutar-card" id="sonucAlani" style="display:none;">
     <div class="net-tutar-title">Ödenecek Net Tutar</div>
     <div class="net-tutar-rakam" id="toplamNet">0.00 TL</div>
   </div>
+  <button type="button" id="yenidenHesaplaBtn" class="digital-recalculate" onclick="yenidenHesapla()" style="display:none;">↻ YENİDEN HESAPLA</button>
 
-  <button onclick="detayGoster()" style="background: #444; margin-top: 15px; padding: 12px;">Detay Göster / Gizle</button>
   <div id="sonuc" style="display:none"></div>
   
-  <div class="footer-note">© 2026 GSB Maaş Hesaplama Robotu | Son Güncelleme: 3 Temmuz 2026</div>
+  <div class="footer-note digital-credit">© 2026 KOOP-İŞ DİJİTAL · GSB 10 Nolu İşkolu <span>Tasarım ve geliştirme: <strong>Batuhan Çağlar ÖZKAN</strong></span></div>
 </div>
 </div>
 
@@ -623,11 +772,11 @@ function toggleYemekInput() {
     
     if (container.style.display === "none" || container.style.display === "") {
         container.style.display = "block";
-        btn.innerHTML = "AKTİF (Kapatmak İçin Tıkla)";
+        btn.innerHTML = "✓ İkinci yemek aktif · Kapat";
         btn.classList.add("active");
     } else {
         container.style.display = "none";
-        btn.innerHTML = "PASİF (Giriş Yapmak İçin Tıkla)";
+        btn.innerHTML = "+ İkinci yemek ekle";
         btn.classList.remove("active");
         input.value = 0;
     }
@@ -643,12 +792,8 @@ function robotuBaslat() {
         splash.style.display = 'none';
     }, 600);
 }
-function kontrol(){
-  if(document.getElementById("sifre").value==="gsbkoopis"){
-    document.getElementById("giris").style.display="none";
-    document.getElementById("icerik").style.display="block";
-  }else{ alert("Şifre yanlış."); }
-}
+function sifreyiGoster(){const alan=document.getElementById("sifre");const ikon=document.getElementById("sifreIkon");const acik=alan.type==="password";alan.type=acik?"text":"password";ikon.className=acik?"fas fa-eye-slash":"fas fa-eye";}
+function kontrol(){const alan=document.getElementById("sifre");const hata=document.getElementById("login-error");if(alan.value==="gsbkoopis"){hata.textContent="";document.getElementById("giris").style.display="none";document.getElementById("icerik").style.display="block";window.scrollTo(0,0);}else{hata.textContent="Şifre doğru değil. Lütfen tekrar deneyiniz.";alan.focus();alan.select();}}
 
 function kadroGuncelle() {
     let k = document.getElementById("kadro").value;
@@ -703,6 +848,11 @@ function yogurtOtomatikGuncelle() {
     }
 }
 function hesapla(){
+  const wizardRoot = document.getElementById("icerik");
+  if (wizardRoot && wizardRoot.dataset.wizardReady === "1" && wizardRoot.dataset.wizardStep !== "4") {
+    alert("Maaş hesaplaması yapabilmek için lütfen beş adımın tamamını bitiriniz.");
+    return;
+  }
   if(!document.getElementById("kadro").value || !document.getElementById("donem").value){
     alert("Lütfen kadro/unvan ve maaş dönemini eksiksiz seçiniz!"); 
     return;
@@ -825,11 +975,16 @@ if(donemText.includes("14 Mayıs")) {
   let netAidat = (brutAidat - (brutAidat * vYuzde)) * -1;
   ekle("Sendika Aidat Kesintisi %65", netAidat, "", true);
   document.getElementById("toplamNet").innerHTML = "💰 " + toplam.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " TL";
-  document.getElementById("sonucAlani").style.display = "block";
+  const sonucKarti=document.getElementById("sonucAlani");
+  sonucKarti.style.display = "block";
+  const yenidenBtn=document.getElementById("yenidenHesaplaBtn");
+  if(yenidenBtn) yenidenBtn.style.display="inline-flex";
   window.detayData = detay;
   window.hesaplananKadro = document.getElementById("kadro").value;
   window.hesaplananDonem = donemText;
   if(document.getElementById("sonuc").style.display === "block") tabloCiz();
+  // Hesaplama tamamlandığında net tutarı ekranın görünür merkezine getir.
+  window.setTimeout(()=>sonucKarti.scrollIntoView({behavior:"smooth",block:"center"}),80);
 }
 
 function tabloCiz(){
@@ -868,8 +1023,110 @@ function tabloCiz(){
 function detayGoster(){
   let s = document.getElementById("sonuc");
   if(s.style.display === "block") s.style.display = "none";
-  else { s.style.display = "block"; tabloCiz(); }
+  else {
+    s.style.display = "block";
+    tabloCiz();
+    window.setTimeout(()=>s.scrollIntoView({behavior:"smooth",block:"start"}),80);
+  }
 }
+
+function yenidenHesapla(){
+  const root=document.getElementById("icerik");
+  const sonucKarti=document.getElementById("sonucAlani");
+  const detay=document.getElementById("sonuc");
+  const yenidenBtn=document.getElementById("yenidenHesaplaBtn");
+  if(sonucKarti) sonucKarti.style.display="none";
+  if(detay) detay.style.display="none";
+  if(yenidenBtn) yenidenBtn.style.display="none";
+  if(root && typeof root._goToStep==="function") root._goToStep(0);
+  else window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+<script>
+
+/* Beş adımlı görünüm: mevcut alanlar, kimlikler ve hesaplama fonksiyonları korunur. */
+(function(){
+ function initSalaryWizard(){
+  const root=document.getElementById("icerik");
+  if(!root || root.dataset.wizardReady==="1") return;
+  const titles=Array.from(root.querySelectorAll(".section-title"));
+  if(titles.length!==5){
+   console.error("Maaş hesaplama adımları başlatılamadı. Bölüm sayısı:",titles.length);
+   return;
+  }
+  const steps=[];
+  for(let i=0;i<titles.length;i++){
+   const title=titles[i];
+   const fields=title.nextElementSibling;
+   if(!fields || !fields.classList.contains("grid-container")){
+    console.error("Adım alanı bulunamadı:",i+1);
+    return;
+   }
+   const panel=document.createElement("section");
+   panel.className="salary-step";
+   panel.setAttribute("aria-label",title.textContent.trim());
+   title.parentNode.insertBefore(panel,title);
+   panel.append(title,fields);
+   steps.push(panel);
+  }
+  // Hesaplama alanını doğrudan bulup 5. adıma taşı: HTML'deki ara sarmalayıcıya bağımlı kalma.
+  const calcButton=root.querySelector('button[onclick="hesapla()"]');
+  if(calcButton){
+   const action=calcButton.parentElement;
+   action.classList.add("digital-calc-action");
+   steps[4].appendChild(action);
+   let detailButton=root.querySelector('button[onclick="detayGoster()"]');
+   if(!detailButton){
+    detailButton=document.createElement("button");
+    detailButton.type="button";
+    detailButton.setAttribute("onclick","detayGoster()");
+   }
+   detailButton.className="digital-detail-button";
+   detailButton.textContent="Detaylı Bordroyu Görüntüle";
+   action.appendChild(detailButton);
+  }
+  const wizard=document.createElement("div");
+  wizard.className="salary-wizard";
+  wizard.innerHTML='<div class="wizard-progress"><div class="wizard-progress-copy"><button type="button" class="wizard-prev" id="wizardPrev" disabled>← Geri</button><strong>MAAŞ HESAPLAMA ADIMLARI</strong><span id="wizardStepName">TEMEL BİLGİLER</span></div><span class="wizard-progress-count" id="wizardStepCount">1 / 5</span></div><div class="wizard-track"><span></span><span></span><span></span><span></span><span></span></div><div class="wizard-panels"></div><div class="wizard-navigation"><span class="wizard-step-hint" id="wizardHint">İlk adım</span><button type="button" class="wizard-next" id="wizardNext">Devam Et →</button></div>';
+  const first=steps[0];
+  first.parentNode.insertBefore(wizard,first);
+  const panels=wizard.querySelector(".wizard-panels");
+  steps.forEach(step=>panels.appendChild(step));
+  const names=["TEMEL BİLGİLER","Yan Haklar","Mesai ve Ek Gelirler","Yardım ve Tazminatlar","Vergi ve Özel Durum Bilgileri"];
+  let current=0;
+  function render(){
+   root.dataset.wizardStep=String(current);
+   steps.forEach((step,i)=>{step.classList.toggle("is-active",i===current);step.setAttribute("aria-hidden",i===current?"false":"true");});
+   wizard.querySelectorAll(".wizard-track span").forEach((bar,i)=>bar.classList.toggle("done",i<=current));
+   wizard.querySelector("#wizardStepName").textContent=names[current];
+   wizard.querySelector("#wizardStepCount").textContent=(current+1)+" / 5";
+   wizard.querySelector("#wizardPrev").disabled=current===0;
+   wizard.querySelector("#wizardNext").hidden=current===4;
+   wizard.querySelector("#wizardHint").textContent=current===4?"":(current+1)+". adımdan sonra "+(4-current)+" adım kalıyor";
+   wizard.querySelector("#wizardHint").hidden=current===4;
+  }
+  wizard.querySelector("#wizardPrev").addEventListener("click",function(){
+   if(current>0){current--;render();wizard.scrollIntoView({behavior:"smooth",block:"start"});}
+  });
+  wizard.querySelector("#wizardNext").addEventListener("click",function(){
+   if(current===0){
+    const kadro=document.getElementById("kadro"),donem=document.getElementById("donem");
+    if(!kadro.value){alert("Lütfen kadro/unvan seçiniz.");kadro.focus();return;}
+    if(!donem.value){alert("Lütfen maaş dönemi seçiniz.");donem.focus();return;}
+   }
+   if(current<4){current++;render();wizard.scrollIntoView({behavior:"smooth",block:"start"});}
+  });
+  root._goToStep=function(index){
+   current=Math.max(0,Math.min(4,Number(index)||0));
+   render();
+   wizard.scrollIntoView({behavior:"smooth",block:"start"});
+  };
+  root.dataset.wizardReady="1";
+  render();
+ }
+ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",initSalaryWizard,{once:true});
+ else initSalaryWizard();
+})();
 </script>
 </body>
 </html>
