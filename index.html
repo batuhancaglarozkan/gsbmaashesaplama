@@ -1,266 +1,273 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4NKS7TDEH8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4NKS7TDEH8');
-</script>
-    <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js?v=3').then(reg => {
-      reg.update();
-    });
-  });
-}
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maaş Hesaplama Robotu</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle at top, #0f5132, #06281f);
-    color: white;
-}
-
-.wrapper {
-    width: 92%;
-    max-width: 560px;
-}
-
-.card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 18px;
-    padding: 22px;
-    backdrop-filter: blur(14px);
-    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
-    text-align: center;
-}
-
-/* LOGO */
-.logo-area {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-}
-
-.logo-area img {
-    width: 78px;
-    background: white;
-    padding: 8px;
-    border-radius: 12px;
-}
-
-/* TITLE */
-h1 {
-    font-size: 20px;
-    margin: 10px 0 6px;
-}
-
-.subtitle {
-    font-size: 13px;
-    opacity: 0.85;
-    margin-bottom: 14px;
-}
-
-/* BADGE */
-.badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #20c997, #198754);
-    padding: 8px 12px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 14px;
-}
-
-/* INFO BOX */
-.box {
-    background: rgba(255,255,255,0.06);
-    padding: 14px;
-    border-radius: 12px;
-    margin: 10px 0;
-    text-align: left;
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.box strong {
-    display: block;
-    margin-bottom: 6px;
-}
-
-/* ONAY KUTUSU (CHECKBOX) */
-.terms-check {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 14px 0 6px;
-    font-size: 13px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.terms-check input[type="checkbox"] {
-    width: 17px;
-    height: 17px;
-    cursor: pointer;
-    accent-color: #20c997;
-}
-
-/* BUTTONS */
-.btn {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    margin-top: 12px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.25s;
-    color: white;
-    box-sizing: border-box;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #198754, #20c997);
-}
-
-.btn-secondary {
-    background: linear-gradient(135deg, #0d6efd, #6610f2);
-}
-
-/* Pasif Buton Stili */
-.btn-disabled {
-    background: rgba(255, 255, 255, 0.2) !important;
-    color: rgba(255, 255, 255, 0.5) !important;
-    pointer-events: none;
-    cursor: not-allowed;
-    box-shadow: none !important;
-    transform: none !important;
-}
-
-.btn:not(.btn-disabled):hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-/* FOOTER */
-.footer {
-    font-size: 11px;
-    opacity: 0.75;
-    margin-top: 14px;
-}
-
-.signature {
-    font-size: 11px;
-    opacity: 0.6;
-    margin-top: 6px;
-}
-
-/* DESIGN SIGNATURE BOX */
-.credit {
-    margin-top: 14px;
-    padding: 10px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.05);
-    font-size: 12px;
-    opacity: 0.85;
-    border-left: 3px solid #20c997;
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-    h1 { font-size: 17px; }
-    .logo-area img { width: 65px; }
-}
-</style>
-</head>
-
-<body>
-
-<div class="wrapper">
-
-<div class="card">
-
-    <div class="logo-area">
-        <img src="https://i.ibb.co/hFTB6fdP/koop-is-logo.png">
-        <img src="https://i.ibb.co/Lhgbx9Ts/gsb-logo.png">
-    </div>
-
-    
-
-    <div class="badge">
-        💵 MAAŞ HESAPLAMA ROBOTU
-    </div>
-
-<h1>T.C. GENÇLİK VE SPOR BAKANLIĞI</h1>
-
-    <div class="subtitle">
-        10 NOLU İŞ KOLU İŞÇİLERİ
-    </div>
-
-    <div class="box">
-        <strong>⚠️<b> <span style="color: red;"><b>MAAŞ HESAPLAMA ROBOTU HAKKINDA</b></span></b></strong>
-        ➡️ Bu robot yalnızca bilgilendirme ve tahmin amacıyla hazırlanmış olup resmi bir bordro veya ödeme belgesi niteliği taşımamaktadır.<br> <br>
-	➡️ Yapılan hesaplamalar tamamen girilen veriler doğrultusunda oluşmaktadır.<br> <br>
-	➡️ Yapılacak hesaplamalara; BES kesintisi, fazla mesai, izin ve benzeri ek ödeme veya kesintiler dahil değildir.<br><br>
-	➡️ GSB Resmi Bordro Programına ulaşmak için <a href="http://ekip.gsb.gov.tr" target="_blank" style="color: red; text-decoration: none;"><b>Tıklayınız.</b></a><br><br>
-	➡️ Maaş hesaplamaları her ayın 15'i ile takip eden ayın 14'ü arasındaki dönemi kapsayacak şekilde yapılır. (Örn: 15 Ağustos - 14 Eylül)<br> <br>
-	➡️ Yapılacak olan hatalı hesaplamalarda sorumluluk kabul edilmemektedir.    
-</div>
-
-    <!-- ONAY KUTUSU -->
-    <label class="terms-check">
-        <input type="checkbox" id="acceptCheck" onchange="toggleButton()">
-        Yukarıdaki bilgilendirmeleri okudum ve kabul ediyorum.
-    </label>
-
-    
-    <a href="gsb10maas.html" id="targetBtn" class="btn btn-secondary btn-disabled">
-        🚀 Maaş Hesaplama Robotuna Git </a>
-
-    <div class="credit">
-        🎨 Tasarım & Geliştirme: <b><a href="https://instagram.com/batuhancaglarozkan" target="_blank" style="color: inherit; text-decoration: none;">Batuhan Çağlar Özkan</a></b> 
-    </div>
-
-    <div class="footer">
-        Koop-İş Sendikası & GSB Maaş Hesaplama Sistemi
-    </div>
-
-</div>
-
-</div>
-
-<script>
-function toggleButton() {
-    const checkBox = document.getElementById('acceptCheck');
-    const targetBtn = document.getElementById('targetBtn');
-    
-    if (checkBox.checked) {
-        targetBtn.classList.remove('btn-disabled');
-    } else {
-        targetBtn.classList.add('btn-disabled');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#174c3a">
+  <title>KOOP-İŞ DİJİTAL | GSB Maaş Hesaplama</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #174c3a;
+      --green-deep: #103729;
+      --green-soft: #eaf3ee;
+      --orange: #f47721;
+      --gold: #ffbf24;
+      --ink: #26352e;
+      --muted: #65736b;
     }
-}
-</script>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 12%, rgba(255,255,255,.38), transparent 28%),
+        linear-gradient(125deg, #9bb9ad 0%, #d9c4a1 100%);
+    }
+    .page { width: 100%; max-width: 540px; }
+    .card {
+      width: 100%;
+      padding: 30px 28px 24px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.97);
+      box-shadow: 0 18px 48px rgba(31,48,39,.22);
+      text-align: center;
+    }
+    .brand-mark {
+      width: 128px;
+      height: 128px;
+      margin: 0 auto 12px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      border-radius: 0;
+    }
+    .brand-name {
+      margin: 0;
+      color: var(--green);
+      font-size: clamp(29px, 7vw, 38px);
+      line-height: 1;
+      letter-spacing: -.9px;
+      font-weight: 800;
+    }
+    .brand-ribbon {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 5px 24px 6px;
+      color: white;
+      background: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 5px;
+    }
+    .intro {
+      margin: 22px auto 18px;
+      max-width: 420px;
+      color: #45564d;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .intro strong { color: var(--green); }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0 auto 12px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: var(--green);
+      background: var(--green-soft);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .45px;
+    }
+    .notice {
+      padding: 17px 18px;
+      border: 1px solid #e4ece7;
+      border-left: 4px solid var(--green);
+      border-radius: 14px;
+      background: #f7faf8;
+      text-align: left;
+      font-size: 12px;
+      line-height: 1.65;
+      color: #4d5b53;
+    }
+    .notice-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .notice ul { margin: 0; padding-left: 18px; }
+    .notice li + li { margin-top: 7px; }
+    .notice a { color: var(--green); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    .terms-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 17px 2px 15px;
+      text-align: left;
+      color: #536158;
+      font-size: 12px;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .terms-check input {
+      flex: 0 0 18px;
+      width: 18px;
+      height: 18px;
+      margin: 1px 0 0;
+      accent-color: var(--green);
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 13px;
+      color: white;
+      background:#174c3a;
+      box-shadow: 0 7px 16px rgba(8,124,244,.2);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+    .btn:not(.btn-disabled):hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(8,124,244,.25); }
+    .btn-disabled { opacity: .42; pointer-events: none; box-shadow: none; }
+    .footer {
+      margin-top: 19px;
+      color: #89948d;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    .footer a { color: var(--green); text-decoration: none; font-weight: 700; }
+    @media (max-width: 480px) {
+      html, body { width: 100%; min-height: 100%; }
+      body {
+        min-height: 100svh; height: 100svh; max-height: 100svh; overflow: hidden;
+        padding: max(8px, env(safe-area-inset-top)) 10px max(8px, env(safe-area-inset-bottom));
+        align-items: center;
+      }
+      .page { width: 100%; height: 100%; max-height: 100%; display: flex; align-items: center; justify-content: center; }
+      .card {
+        width: 100%; max-height: 100%; overflow: auto;
+        padding: clamp(12px, 3.2svh, 23px) 17px clamp(10px, 2.5svh, 18px);
+        border-radius: 20px;
+      }
+      .brand-mark { width: clamp(82px, 12svh, 100px); height: clamp(82px, 12svh, 100px); margin-bottom: 8px; }
+      .brand-name { font-size: clamp(27px, 7vw, 34px); }
+      .brand-ribbon { margin-top: 6px; padding: 4px 20px 5px; font-size: 11px; }
+      .intro { margin: clamp(10px, 2svh, 16px) auto 10px; font-size: 12px; line-height: 1.5; }
+      .eyebrow { margin-bottom: 9px; padding: 6px 10px; font-size: 10px; }
+      .notice { padding: 11px 12px; font-size: 10.5px; line-height: 1.48; }
+      .notice-title { margin-bottom: 6px; font-size: 11px; }
+      .notice li + li { margin-top: 4px; }
+      .terms-check { margin: 11px 1px 10px; font-size: 11px; gap: 8px; }
+      .btn { min-height: 44px; padding: 11px 15px; font-size: 13px; }
+      .footer { margin-top: 12px; font-size: 9px; }
+    }
+    @media (max-width: 350px) {
+      .card { padding-left: 13px; padding-right: 13px; }
+      .brand-ribbon { letter-spacing: 3.5px; }
+      .notice { font-size: 10px; }
+    }
+    @media (max-height: 700px) and (max-width: 480px) {
+      .brand-mark { width: 68px; height: 68px; }
+      .intro { margin: 8px auto; font-size: 11px; }
+      .notice { padding: 9px 10px; font-size: 9.5px; }
+      .terms-check { margin: 8px 1px; }
+      .footer { margin-top: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js?v=4').then(reg => reg.update()).catch(() => {});
+      });
+    }
+  </script>
+</head>
+<body>
+  <main class="page">
+    <section class="card" aria-labelledby="brand-title">
+      <div class="brand-mark">
+        <img src="https://i.ibb.co/7t7zNQq2/koop-i-gri-arka-planl-logo.png" alt="Koop-İş Sendikası logosu">
+      </div>
+      <h1 class="brand-name" id="brand-title">KOOP-İŞ</h1>
+      <div class="brand-ribbon">D İ J İ T A L</div>
 
+      <p class="intro">
+        Bu uygulama <strong>Koop-İş Sendikası üyelerine</strong> özeldir.<br>
+        <strong>Gençlik ve Spor Bakanlığı · 10 No'lu İşkolu</strong><br>
+        Maaş hesaplama ve bilgilendirme ekranına hoş geldiniz.
+      </p>
+
+      <div class="eyebrow">💼 GSB MAAŞ HESAPLAMA SİSTEMİ</div>
+
+      <div class="notice">
+        <div class="notice-title"><span aria-hidden="true">ⓘ</span> KULLANMADAN ÖNCE LÜTFEN OKUYUNUZ</div>
+        <ul>
+          <li>Bu sistem yalnızca bilgilendirme ve tahmin amacıyla hazırlanmıştır; resmî bordro veya ödeme belgesi niteliği taşımaz.</li>
+          <li>Hesaplamalar, kullanıcı tarafından girilen bilgilere göre oluşturulur. BES, izin ve benzeri ek ödeme veya kesintiler hesaba dahil değildir.</li>
+          <li>Maaş dönemi, her ayın 15'i ile takip eden ayın 14'ü arasını kapsar.</li>
+          <li>Resmî bordro işlemleri için <a href="https://ekip.gsb.gov.tr" target="_blank" rel="noopener noreferrer">GSB Ekip sistemini ziyaret edebilirsiniz.</a></li>
+        </ul>
+      </div>
+
+      <label class="terms-check">
+        <input type="checkbox" id="acceptCheck" onchange="toggleButton()">
+        <span>Yukarıdaki bilgilendirmeleri okudum ve kabul ediyorum.</span>
+      </label>
+
+      <a href="gsb10maas.html" id="targetBtn" class="btn btn-disabled" aria-disabled="true">
+        Devam Et&nbsp; → 
+      </a>
+
+      <div class="footer">
+        Tasarım ve geliştirme: <a href="https://instagram.com/batuhancaglarozkan" target="_blank" rel="noopener noreferrer">Batuhan Çağlar Özkan</a><br>
+        Koop-İş Sendikası · GSB Maaş Hesaplama Sistemi
+      </div>
+    </section>
+  </main>
+  <script>
+    function toggleButton() {
+      const accepted = document.getElementById('acceptCheck').checked;
+      const button = document.getElementById('targetBtn');
+      button.classList.toggle('btn-disabled', !accepted);
+      button.setAttribute('aria-disabled', String(!accepted));
+    }
+    document.getElementById('targetBtn').addEventListener('click', function(event) {
+      if (!document.getElementById('acceptCheck').checked) event.preventDefault();
+    });
+  </script>
 </body>
 </html>
