@@ -18,7 +18,7 @@
   }
 </script>	
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>GSB Maaş Hesaplama Robotu</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
@@ -150,6 +150,10 @@ label {
 .info-note { grid-column: 1 / -1; background: rgba(31, 122, 79, 0.05); border-left: 3px solid #1f7a4f; padding: 10px 14px; font-size: 11px; color: #1f7a4f; font-weight: 600; margin-top: 8px; border-radius: 4px; line-height: 1.4; }
 
 select,input{ width:100%; padding:10px; border-radius:10px; border:1.5px solid var(--input-border); margin-top:4px; box-sizing: border-box; font-size: 14px; background: var(--box-bg); color: var(--text-color); }
+.period-field{position:relative}
+.period-select{border:1.5px solid #b8d8c5;background:linear-gradient(135deg,#fbfefc,#f0f8f3);color:#174c3a;font-weight:750;letter-spacing:.1px;box-shadow:0 3px 10px rgba(23,76,58,.06);transition:border-color .2s,box-shadow .2s}
+.period-select:focus{outline:none;border-color:#1f7a4f;box-shadow:0 0 0 3px rgba(31,122,79,.12)}
+.period-select option,.period-select optgroup{color:#244b39;font-weight:600}
 
 .toggle-btn { background: #e1eee7; color: #1f7a4f; border: 2px solid #1f7a4f; padding: 5px 10px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: bold; margin-top: 5px; transition: 0.3s; width: auto; display: inline-block; }
 .toggle-btn.active { background: #1f7a4f; color: white; }
@@ -473,30 +477,33 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
 .net-tutar-card{overflow:hidden}
 .digital-recalculate{display:none;align-items:center;justify-content:center;width:auto;min-width:220px;margin:14px auto 4px;padding:13px 24px;background:#fff;color:#174c3a;border:1px solid #cbdcd0;border-radius:12px;font-size:13px;font-weight:800;letter-spacing:.3px;box-shadow:0 4px 14px rgba(23,76,58,.08)}
 .digital-recalculate:hover{background:#f2f7f3}
-.receipt-container{font-family:Arial,Helvetica,sans-serif;border:1px solid #e1e9e3;border-top:6px solid #174c3a;border-radius:16px;padding:22px;box-shadow:0 12px 30px rgba(20,55,35,.09);overflow:hidden}
-.receipt-header{border-bottom:1px solid #dce7df;padding:8px 0 18px;margin-bottom:16px}
+.digital-detail-result{display:none;align-items:center;justify-content:center;width:auto;min-width:220px;min-height:48px;margin:7px auto 12px;padding:13px 24px;background:#174c3a;color:#fff;border:0;border-radius:12px;font-size:13px;font-weight:800;letter-spacing:.25px;box-shadow:0 5px 14px rgba(23,76,58,.14);cursor:pointer}
+.digital-detail-result:hover{background:#236b4d}
+.receipt-container{font-family:Arial,Helvetica,sans-serif;border:1px solid #dce7df;border-top:4px solid #174c3a;border-radius:13px;padding:16px 18px;box-shadow:0 7px 18px rgba(20,55,35,.06);overflow:hidden;background:#fff}
+.receipt-header{border-bottom:1px solid #dce7df;padding:4px 0 11px;margin-bottom:11px}
 .receipt-header>div:first-child{font-size:15px!important;letter-spacing:1px}
-.receipt-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start;margin:0;padding:11px 2px;border-bottom:1px solid #edf1ee;font-size:13px;line-height:1.4}
+.receipt-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start;margin:0;padding:7px 2px;border-bottom:1px solid #edf1ee;font-size:12px;line-height:1.3}
 .receipt-row span:first-child{min-width:0;padding-right:0;overflow-wrap:anywhere;word-break:normal;color:#34443a}
+.receipt-item-number{display:inline-block;min-width:19px;color:#174c3a;font-weight:800;font-variant-numeric:tabular-nums}
 .receipt-row span:last-child{white-space:nowrap;text-align:right;color:#174c3a;font-variant-numeric:tabular-nums}
 .receipt-row.aidat-row span{color:#b54747}
-.receipt-total{margin-top:14px;padding:15px 12px;background:#edf5ef;border:1px solid #dce9df;border-radius:12px;font-size:15px;color:#174c3a}
+.receipt-total{margin-top:10px;padding:11px 10px;background:#edf5ef;border:1px solid #dce9df;border-radius:10px;font-size:14px;color:#174c3a}
 .receipt-total span:first-child{font-weight:800}
 .receipt-total span:last-child{font-weight:900}
-.receipt-footer{border-top:1px solid #e3ebe5;color:#7b887f;font-size:10px;line-height:1.5;margin-top:16px;padding-top:14px}
+.receipt-footer{border-top:1px solid #e3ebe5;color:#7b887f;font-size:9px;line-height:1.4;margin-top:10px;padding-top:9px}
 @media(max-width:600px){
  .net-tutar-card{padding:28px 12px!important;border-radius:26px;margin-top:20px}
  .net-tutar-title{font-size:12px;letter-spacing:1.2px;margin-bottom:9px}
  .net-tutar-rakam{font-size:clamp(21px,6.2vw,28px)!important;line-height:1.2;letter-spacing:-.8px;gap:5px;flex-wrap:nowrap;white-space:nowrap}
- .digital-recalculate{width:100%;max-width:100%;min-height:48px;margin:12px 0 4px}
- .receipt-container{padding:14px 11px;border-radius:13px;margin-top:14px}
- .receipt-header{padding:5px 0 14px}
+ .digital-recalculate,.digital-detail-result{width:100%;max-width:100%;min-width:0;min-height:46px;margin:7px 0 4px;padding:12px 14px;font-size:12px}
+ .receipt-container{padding:11px 10px;border-radius:12px;margin-top:10px}
+ .receipt-header{padding:4px 0 10px}
  .receipt-header>div:first-child{font-size:13px!important}
- .receipt-row{grid-template-columns:minmax(0,1fr) auto;gap:7px;padding:10px 1px;font-size:11.5px;line-height:1.35}
- .receipt-row span:first-child{font-size:11.5px;overflow-wrap:anywhere}
- .receipt-row span:last-child{font-size:11px;white-space:nowrap}
- .receipt-total{font-size:12px;padding:12px 8px;gap:6px}
- .receipt-total span:last-child{font-size:12px}
+ .receipt-row{grid-template-columns:minmax(0,1fr) auto;gap:7px;padding:7px 1px;font-size:11px;line-height:1.3}
+ .receipt-row span:first-child{font-size:11px;overflow-wrap:anywhere}
+ .receipt-row span:last-child{font-size:10.5px;white-space:nowrap}
+ .receipt-total{font-size:11px;padding:10px 8px;gap:6px}
+ .receipt-total span:last-child{font-size:11px}
  .receipt-footer{font-size:9px}
 }
 @media(max-width:600px){
@@ -523,12 +530,12 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
 /* Son düzenleme: net tutar, geri düğmesi ve geliştirici imzası */
 .net-tutar-card{margin-top:12px!important;padding:26px 14px!important;overflow:hidden}
 .net-tutar-rakam{display:block!important;width:100%;max-width:100%;font-size:clamp(28px,4.2vw,44px)!important;line-height:1.14!important;letter-spacing:-1.2px!important;white-space:normal!important;overflow-wrap:anywhere;word-break:normal;filter:drop-shadow(0 3px 5px rgba(0,0,0,.25))}
-.wizard-progress{align-items:flex-start}
+.wizard-progress{align-items:center}
 .wizard-progress-copy{align-items:flex-start;gap:5px}
-.wizard-prev{order:0;width:auto!important;min-width:0!important;margin:0 0 4px!important;padding:6px 11px!important;border-radius:9px!important;font-size:11px!important;line-height:1.2}
-.wizard-progress-copy strong{order:1}
-.wizard-progress-copy span{order:2}
-.wizard-navigation{justify-content:flex-end}
+.wizard-navigation{justify-content:space-between}
+.wizard-prev{background:#174c3a!important;color:#fff!important;border:0!important}
+.wizard-prev:hover{background:#236b4d!important}
+.wizard-prev[hidden]{display:none!important}
 .digital-credit{margin-top:22px;padding:15px 10px 4px;border-top:1px solid #dce8df;color:#829087;font-size:10px;letter-spacing:.15px}
 .digital-credit span{color:#5f7567}
 .digital-credit strong{color:#174c3a;font-weight:900}
@@ -539,7 +546,7 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
  .wizard-progress{padding:11px 12px}
  .wizard-progress-copy strong{font-size:11px}
  .wizard-progress-copy span{font-size:10px}
- .wizard-prev{font-size:11px!important;padding:6px 10px!important}
+
  .digital-credit{font-size:9px;margin-top:18px;padding-top:12px}
 }
 
@@ -554,6 +561,27 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
  .fiili-help{font-size:8px;letter-spacing:-.12px;white-space:nowrap}
  #yemekToggle.compact-meal-toggle{padding:7px 10px!important;font-size:10px!important}
 }
+
+/* Sosyal medya bağlantılarıyla aynı hizada kompakt görüş bildir butonu */
+.feedback-button{display:inline-flex;align-items:center;justify-content:center;gap:4px;flex:0 0 auto;min-height:24px;margin:0;padding:3px 5px;border:1px solid #d5e4d9;border-radius:7px;background:#174c3a;color:#fff;text-decoration:none;font-size:7px;font-weight:800;white-space:nowrap;box-shadow:none;cursor:pointer;line-height:1}
+.feedback-button:hover{background:#236b4d}
+.header-container{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-bottom:12px!important}
+.header-container .digital-social{flex:0 0 auto;margin:0!important;min-height:0;width:auto!important;justify-content:flex-start!important}
+.header-container .digital-social .social-icons{align-items:center}
+@media(max-width:600px){
+ .header-container{gap:7px;margin-bottom:9px!important}
+ .header-container .digital-social{width:auto!important;padding:0!important;justify-content:flex-start!important}
+ .header-container .digital-social .social-icons{margin:0!important;gap:5px!important}
+ .header-container .digital-social .social-icons a{width:25px!important;height:25px!important}
+ .feedback-button{min-height:22px;padding:3px 5px;font-size:6.5px;gap:3px}
+}
+@media(max-width:360px){
+ .header-container{gap:5px}
+ .header-container .digital-social .social-icons{gap:4px!important}
+ .header-container .digital-social .social-icons a{width:23px!important;height:23px!important}
+ .feedback-button{font-size:6px;padding:3px 4px;min-height:21px}
+}
+
 </style>
             </div>
     </div>
@@ -590,14 +618,17 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
         <a href="https://x.com/BatuhanOzkann" target="_blank" rel="noopener" class="twi" aria-label="X"><i class="fab fa-x-twitter"></i></a>
       </div>
   </div>
+  <a class="feedback-button" href="https://forms.gle/v7sPB94CDKP4Ciwa6" target="_blank" rel="noopener noreferrer" aria-label="Görüş ve Öneri Bildir">
+    <i class="fas fa-comment-dots" aria-hidden="true"></i> Görüş ve Öneri Bildir
+  </a>
 </div>
 
 <div class="box">
   <div class="section-title">1. BÖLÜM: TEMEL BİLGİLER</div>
   <div class="grid-container">
-    <div><label class="red-label">Brüt Yevmiye Ücreti Seçiniz*</label><select id="brutYevmiye"><option value="2680.95">2680,95 TL (Eski İşçi)</option><option value="2642.41">2642,41 TL (Yeni İşçi)</option></select></div>
-    <div><label class="red-label">Kadro/Unvan Seçiniz *</label><select id="kadro" onchange="kadroGuncelle(); this.className='field-selected'" class="required-field"><option value="">KADRO SEÇİNİZ</option><option>Temizlik Personeli</option><option>Büro Personeli</option><option>Büro Personeli (Görevlendirme)</option><option>Bilgi İşlem Personeli</option><option>Gençlik Lideri / Antrenör</option><option>Yüzme Antrenörü</option><option>Cankurtaran</option><option>Bakım-Onarım / Teknisyen</option><option>İklimlendirme/Kaloriferci 12 saat çalışan</option><option>İklimlendirme/Kaloriferci 8 saat çalışan</option><option>Özel Güvenlik Görevlisi 12 saat çalışan</option><option>Özel Güvenlik Görevlisi 8 saat çalışan</option><option>Havuz Suyu Operatörü</option><option>Aşçı</option><option>Sekreter</option><option>Şoför 12 saat çalışan</option><option>Şoför 8 saat çalışan</option><option>Resepsiyonist</option><option>Muhasebeci</option><option>Sağlık Personeli</option></select></div>
-    <div><label class="red-label">Maaş Dönemi Seçiniz*</label><select id="donem" onchange="donemGuncelle(this.value); this.className='field-selected'" class="required-field"><option value="">Maaş Dönemi Seçiniz</option><option value="31">15 Temmuz - 14 Ağustos (31 gün)</option><option value="31">15 Ağustos - 14 Eylül (31 gün)</option><option value="30">15 Eylül - 14 Ekim (30 gün)</option><option value="31">15 Ekim - 14 Kasım (31 gün)</option><option value="30">15 Kasım - 14 Aralık (30 gün)</option><option value="31">15 Aralık - 14 Ocak 2027 (31 gün)</option></select><input type="hidden" id="gun"></div>
+    <div class="period-field"><label class="red-label">Brüt Yevmiye Ücretini Seçiniz*</label><select id="brutYevmiye" class="period-select"><option value="2680.95">💰 2.680,95 TL · Eski İşçi</option><option value="2642.41">💰 2.642,41 TL · Yeni İşçi</option></select></div>
+    <div class="period-field"><label class="red-label">Kadro / Unvan Seçiniz*</label><select id="kadro" onchange="kadroGuncelle(); this.classList.add('field-selected')" class="required-field period-select"><option value="">👤 Kadro / unvan seçiniz</option><option>Temizlik Personeli</option><option>Büro Personeli</option><option>Büro Personeli (Görevlendirme)</option><option>Bilgi İşlem Personeli</option><option>Antrenör</option><option>Gençlik Lideri</option><option>Elektrik Teknisyeni / Elektrik Teknikeri</option><option>Makine Teknikeri</option><option>Elektrik Tesisatçısı</option><option>Teknisyen Yardımcısı</option><option>Yüzme Antrenörü</option><option>Cankurtaran</option><option>Bakım-Onarım / Teknisyen</option><option>İklimlendirme/Kaloriferci 12 saat çalışan</option><option>İklimlendirme/Kaloriferci 8 saat çalışan</option><option>Özel Güvenlik Görevlisi 12 saat çalışan</option><option>Özel Güvenlik Görevlisi 8 saat çalışan</option><option>Havuz Suyu Operatörü</option><option>Aşçı</option><option>Sekreter</option><option>Şoför 12 saat çalışan</option><option>Şoför 8 saat çalışan</option><option>Resepsiyonist</option><option>Muhasebeci</option><option>Sağlık Personeli</option></select></div>
+    <div class="period-field"><label class="red-label">Maaş Dönemini Seçiniz*</label><select id="donem" onchange="donemGuncelle(this.value); this.classList.add('field-selected')" class="required-field period-select"><option value="">📅 Maaş dönemi seçiniz</option><optgroup label="2026 Dönemleri"><option value="30">14 Ekim 2026 · 30 gün</option><option value="31">14 Kasım 2026 · 31 gün</option><option value="30">14 Aralık 2026 · 30 gün</option></optgroup><optgroup label="2027 · Zamsız Dönemler"><option value="31">14 Ocak 2027 · 31 gün · Zamsız</option><option value="31">14 Şubat 2027 · 31 gün · Zamsız</option><option value="28">14 Mart 2027 · 28 gün · Zamsız</option></optgroup></select><input type="hidden" id="gun"></div>
     <div><label>Gelir Vergisi Dilimi</label><select id="vergiOrani"><option value="0.71491" data-val="0.15">1. Dilim (%15)</option><option value="0.67241" data-val="0.20">2. Dilim (%20)</option><option value="0.61291" data-val="0.27">3. Dilim (%27)</option><option value="0.54491" data-val="0.35">4. Dilim (%35)</option></select></div>
   </div>
 
@@ -740,7 +771,7 @@ function donemGuncelle(val) {
         document.getElementById("vergiOrani").selectedIndex = 2; 
     }
     // Yeni yılın ilk maaşı (14 Ocak 2027) için vergi sıfırlanır %15 (Index 0)
-    else if(donemText.includes("14 Ocak 2027")){
+    else if(donemText.includes("14 Ocak 2027") || donemText.includes("14 Şubat 2027") || donemText.includes("14 Mart 2027")){
         document.getElementById("vergiOrani").selectedIndex = 0;
     }
     // Yılın başındaki aylar (Ocak, Şubat, Mart) varsayılan %15
@@ -757,6 +788,10 @@ function yogurtOtomatikGuncelle() {
     // Yeni Sözleşme: Yoğurt yardımı alan tüm kadrolar
     let yogurtKadro = [
         "Yüzme Antrenörü",
+        "Elektrik Teknisyeni / Elektrik Teknikeri",
+        "Makine Teknikeri",
+        "Elektrik Tesisatçısı",
+        "Teknisyen Yardımcısı",
         "Cankurtaran",
         "Havuz Suyu Operatörü",
         "İklimlendirme/Kaloriferci 12 saat çalışan",
@@ -833,7 +868,7 @@ function yogurtOtomatikGuncelle() {
 
     // Yoğurt yardımı alan kadrolar listesi
     let yogurtKadro = [
-        "Yüzme Antrenörü", "Cankurtaran", "Havuz Suyu Operatörü",
+        "Yüzme Antrenörü", "Elektrik Teknisyeni / Elektrik Teknikeri", "Makine Teknikeri", "Elektrik Tesisatçısı", "Teknisyen Yardımcısı", "Cankurtaran",
         "İklimlendirme/Kaloriferci 12 saat çalışan", "İklimlendirme/Kaloriferci 8 saat çalışan",
         "Bakım-Onarım / Teknisyen", "Bilgi İşlem Personeli", "Temizlik Personeli"
     ];
@@ -986,6 +1021,8 @@ if(donemText.includes("14 Mayıs")) {
   sonucKarti.style.display = "block";
   const yenidenBtn=document.getElementById("yenidenHesaplaBtn");
   if(yenidenBtn) yenidenBtn.style.display="inline-flex";
+  const detayBtn=document.getElementById("detayliBordroBtn");
+  if(detayBtn) detayBtn.style.display="inline-flex";
   window.detayData = detay;
   window.hesaplananKadro = document.getElementById("kadro").value;
   window.hesaplananDonem = donemText;
@@ -997,7 +1034,7 @@ if(donemText.includes("14 Mayıs")) {
 function tabloCiz(){
   let html = `<div class="receipt-container">
     <div class="receipt-header">
-<div style="font-weight: 900; font-size: 14px; color: #1f7a4f; margin-bottom: 8px;">GSB MAAŞ BORDRO FİŞİ</div>
+<div style="font-weight: 900; font-size: 14px; color: #1f7a4f; margin-bottom: 8px;">GSB MAAŞ DETAYLI RAKAMLAR</div>
 <div style="font-size: 14px; font-weight: 800; color: #333; text-transform: uppercase;">${window.hesaplananKadro}</div>
 <div style="font-size: 13px; font-weight: 600; color: #666; margin-top: 3px;">Dönem: ${window.hesaplananDonem}</div>
     </div>
@@ -1005,12 +1042,13 @@ function tabloCiz(){
     <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 900; margin-bottom: 5px; color: #1f7a4f; border-bottom: 1px solid #eee; padding-bottom: 3px;">
         <span>ÖDEME KALEMLERİ</span>
         <span>NET ÜCRETLER</span>
-    </div>`;  window.detayData.forEach(d => {
+    </div>`;  let odemeKalemNo=0;
+  window.detayData.forEach(d => {
     let rowClass = d.isAidat ? 'class="receipt-row aidat-row"' : 'class="receipt-row"';
     let noteStyle = d.note.includes("Tediye Mahsubu") ? 'class="tediye-notu"' : 'class="aidat-note"';
-
+    let kalemNo = d.isAidat ? "" : (++odemeKalemNo) + ". ";
     html += `<div ${rowClass}>
-        <span>${d.label} ${d.note ? '<br><small '+noteStyle+'>'+d.note+'</small>' : ''}</span>
+        <span><b class="receipt-item-number">${kalemNo}</b>${d.label} ${d.note ? '<br><small '+noteStyle+'>'+d.note+'</small>' : ''}</span>
         <span>${d.tutar.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} TL</span>
     </div>`;
   });
@@ -1045,6 +1083,14 @@ function yenidenHesapla(){
   if(sonucKarti) sonucKarti.style.display="none";
   if(detay) detay.style.display="none";
   if(yenidenBtn) yenidenBtn.style.display="none";
+  const detayBtn=document.getElementById("detayliBordroBtn");
+  if(detayBtn) detayBtn.style.display="none";
+  const kadroSelect=document.getElementById("kadro");
+  const donemSelect=document.getElementById("donem");
+  if(kadroSelect){kadroSelect.selectedIndex=0;kadroSelect.classList.remove("field-selected");}
+  if(donemSelect){donemSelect.selectedIndex=0;donemSelect.classList.remove("field-selected");}
+  const gunInput=document.getElementById("gun");
+  if(gunInput) gunInput.value="";
   if(root && typeof root._goToStep==="function") root._goToStep(0);
   else window.scrollTo({top:0,behavior:"smooth"});
 }
@@ -1088,13 +1134,17 @@ function yenidenHesapla(){
     detailButton.type="button";
     detailButton.setAttribute("onclick","detayGoster()");
    }
-   detailButton.className="digital-detail-button";
-   detailButton.textContent="Detaylı Bordroyu Görüntüle";
-   action.appendChild(detailButton);
+   detailButton.id="detayliBordroBtn";
+   detailButton.className="digital-detail-button digital-detail-result";
+   detailButton.textContent="DETAYLI RAKAMLARI GÖRÜNTÜLE";
+   detailButton.style.display="none";
+   const recalcButton=document.getElementById("yenidenHesaplaBtn");
+   if(recalcButton) recalcButton.insertAdjacentElement("afterend",detailButton);
+   else root.appendChild(detailButton);
   }
   const wizard=document.createElement("div");
   wizard.className="salary-wizard";
-  wizard.innerHTML='<div class="wizard-progress"><div class="wizard-progress-copy"><button type="button" class="wizard-prev" id="wizardPrev" disabled>← Geri</button><strong>MAAŞ HESAPLAMA ADIMLARI</strong><span id="wizardStepName">TEMEL BİLGİLER</span></div><span class="wizard-progress-count" id="wizardStepCount">1 / 5</span></div><div class="wizard-track"><span></span><span></span><span></span><span></span><span></span></div><div class="wizard-panels"></div><div class="wizard-navigation"><span class="wizard-step-hint" id="wizardHint">İlk adım</span><button type="button" class="wizard-next" id="wizardNext">Devam Et →</button></div>';
+  wizard.innerHTML='<div class="wizard-progress"><div class="wizard-progress-copy"><strong>MAAŞ HESAPLAMA ADIMLARI</strong><span id="wizardStepName">TEMEL BİLGİLER</span></div><span class="wizard-progress-count" id="wizardStepCount">1 / 5</span></div><div class="wizard-track"><span></span><span></span><span></span><span></span><span></span></div><div class="wizard-panels"></div><div class="wizard-navigation"><button type="button" class="wizard-prev" id="wizardPrev" hidden>← Geri</button><span class="wizard-step-hint" id="wizardHint">İlk adım</span><button type="button" class="wizard-next" id="wizardNext">Devam Et →</button></div>';
   const first=steps[0];
   first.parentNode.insertBefore(wizard,first);
   const panels=wizard.querySelector(".wizard-panels");
@@ -1107,7 +1157,7 @@ function yenidenHesapla(){
    wizard.querySelectorAll(".wizard-track span").forEach((bar,i)=>bar.classList.toggle("done",i<=current));
    wizard.querySelector("#wizardStepName").textContent=names[current];
    wizard.querySelector("#wizardStepCount").textContent=(current+1)+" / 5";
-   wizard.querySelector("#wizardPrev").disabled=current===0;
+   wizard.querySelector("#wizardPrev").hidden=current===0;
    wizard.querySelector("#wizardNext").hidden=current===4;
    wizard.querySelector("#wizardHint").textContent=current===4?"":(current+1)+". adımdan sonra "+(4-current)+" adım kalıyor";
    wizard.querySelector("#wizardHint").hidden=current===4;
