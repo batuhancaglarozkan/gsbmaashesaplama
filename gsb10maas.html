@@ -153,7 +153,7 @@ select,input{ width:100%; padding:10px; border-radius:10px; border:1.5px solid v
 .period-field{position:relative}
 .period-select{border:1.5px solid #b8d8c5;background:linear-gradient(135deg,#fbfefc,#f0f8f3);color:#174c3a;font-weight:750;letter-spacing:.1px;box-shadow:0 3px 10px rgba(23,76,58,.06);transition:border-color .2s,box-shadow .2s}
 .period-select:focus{outline:none;border-color:#1f7a4f;box-shadow:0 0 0 3px rgba(31,122,79,.12)}
-.period-select option,.period-select optgroup{color:#244b39;font-weight:600}
+.period-select option,.period-select optgroup{color:#244b39;font-weight:600}\n.period-select option.period-expired{color:#a7afaa;background-color:#f1f3f2;font-weight:500}\n
 
 .toggle-btn { background: #e1eee7; color: #1f7a4f; border: 2px solid #1f7a4f; padding: 5px 10px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: bold; margin-top: 5px; transition: 0.3s; width: auto; display: inline-block; }
 .toggle-btn.active { background: #1f7a4f; color: white; }
@@ -582,6 +582,58 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
  .feedback-button{font-size:6px;padding:3px 4px;min-height:21px}
 }
 
+
+/* KOOP-İŞ logosu yalnızca detaylı bordroda filigran olarak görünür. */
+#sonuc .receipt-container{
+  isolation:isolate;
+  overflow:hidden;
+}
+#sonuc .receipt-container::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:50%;
+  top:50%;
+  width:min(92%, 760px);
+  height:90%;
+  transform:translate(-50%,-50%);
+  background-image:url("https://i.ibb.co/s9jZt21M/Koop-Logo-effaf-png.png");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  opacity:.22;
+  pointer-events:none;
+}
+#sonuc .receipt-container > *{
+  position:relative;
+  z-index:1;
+}
+@media(max-width:600px){
+  #sonuc .receipt-container::before{
+    width:92%;
+    height:84%;
+    opacity:.10;
+  }
+}
+
+
+/* Tediye bağlantısı sosyal medya ve görüş bildir butonları arasında */
+.header-container .tediye-header-link{display:inline-flex;align-items:center;justify-content:center;flex:0 1 auto;min-width:0;min-height:29px;margin:0;padding:5px 9px;border:1px solid #d5e4d9;border-radius:9px;background:#174c3a;color:#fff;font-size:9px;font-weight:800;letter-spacing:0;text-align:center;line-height:1.15;white-space:nowrap;text-decoration:none;box-shadow:none}
+.header-container .tediye-header-link:hover{background:#236b4d;transform:translateY(-1px)}
+.header-container .digital-social{margin:0!important;flex:0 0 auto}
+.header-container .feedback-button{min-height:29px;padding:5px 9px;font-size:9px;border-radius:9px}
+@media(max-width:600px){
+ .header-container{gap:6px}
+ .header-container .tediye-header-link{min-height:27px;padding:4px 6px;font-size:8px;white-space:normal;flex:1 1 auto}
+ .header-container .feedback-button{min-height:27px;padding:4px 6px;font-size:8px;white-space:nowrap}
+}
+@media(max-width:380px){
+ .header-container{gap:4px}
+ .header-container .tediye-header-link{font-size:7px;padding:4px 4px}
+ .header-container .feedback-button{font-size:7px;padding:4px 4px}
+ .header-container .digital-social .social-icons{gap:3px!important}
+ .header-container .digital-social .social-icons a{width:23px!important;height:23px!important}
+}
 </style>
             </div>
     </div>
@@ -606,9 +658,9 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
       <div class="digital-brand">
         <div class="digital-brand-name">KOOP-İŞ <span>DİJİTAL</span></div>
         <div class="digital-brand-subtitle">GSB MAAŞ VE TEDİYE HESAPLAMA SİSTEMİ</div>
-        <a class="tediye-header-link" href="gsb10tediye.html">18 ARALIK TEDİYE HESAPLAMA <span>→</span></a>
+        
       </div>
-      <div class="digital-header-meta"><span>10 NOLU İŞKOLU</span><span class="version-badge">v2.0 · 17 Kasım 2026</span></div>
+      <div class="digital-header-meta"><span>10 NOLU İŞKOLU</span><span class="version-badge">v2.1 · 21 Kasım 2026</span></div>
     </div>
     <div class="header-container">
   <div class="social-bar-wrapper digital-social">
@@ -618,6 +670,7 @@ body:has(.login-shell){padding:0;background:linear-gradient(145deg,#e8f0eb 0%,#f
         <a href="https://x.com/BatuhanOzkann" target="_blank" rel="noopener" class="twi" aria-label="X"><i class="fab fa-x-twitter"></i></a>
       </div>
   </div>
+  <a class="tediye-header-link" href="gsb10tediye.html">18 Aralık 2026 Tediye Hesaplama</a>
   <a class="feedback-button" href="https://forms.gle/v7sPB94CDKP4Ciwa6" target="_blank" rel="noopener noreferrer" aria-label="Görüş ve Öneri Bildir">
     <i class="fas fa-comment-dots" aria-hidden="true"></i> Görüş ve Öneri Bildir
   </a>
